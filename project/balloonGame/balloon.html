@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url(imgs/bg.jpg) no-repeat;
+            background-size: 1980px 1080px;
+            overflow: hidden;
+        }
+
+        .balloon {
+            width: 96px;
+            height: 122px;
+            background: url(imgs/balloon.png) no-repeat;
+            background-position: -288px -244px;
+            /*left:0 -96 -192 -288 top:0 -122 -224*/
+
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        .countDown {
+            width: 200px;
+            height: 30px;
+            margin: 10px auto;
+
+            color: aliceblue;
+            background-color: rgba(0, 0, 0, 0.5);
+
+            text-align: center;
+            line-height: 30px;
+            border-radius: 5px;
+        }
+
+        .start,
+        .again {
+            width: 420px;
+            height: 220px;
+            background-color: white;
+            margin: 300px auto;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .start p,
+        .again p {
+            font-size: 40px;
+        }
+
+        .start button,
+        .again button {
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            margin-top: 80px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="countDown"></div>
+    <div class="start" id="start">
+        <p>是否开始游戏</p>
+        <button>开始</button>
+    </div>
+    <div class="again" id="again" style="display: none;">
+        <p>是否重新开始游戏</p>
+        <button>开始</button>
+    </div>
+    <audio class="click" src="imgs/c.wav" style="display: none;" controls></audio>
+    <audio class="bgm" src="imgs/bgm.mp3" style="display: none;" controls></audio>
+</body>
+
+</html>
+<script>
+    //开始
+    let start = document.getElementById('start');
+    let strbtn = start.querySelector('button');
+    //点击音乐
+    let clickBgm = document.querySelector('.click');
+    console.log(clickBgm);
+
+    //背景音乐
+    let bgBgm = document.querySelector('.bgm');
+    console.log(bgBgm);
+
+    //倒计时
+    let countdown = document.querySelector('.countDown')
+    //再来一次
+    let again = document.getElementById('again');
+    let againbtn = again.querySelector('button')
+
+    //气球定时器
+    let balloonTime = null;
+    //倒计时定时器
+    let countdownTime = null;
+    // 倒计时秒数
+    let countdownData = 18;
+    //分数
+    let score = 0;
+    //初始化倒计时和分数
+    countdown.innerHTML = `倒计时：${countdownData}s,分数：${score}`;
+    // bgBgm.load()
+    // bgBgm.play()
+
+
+
+
+
+    // 气球类
+    function Balloon() {
+        //气球实例
+        this.balloonDom = null;
+        //浏览器窗口高度宽度
+        this.windowH = window.innerHeight;
+        this.windowW = window.innerWidth;
+
+        //气球位置数字
+        this.balloonleft = parseInt(Math.random() * (this.windowW - 96));
+        this.balloontop = this.windowH;//因为溢出隐藏可以直接把定点设置和窗口同高，形成从窗口外飘出效果
+
+        //随机气球图片(上下0-2 左右0-3)
+        this.backL = parseInt(Math.random() * 4)
+        this.backT = parseInt(Math.random() * 3)
+        // console.log('左右' + this.backL + '上下' + this.backT);
+
+        // 定时器
+        this.timer = null;
+
+        //移动步长(1-10)
+        this.step = parseInt(Math.random() * 10 + 1);;
+        // parseInt(Math.random() * 10 + 1);
+        //移动终点
+        this.end = 0;
+
+
+        //初始化
+        this.init()
+        //移动
+        this.move()
+    }
+    //初始化一个气球
+    Balloon.prototype.init = function () {
+        // 创建一个div,类名为balloon
+        this.balloonDom = document.createElement('div');
+        this.balloonDom.className = 'balloon';
+
+        //监听容器改变事件
+        let that = this;
+        window.onresize = function () {
+            that.windowH = window.innerHeight;
+            that.windowW = window.innerWidth;
+        };
+
+        //气球初始位置（一直位于浏览器底部，左右随机）
+        this.balloonDom.style.top = this.balloontop + 'px';
+        this.balloonDom.style.left = this.balloonleft + 'px';
+
+        // 随机气球图片
+        this.balloonDom.style.backgroundPosition = `-${this.backL * 96}px -${this.backT * 122}px `;
+
+        // 添加到页面
+        document.body.appendChild(this.balloonDom);
+    }
+
+    //气球向上移动
+    Balloon.prototype.move = function () {
+        let that = this;
+
+        this.timer = setInterval(function () {
+            //向上移动
+            that.balloontop -= that.step
+            //判断是否完全飘出窗口再消失
+            if (that.balloontop <= that.end - 79) {
+                that.die();
+            }
+            //判断点击
+            that.balloonDom.onclick = function () {
+                that.click();
+
+                clickBgm.load();
+                clickBgm.play();
+            }
+            that.balloonDom.style.top = that.balloontop + 'px';
+        }, 100)
+    }
+
+    //自然消除方法（无加分
+    Balloon.prototype.die = function () {
+        //清除定时器
+        clearInterval(this.timer);
+        //拉终
+        // this.balloontop=0;
+        console.log('消除的是：左右' + this.backL + '上下' + this.backT);
+        //清除
+        this.balloonDom.remove();
+    }
+  
+    //点击消除方法（有加分
+    Balloon.prototype.click = function () {
+        //清除定时器
+        clearInterval(this.timer);
+        //判断加分
+        updateScore(this.backL, this.backT)
+        console.log('分数' + score);
+
+        //清除
+        this.balloonDom.remove();
+    }
+
+
+    //点击开始
+    strbtn.onclick = function () {
+        //隐藏开始
+        start.style.display = 'none';
+        //开始游戏
+        play()
+    }
+
+    //点击再来一次
+    againbtn.onclick = function () {
+        //隐藏再来一次
+        again.style.display = 'none';
+        //重置倒计时
+        countdownData = 18;
+        //重置分数
+        score = 0;
+
+        countdown.innerHTML = `倒计时：${countdownData}s,分数：${score}`;
+        //开始游戏
+        play()
+    }
+
+
+    
+    //开始游戏方法
+    function play() {
+        //打开背景音乐
+        bgBgm.load()
+        bgBgm.play()
+        // 先调用一次
+        new Balloon();
+        // 气球定时器
+        balloonTime = setInterval(function () {
+            new Balloon();
+        }, 3000)
+
+        //倒计时
+        countdownTime = setInterval(function () {
+            countdownData--;
+            if (countdownData <= 0) {
+                clearInterval(countdownTime);
+                //暂停产生气球
+                clearInterval(balloonTime);
+                // 清除所有气球
+                againfn()
+            }
+            countdown.innerHTML = `倒计时：${countdownData}s,分数：${score}`;
+        }, 1000)
+    }
+
+    //倒计时结束清除所有气球
+    function againfn() {
+        let ball = document.querySelectorAll('.balloon')
+        for (let i = 0; i < ball.length; i++) {
+            ball[i].remove()
+        }
+        again.style.display = 'block'
+    }
+
+    //计算分数
+    function updateScore(backL, backT) {
+        switch (`${backL},${backT}`) {
+            case '0,0':
+                score += 1;
+                break;
+            case '1,0':
+                score += 2;
+                break;
+            case '2,0':
+                score += 3;
+                break;
+            case '3,0':
+                score += 4;
+                break;
+            //第二排气球
+            case '0,1':
+                score += 5;
+                break;
+            case '1,1':
+                score += 6;
+                break;
+            case '2,1':
+                score += 7;
+                break;
+            case '3,1':
+                score += 8;
+                break;
+            //第三排气球
+            case '0,2':
+                score *= 2;
+                break;
+            case '1,2':
+                score = parseInt(score / 2);
+                break;
+            case '2,2':
+                score = 0;
+                break;
+            case '3,2':
+                break;
+        }
+    }
+</script>
