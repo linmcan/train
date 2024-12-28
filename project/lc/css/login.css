@@ -1,0 +1,87 @@
+*{margin: 0 ;padding: 0;}
+a{text-decoration: none;}
+li{list-style: none;}
+img{vertical-align: bottom;}
+
+
+
+.main{
+    width: 300px;
+    margin: 20px auto 0;
+}
+
+
+table {
+    border-spacing: 0 20px; /* 设置行间距为10px */
+}
+
+.logo {
+    height: 300px; /* 设置行高 */
+}
+
+.logo td {
+    text-align: center; /* 水平居中 */
+    vertical-align: middle; /* 垂直居中 */
+    height: 300px; /* 确保单元格高度为300px */
+}
+
+input {
+    font-size: 18px;
+    line-height: 27px;
+    border:none
+}
+
+/* 手机号 */
+.phone td{
+    width: 270px;
+    padding-left: 36px;
+    background: url(../img/login/phone-number.png) no-repeat;
+    border-bottom: 1px solid black;
+}
+
+/* 验证码 */
+.input{
+    display: flex;
+}
+.verification-code input{
+    width: 150px;
+    padding-left: 36px;
+    background: url(../img/login/verification-code.png) no-repeat left center;
+    border-bottom: 1px solid black;
+}
+.verification-code .obtain{
+    width: 110px;
+    height: 34px;
+    border: 1px solid black;
+    margin-left: 20px;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 10%;
+}
+
+/* 自动登录 */
+.islogin td{
+    font-size: 14px;
+}
+
+/* 登录 */
+.login td{
+    height: 50px;
+    background-color: black;
+    text-align: center;
+}
+.login td a{
+    display: block; /* 使链接成为块级元素 */
+    height: 100%;
+    width: 100%;
+    line-height: 50px;
+    color: white;
+}
+
+/* 其他方式登录 */
+.more-login td{
+    text-align: center;
+}
+.more-login td a{
+    color: black;
+}

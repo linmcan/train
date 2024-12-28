@@ -1,0 +1,117 @@
+.main{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/* 上方文字 */
+.shoppingStep{
+    width: 1000px;
+    padding:50px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.shoppingStep *{
+    width: 135px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+}
+.shoppingStep .item-blue{
+    color: #6393b4;
+}
+
+/* 购物车列表 */
+.shoppingcarList .cart-table{
+    margin: 5px 0;
+    width: 1000px;
+    border-collapse: collapse;
+}
+.shoppingcarList .cart-table td,.shoppingcarList .cart-table th{
+    font-size: 12px;
+    vertical-align: top;
+    color: #666;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    padding: 10px 5px;
+}
+.shoppingcarList .cart-table th{
+    font-size: 14px;
+    font-weight: normal;
+    padding: 15px 5px;
+}
+
+.shoppingcarList .cart-table th:nth-of-type(1){width: 110px;}
+.shoppingcarList .cart-table th:nth-of-type(2){width: 300px;}
+.shoppingcarList .cart-table th:nth-of-type(3){width: 120px;}
+.shoppingcarList .cart-table th:nth-of-type(4){width: 160px;}
+.shoppingcarList .cart-table th:nth-of-type(5){width: 160px;}
+.shoppingcarList .cart-table th:nth-of-type(6){width: 90px;}
+
+/* 商品格 */
+.shoppingcarList .cart-table .goodsitem{
+    display: flex;
+    text-align: left;
+}
+.shoppingcarList .cart-table .goodsitem img{
+    width: 70px;
+    height: 70px;
+}
+.shoppingcarList .cart-table .goodsitem .info{
+    margin-left: 5px;
+    color: #666;
+    line-height: 17px;
+}
+.shoppingcarList .cart-table .goodsitem .sp-name{
+    color: #878787;
+}
+
+/* 数量格 */
+.shoppingcarList .cart-table td:nth-of-type(3) input{
+    width: 20px;
+    border: none;
+    text-align: center;
+}
+.shoppingcarList .cart-table td:nth-of-type(3) img{
+    vertical-align: middle;
+}
+.shoppingcarList .cart-table td:nth-of-type(3) p{
+    margin-top: 5px;
+    color: #6393b4;
+}
+/* 删除格 */
+.shoppingcarList .cart-table td:nth-of-type(6) a{
+    color: #6393b4;
+}
+
+/* 结算文字 */
+.shoppingcarOpt{
+    text-align: center;
+    padding:20px 0;
+}
+.shoppingcarOpt p:nth-of-type(1){
+    font-size: 14px;
+    line-height: 30px;
+}
+.shoppingcarOpt span:nth-of-type(1){
+    font-size: 18px;
+}
+.shoppingcarOpt span:nth-of-type(2){
+    margin-left: 8px;
+    font-size: 18px;
+    color: #197bc9;
+}
+.shoppingcarOpt p:nth-of-type(2) input{
+    width: 168px;
+    height: 30px;
+    background: #6393b4;
+    color: white;
+    margin: 5px 0 10px 0;
+    border: none;
+}
+.shoppingcarOpt a{
+    color: #404040;
+    font-size: 14px;
+    position: relative;
+}

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/detail.css">
+    <link rel="stylesheet" href="font/iconfont.css" />
+</head>
+
+<body>
+    <!-- 头部标签 -->
+    <header>
+        <div class="header">
+            <a class="logo" href="index.html"></a>
+            <ul class="nav-r">
+                <!--未登录的 登录 注册 -->
+                <li class="login"><a href="login.html">登录</a></li>
+                <li class="register"><a href="register.html">注册</a></li>
+                <!-- 已登录的 用户 -->
+                <!-- <li class="user is-subnav">
+                        <img src="img/good-7.jpg" alt="">
+                        <span>用户123</span>
+
+
+                        <div class="user-subnav">
+                            <ul class="user-list">
+                                <li><a href="">个人设置</a></li>
+                                <li><a href="">收货信息</a></li>
+                                <li><a href="">我的订单</a></li>
+                            </ul>
+
+                            <div class="user-btn"><a href="">退出登录</a></div>
+                        </div>
+                    </li> -->
+
+                <li class="line">|</li>
+
+                <li class="cart is-subnav">
+                    <a href="cart.html">购物车</a>
+                    <!-- 子菜单 -->
+                    <div class="cart-subnav">
+                        <!-- 暂无商品, 没有商品，没有登录 -->
+                        <!-- <div class="cart-msg">你的购物车暂无商品...</div> -->
+                        <!-- 中间购物车商品 -->
+
+                        <ul class="cart-list">
+                            <li class="goods">
+                                <a href=""><img src="img/goods.jpg" alt="" /></a>
+                                <div>
+                                    <p>全棉插肩长袖T恤 | 百</p>
+                                    <p>服装尺码:S;颜色:米白/黑;</p>
+                                    <p>
+                                        <span>数量：3件</span>
+                                        <span>¥290.00</span>
+                                        <span>¥390.00</span>
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="goods">
+                                <a href=""><img src="img/goods.jpg" alt="" /></a>
+                                <div>
+                                    <p>全棉插肩长袖T恤 | 百</p>
+                                    <p>服装尺码:S;颜色:米白/黑;</p>
+                                    <p>
+                                        <span>数量：3件</span>
+                                        <span>¥290.00</span>
+                                        <span>¥390.00</span>
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="goods">
+                                <a href=""><img src="img/goods.jpg" alt="" /></a>
+                                <div>
+                                    <p>全棉插肩长袖T恤 | 百</p>
+                                    <p>服装尺码:S;颜色:米白/黑;</p>
+                                    <p>
+                                        <span>数量：3件</span>
+                                        <span>¥290.00</span>
+                                        <span>¥390.00</span>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- 按钮 -->
+                        <div class="cart-btn">快去抢购物良仓商品吧！</div>
+                    </div>
+                </li>
+
+                <li class="line">|</li>
+                <li class="message is-subnav">
+                    <a href="">消息</a>
+                    <!-- 子菜单 -->
+                    <div class="message-subnav">
+                        <ul class="message-list">
+                            <li><a href="">动态<span>0</span></a></li>
+                            <li><a href="">私信<span>0</span></a></li>
+                            <li><a href="">评论<span>0</span></a></li>
+                            <li><a href="">粉丝<span>0</span></a></li>
+                            <li><a href="">喜欢<span>0</span></a></li>
+                            <li><a href="">通知<span>0</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="line">|</li>
+                <li class="add-product"><a href="">添加良品</a></li>
+
+                <li class="agreement"><a href="">资质证照 / 协议规则</a></li>
+            </ul>
+        </div>
+    </header>
+    <!-- 导航栏 -->
+    <nav>
+        <ul class="sub-l">
+            <li><a href="">首页</a></li>
+            <li class="shop">
+                <a href="">商店</a>
+                    <!-- 子菜单 -->
+                    <div class="shop-subnav">
+                        <ul class="shop-list">
+                            <li class="home">
+                                <a href="">
+                                    <img src="img/shop/shop-1.png" alt="" />
+                                    <p>家居</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-2.png" alt="" />
+                                    <p>文具</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-3.png" alt="" />
+                                    <p>数码</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-4.png" alt="" />
+                                    <p>玩乐</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-5.png" alt="" />
+                                    <p>餐厨</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-6.png" alt="" />
+                                    <p>美食</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-7.png" alt="" />
+                                    <p>服装</p>
+                                </a>
+                            </li>
+
+                            <li class="listChild">
+
+                            </li>
+
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-8.png" alt="" />
+                                    <p>鞋包</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-9.png" alt="" />
+                                    <p>配饰</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-10.png" alt="" />
+                                    <p>美护</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-11.png" alt="" />
+                                    <p>出行</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-12.png" alt="" />
+                                    <p>图书</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-13.png" alt="" />
+                                    <p>艺术</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-14.png" alt="" />
+                                    <p>水具</p>
+                                </a>
+                            </li>
+
+                            <li class="listChild">
+
+                            </li>
+
+                            <li>
+                                <a href="">
+                                    <img src="img/shop/shop-15.png" alt="" />
+                                    <p>运动</p>
+                                </a>
+                            </li>
+                            <li class="listChild">
+
+                            </li>
+                        </ul>
+                        <div class="nav-subnav-r">
+                            <img src="img/nav_banner.jpg" alt="" />
+                            <p>新视线：  2024年12月刊</p>
+                        </div>
+                        
+                    </div>
+            </li>
+            <li class="magazine">
+                <a href="">杂志</a>
+                <div class="magazine-subnav">
+                    <ul class="magazine-list">
+                        <li><a href="">趣物</a></li>
+                        <li><a href="">数码</a></li>
+                        <li><a href="">汽车</a></li>
+                        <li><a href="">文化</a></li>
+                        <li><a href="">趣物</a></li>
+                        <li><a href="">数码</a></li>
+                        <li><a href="">汽车</a></li>
+                        <li><a href="">文化</a></li>
+                        <li><a href="">趣物</a></li>
+                        <li><a href="">数码</a></li>
+                        <li><a href="">汽车</a></li>
+                        <li><a href="">文化</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="share">
+                <a href="">分享</a>
+                <div class="share-subnav">
+                    <ul class="share-list">
+                        <li><a href="">趣物</a></li>
+                        <li><a href="">数码</a></li>
+                        <li><a href="">汽车</a></li>
+                        <li><a href="">文化</a></li>
+                        <li><a href="">趣物</a></li>
+                        <li><a href="">数码</a></li>
+                        <li><a href="">汽车</a></li>
+                        <li><a href="">文化</a></li>
+                        <li><a href="">趣物</a></li>
+                        <li><a href="">数码</a></li>
+                        <li><a href="">汽车</a></li>
+                        <li><a href="">文化</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="">达人</a></li>
+            <li><a href="">有偿资讯</a></li>
+        </ul>
+        
+        <!-- 搜索框 -->
+        <div class="search-content">
+            <input type="text" placeholder="search..." name="" id="">
+            <span></span>
+        </div>
+     </nav>
+
+    <!-- 主体 -->
+    <div class="main">
+        <!-- 导航 -->
+        <div class="position">
+            <a href="">良仓</a> &gt;
+            <a href="">家居</a> &gt;
+            <a href="">家具</a> &gt;金属兔子椅 | 营造幽默舒适家居氛围
+        </div>
+        <!-- 商品 -->
+        <div class="goodsdetail">
+            <!-- 商品部分 -->
+            <div class="detail">
+                <!-- 商品详细 -->
+                <div class="info">
+                    <!-- 左边图片列表 -->
+                    <div class="image" id="image">
+                        <span class="left"></span>
+                        <span class="right"></span>
+                        <div class="mainImg">
+                            <ul>
+                                <li>
+                                    <div><img src="img/good/detail1.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail2.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail3.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail4.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail5.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail6.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail7.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail8.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail1.jpg" alt=""></div>
+                                </li>
+                            </ul>
+                            <div  class="slide"></div>
+                        </div>
+                        <div class="big">
+                            <img src="img/good/detail1.jpg" alt="" class="bigImg">
+                        </div>
+                        <div class="list-box">
+                            <ul>
+                                <li  class="firstimg">
+                                    <div><img src="img/good/detail1.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail2.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail3.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail4.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail5.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail6.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail7.jpg" alt=""></div>
+                                </li>
+                                <li>
+                                    <div><img src="img/good/detail8.jpg" alt=""></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 右边商品详细 -->
+                    <div class="goodInfo">
+                        <!-- 商品喜爱数 -->
+                        <div class="goodsFavCount">6586</div>
+                        <!-- 店铺名字 -->
+                        <div class="dpName">
+                            <a href="">Qeeboo</a>
+                        </div>
+                        <!-- 商品名字 -->
+                        <div class="gdName"> 金属兔子椅 | 营造幽默舒适家居氛围 </div>
+                        <!-- 商品价格 -->
+                        <div class="infoItem">价格:&nbsp; &nbsp; <span>¥8918元</span></div>
+                        <!-- 包邮正品 -->
+                        <div class="shipNote"><span> 免运费</span><span>正品授权</span></div>
+                        <!-- 商品种类 -->
+                        <div class="goodType">
+                            <div class="type-title">颜色:&nbsp;&nbsp;</div>
+                            <div class="alltype">
+                                <div class="type1">
+                                    <div class="imgCon">
+                                        <img src="img/good/big1.jpg" alt="颜色/大号金色">
+                                    </div>
+                                    <div class="name">大号金色</div>
+                                </div>
+                                <div class="type2">
+                                    <div class="imgCon">
+                                        <img src="img/good/big2.jpg" alt="">
+                                    </div>
+                                    <div class="name">大号银色</div>
+                                </div>
+                                <div class="type3">
+                                    <div class="imgCon">
+                                        <img src="img/good/big3.jpg" alt="">
+                                    </div>
+                                    <div class="name">大号玫瑰红</div>
+                                </div>
+                                <div class="type4">
+                                    <div class="imgCon">
+                                        <img src="img/good/small1.jpg" alt="">
+                                    </div>
+                                    <div class="name">小号金色</div>
+                                </div>
+                                <div class="type5">
+                                    <div class="imgCon">
+                                        <img src="img/good/small2.jpg" alt="">
+                                    </div>
+                                    <div class="name">小号银色</div>
+                                </div>
+                                <div class="type6">
+                                    <div class="imgCon">
+                                        <img src="img/good/small3.jpg" alt="">
+                                    </div>
+                                    <div class="name">小号玫瑰红</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- 商品数量 -->
+                        <div class="amountCon">
+                            数量: &nbsp;&nbsp;
+                            <div class="mopt">
+                                <a href=""><img src="img/good/reduce.png" alt=""></a>
+                                <input type="text" class="inpt" value="1">
+                                <a href=""><img src="img/good/add.png" alt=""></a>
+                            </div>
+                        </div>
+                        <!-- 立即购买 -->
+                        <div class="buynow">
+                            <a href="">立即购买</a>
+                            <!-- <p>已售罄，即将到货</p> -->
+                        </div>
+                        <!--加入购物车  分享-->
+                        <div class="cart-share">
+                            <a href="" class="addcart"><span>加入购物车</span></a>
+                            <a href="" class="share"><span>分享</span></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 介绍图片 -->
+                <div class="imgs">
+                    <img src="img/good/1.jpg" alt="">
+                    <img src="img/good/2.jpg" alt="">
+                    <img src="img/good/3.jpg" alt="">
+                    <img src="img/good/4.jpg" alt="">
+                    <img src="img/good/5.jpg" alt="">
+                    <img src="img/good/6.jpg" alt="">
+                    <img src="img/good/7.jpg" alt="">
+                    <img src="img/good/8.jpg" alt="">
+                </div>
+                <!-- 其他 -->
+                <div>
+                    <!-- 品牌介绍 -->
+                    <div class="introduction">
+                        <div class="introduction-title">品牌介绍</div>
+                        <div class="introduction-main">
+                            <p>qeeboo是一个新时代的创意设计品牌，致力于易生产、易成型的塑料家具设计。品牌由Stefano Giovannoni（斯特凡诺·乔凡诺尼）创立和领导
+                                ，并邀请了同样著名的 Andrea Branzi、Gabriele Chiave of marcel wanders工作 室等设计师，共同参与qeeboo品牌的家具设计。
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 购物指南 -->
+                    <div class="guide">
+                        <div class="guide-title">购物指南</div>
+                        <div class="guide-main">
+                            <p>— 所有商品均为正品保证。</p>
+                            <p>— 中国大陆地区免运费 （偏远地区、受疫情和自然灾害影响、受节假日特殊活动等影响时，需承担部分运费）。</p>
+                            <p>— 包邮默认商家合作快递，如指定快递请联系客服，并承担运费差额。</p>
+                            <p>— 蜡烛、液态品、手表等含电池产品无法空运，运输时间相较普通空运件会更久。</p>
+                            <p>— 如出现产品质量问题请在签收后72小时内联系客服。</p>
+                        </div>
+                    </div>
+                    <!-- 售后 -->
+                    <div class="after-sales">
+                        <a href="">售后须知</a>
+                        <!-- 须知 -->
+                        <div class="sales">
+                            <p class="title1">温馨提示:</p>
+                            <p>如您订购的是生鲜冷冻商品，建议您收货时开箱检验。如发现变质或破损、
+                                漏发错发等情况，请于签收后48小时内对商品及包装外箱拍照并发给在线客服，我们将尽速进行处理。</p>
+                            <p class="title2">关于售后:</p>
+                            <p>一、如出现以下情况，请及时联系客服团队并提供订单编号或收件人手机号，我们将竭诚为您服务:<br>
+                                1.错发、漏发<br>
+                                2.商品自身质量问题<br>
+                                3.快递挤压破损、延迟配送导致的商品变质<br>
+                                您收到的商品本身如有破损、瑕疵，我们将视为质量问题，因拍摄图片或显示器色差导致的色彩差异问题不属于质量问题。因产品尺码为手工测量，可能存在些许误差，敬请谅解。</p>
+                            <p>二、退货说明:良仓承诺商品本身有质量问题时，在商品及吊牌、内包装完整无破损的情况下，您可以办理退
+                                货。在快递被签收后72小时内登录APP点击个人-我的订单-售后即可申请退货，并将破损问题拍照上传保存，在得到客服退货确
+                                认回复之日起3日内将商品寄出，同时请将快递公司和单号告知客服，由良仓承担退回运费，货款将在良仓收到货物后5个工作日内打到您的付款账户中;由于尺码不合等个人原因造成的往返退货费用将由购买客户承担。
+                            </p>
+                            <p>三、换货说明:如果您收到的服饰配件类商品尺码不合适，良仓愿意为您提供换货，在商品及吊牌、内包装完整
+                                无破损且不影响二次销售的情况下，请在快递被签收后72小时内登录APP点击个人-我的订单-售后即可申请换货，并将实物商品
+                                拍照上传保存，在得到客服换货确认回复之日起3日内将商品寄出，同时请将快递公司和单号告知客服，由于尺码不合等原因造成的往返换货费用将由购买客户承担。</p>
+                            <p>对于下列情况，很遗憾我们将无法提供理赔服务，敬请理解:<br>
+                                1.超出签收后7日无理由退换货受理时限<br>
+                                2.收件人因自身原因无法及时签收或拒收<br>
+                                3.商品存在破损或质量问题但无法提供相关照片凭证或直接将商品丢弃</p>
+                            <p class="title3">联系客服:</p>
+                            <p>客服邮箱:kefu@iliangcang.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 猜你喜欢 -->
+            <div class="recommendation">
+                <div class="recommendation-title">猜你喜欢</div>
+                <div class="recommendation-goods">
+                    <a href="" class=""><img src="img/good-3.jpg" alt=""></a>
+                    <a href="" class="name">耳机123</a>
+                    <p class="dpName">吃茶去</p>
+                    <p class="price">￥249</p>
+                </div>
+                <div class="recommendation-goods">
+                    <a href="" class=""><img src="img/good-3.jpg" alt=""></a>
+                    <a href="" class="name">耳机123</a>
+                    <p class="dpName">吃茶去</p>
+                    <p class="price">￥249</p>
+                </div>
+                <div class="recommendation-goods">
+                    <a href="" class=""><img src="img/good-3.jpg" alt=""></a>
+                    <a href="" class="name">耳机123</a>
+                    <p class="dpName">吃茶去</p>
+                    <p class="price">￥249</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 尾部 -->
+    <footer>
+        <div class="service">
+            <!-- 版心宽度 -->
+            <div class="bottom-server">
+                <span class="iconfont icon-shouzhi"></span>
+                <span>&gt;&gt;</span>
+                <a href="">良仓商品/OUR SHOP</a>
+            </div>
+            <div class="slogen">
+                <div class="fore1">
+                    <p>全球精品</p>
+                    <p>Global Selection</p>
+                </div>
+                <div class="fore2">
+                    <p>正品保证</p>
+                    <p>Authenticity Guaranteed</p>
+                </div>
+                <div class="fore3">
+                    <p>全场包邮</p>
+                    <p>Free Delivery</p>
+                </div>
+                <div class="fore4">
+                    <p>客服邮箱</p>
+                    <p>kefu@iliangcang.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="wrap">
+                <div class="wrap-l">
+                    <div class="all-download">
+                        <a href="" class="download">
+                            <div class="download-text">
+                                <p>iPhone Android</p>
+                                <p>客户端下载</p>
+                            </div>
+                            <div class="download-code">
+                                <a href="">
+                                    <div class="code">
+                                        <div>
+                                            <img src="img/icon_02.png" alt="" class="img1">
+                                            <p>下载iPhone版</p>
+                                        </div>
+                                        <div>
+                                            <img src="img/icon_03.png" alt="" class="img2">
+                                            <p>下载Android版</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="wrap-l-bottom">
+                        <ui class="bottom-list">
+                            <li><a href="">关于良仓</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">服务协议</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">隐私保护政策</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">使用指南</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">联系我们</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">加入我们</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">友情链接</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">私信良仓</a></li>
+                        </ui>
+                        <p>© 2013-2019 北京良仓文化传播有限公司版权所有 </p>
+                        <p> 公司名称：北京良仓文化传播有限公司 客服邮箱：kefu@iliangcang.com</p>
+                        <p> 公司地址：北京朝阳区百子湾路32号6号楼1层60号.</p>
+                        <p> 社会信用统一代码：91110105059231575L 食品许可证：JY11105160159557 </p>
+                        <p> 图书证名称：中华人民共和国出版物经营许可证 图书证编号：新出发京零 字第 朝 150051 号 </p>
+                        <p>京ICP备13010677号-1 京公网安备11010502025627</p>
+                    </div>
+                </div>
+                <div class="wrap-r">
+                    <ul class="a-list">
+                        <li><a href="" class="a-wechat">
+                                <div class="wechat"></div>
+                                <div class="wechat-code">
+                                    <img src="img/wechat-code.png" alt="">
+                                </div>
+                            </a></li>
+                        <li><a href="">
+                                <div class="weibo"></div>
+                            </a></li>
+                        <li><a href="">
+                                <div class="douban"></div>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+<script src="js/base.js"></script>
+<script src="js/detail.js"></script>

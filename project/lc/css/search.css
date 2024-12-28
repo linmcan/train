@@ -1,0 +1,128 @@
+.main{
+    width: 1000px;
+    margin: 20px auto;
+}
+.position {
+    font-size:12px;
+    color:#bfbfbf
+}
+.position a:nth-of-type(1){
+    color: #666;
+}
+.position a:nth-of-type(2){
+    color:#bfbfbf
+}
+.goodsdetail{
+    display: flex
+}
+.goodsdetail .detail{
+    width:865px ;
+    margin-right: 0 35px 0 0;
+}
+
+.searchType {
+    margin: 20px 0;
+    padding: 10px 0;
+    display: flex;
+    height: 20px;
+    border-bottom: #878787 solid 1px;
+}
+.searchType a{
+   line-height: 20px;
+   color: #878787;
+}
+.searchType .type1>a{
+    color: #7ca8cb;
+}
+.searchType div{
+    color: #878787;
+    margin: 5px 20px 0 0;
+}
+
+.searchList{
+    margin: 60px 0; 
+}
+
+.searchList .sec-list{
+    display: flex;
+    justify-content: space-between ;
+    flex-wrap: wrap;
+}
+.searchList .sec-list li{
+    width: 235px;
+    height: 269px;
+    margin: 0 0 24px 0;
+    position: relative;
+}
+.searchList .sec-list li img{
+    width: 235px;
+    height: 235px;
+}
+.searchList .sec-list li .bar{
+    width: 235px;
+    height: 34px;
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchList .sec-list li .store{
+    line-height: 27px;
+}
+.searchList .sec-list li .store img{
+    width: 27px;
+    height: 27px;
+}
+.sec-list li .like{
+    font-size: 13px;
+    line-height: 16px;
+}
+.sec-list li .like div{
+    float: right;
+    margin-left: 8px;
+    width: 18px;
+    height: 16px;
+    background: url(../img/icon.png) no-repeat  0px -610px;
+}
+
+
+/* 鼠标浮动的名字页 */
+.sec-list li .goods-name {
+    width: 215px;
+    height: 215px;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: rgba(0, 0, 0, .7);
+    padding: 10px;
+    display: none;
+}
+.sec-list .goods-name p:nth-child(1){
+    color: #0c6aa5;
+    font-weight: 600;
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 50px;
+}
+.sec-list .goods-name p:nth-child(2){
+    line-height: 28px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+}
+.sec-list .goods-name p:nth-child(3){
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    /* 设置文本不换行 */
+	text-wrap: nowrap;
+	/* 设置溢出隐藏*/
+	overflow: hidden; 
+	/* 文本溢出隐藏的形式 省略号 */
+	text-overflow: ellipsis;
+}
+
+.searchList .sec-list .goods:hover .goods-name{
+    display: block;
+}

@@ -1,0 +1,157 @@
+.main{
+    width: 1000px;
+    margin: 0 auto;
+}
+/* 基本设置 */
+.setting {
+    padding: 20px 0;
+    position: relative;
+}
+.setting a{
+    color: white;
+    font-size: 14px;
+    background-color: #7ca8cb;
+    padding: 5px 10px;
+}
+.setting ::after{
+    content: '';
+	width: 100%;
+	height: 1px;
+	background-color:#ccc;
+	position: absolute;
+	left: 0px;
+	bottom: -5px;
+}
+/* 小列表 */
+.secnav{
+    padding: 20px 0;
+}
+.secnav-list{
+    display: flex;
+    color: #666;
+    font-size: 13px;
+}
+.secnav-list a{
+    color: #666;
+    font-size: 13px;
+}
+.secnav-list :nth-child(3) a{
+    color:#7ca8cb ;
+}
+.secnav-list :nth-child(odd) a{
+	margin:0 7px;
+}
+
+/* 订单完成状态 */
+.order .order-status{
+    font-size: 13px;
+    color: #666;
+    padding: 20px 0;
+}
+.order .order-status .status{
+    font-size: 13px;
+    color: #666;
+    padding: 2px 7px;
+    margin: 0 3px;
+    border-radius: 5px;
+}
+.order .order-status .ison{
+    background-color: #7ca8cb;
+    color: white;
+}
+
+/* 寻找订单 */
+.order .conTle{
+    text-align: right;
+    padding: 5px 0;
+}
+.order .conTle input[type="button"]{
+    border: none;
+    padding: 2px 5px;
+}
+.order .conTle :nth-child(1){
+    font-size: 13px;
+    color: #666;
+}
+.order .conTle :nth-child(3){
+    font-size: 13px;
+    color: white;
+    background-color: #7ca8cb;
+}
+
+/* 订单列表 */
+.order .order-table{
+    margin: 5px 0;
+    width: 1000px;
+    border-collapse: collapse;
+}
+
+.order .order-table td,.order .order-table th{
+    font-size: 14px;
+    color: #666;
+    border-right: 1px solid #ccc;
+    text-align: center;
+    vertical-align: top;
+    padding: 10px 5px;
+}
+.order .order-table th{
+    font-weight: normal;
+    padding: 15px 5px;
+}
+/* 第一行粗边框 */
+.order .order-table tr:first-of-type{
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+/* 第二行往下的底部细边框 */
+.order .order-table :nth-child(n+2){
+    border-bottom: 1px solid #ccc;
+}
+/* 分别设置宽 */
+.order .order-table td:nth-of-type(1){width: 300px;}
+.order .order-table td:nth-of-type(2){width: 80px;}
+.order .order-table td:nth-of-type(3){width: 64px;}
+.order .order-table td:nth-of-type(4){width: 140px;}
+.order .order-table td:nth-of-type(5){width: 180px;}
+.order .order-table td:nth-of-type(6){width: 70px;}
+.order .order-table th:nth-of-type(7){width: 80px; border: none;}
+
+/* 商品格*/
+.order .order-table .orderItem{
+    display: flex;
+    text-align: left;
+}
+.order .order-table .orderItem *{
+    border: none;
+}
+.order .order-table .orderItem img{
+    width: 50px;
+    height: 50px;
+}
+.order .order-table .orderItem .info{
+    margin-left: 10px;
+}
+.order .order-table .orderItem p a{
+    font-size: 12px;
+    color: #666;
+}
+/* 查看格 */
+.order .order-table :nth-child(n+2) :last-child{
+    vertical-align: middle;
+}
+.order .order-table .pay{
+    background-color: #7ca8cb;
+    color: white;
+    padding: 2px 7px;
+    font-size: 12px;
+}
+/* 没有商品 */
+.order .order-table .nothing{
+    border-right: none;
+}
+
+.order .artistListConPage{
+    text-align: right;
+    font-size: 13px;
+    color: #666;
+}

@@ -1,0 +1,619 @@
+*{margin: 0 ;padding: 0;}
+a{text-decoration: none;}
+li{list-style: none;}
+img{vertical-align: bottom;}
+
+
+/* 头部 */
+header{
+    width: 100%;
+    height: 56px;
+    background:#25292e;
+}
+.header{
+    width: 1000px;
+    height: 56px;
+    margin: 0 auto;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+/* 左边logo */
+.header .logo{
+    width: 95px;
+    height: 38px;
+    background: url(../img/icon.png) no-repeat;
+}
+
+
+/* 右边列表 */
+ .nav-r{
+    height: 56px;
+    display: flex;
+    color: #666666;
+    font-size: 14px;
+}
+ .nav-r li{
+    /* 定位 */
+    position: relative;
+}
+.nav-r  .line{
+    line-height: 56px;
+}
+/* 常态按钮 */
+.nav-r>li>a{
+    line-height: 56px;
+    font-size: 12px;
+    color: #666666;
+    margin:0 15px ;
+}
+/* 登录注册按钮 */
+.nav-r .login a,.nav-r .register a{
+    color: #cccccc;
+    margin: 0px 8px 0px 0px;
+}
+/* 用户按钮 */
+.nav-r .user img{
+	width: 30px;
+	height: 30px;
+	margin-right: 9px;
+	vertical-align: middle;
+}
+.nav-r .user span{
+	line-height: 56px;
+	font-size: 12px;
+	margin-right:15px ;
+}
+/* 资质证照按钮 */
+.header .nav-r .agreement a{
+    margin: 0px;
+}
+/* 有弹窗的移入背景变色 */
+.is-subnav:hover{
+    background-color:#292f33 ;
+}
+/* 移入字体变色 */
+.header>.nav-r>li:hover>a,.header>.nav-r>li:hover>span{
+    color: #cccccc;
+}
+
+/* 用户子菜单 */
+.user .user-subnav{
+    width: 190px;
+    position: absolute;
+    top: 56px; left: 0;
+    display: none;
+    z-index: 999;
+}
+.user:hover .user-subnav{
+	display: block;
+}
+.user-subnav .user-list li{
+	background-color:#292f34;
+}
+.user-subnav .user-list li a{
+	display: inline-block;
+	height: 44px;
+	width: 160px;
+	margin:0 15px;
+	text-align:left;
+	line-height: 44px;
+	color: #ccc;
+	border-bottom: 1px solid #666;
+}
+.user-subnav .user-btn{
+	background-color:#242930;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+.user-subnav .user-btn a{
+	color: #ccc;
+}
+.user-subnav .user-list li:hover,.user-subnav .user-btn:hover{
+	background-color:#2e353d ;
+}
+
+
+/* 购物车子菜单 */
+.cart-subnav{
+    width: 320px;
+    position: absolute;
+    top: 56px; left: 30%;
+    background-color:#292f33;
+    display: none;
+    z-index: 999;
+}
+/* 移入显示 */
+.cart:hover .cart-subnav{
+	display: block;
+}
+/* 无商品时文字 */
+.cart-msg{
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+	font-size: 14px;
+	color: #ccc;
+}
+/* 有商品时购物车列表 */
+.cart-subnav .cart-list li{
+	padding: 14px;
+	display: flex;
+	border-bottom: 1px solid #666;
+}
+.cart-list .goods>a>img{
+	width: 64px;
+	height: 64px;
+	margin-right: 10px;
+}
+.cart-list .goods>div{
+	flex:1;
+	font-size: 12px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	color: #ccc;
+}
+.cart-list .goods p:nth-of-type(1){
+	color: #666;
+}
+.cart-list .goods p:nth-of-type(3){
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.cart-list .goods p:nth-of-type(3) :last-child{
+	color: #666;
+	text-decoration: line-through;
+}
+
+.cart-list li:hover{
+	background-color: #292F34;
+}
+
+/* 购物车按钮 */
+.cart-btn{
+	height: 45px;
+	background-color: rgb(125,191,222);
+	color:white;
+	line-height: 45px;
+	text-align: center;
+}
+.cart-btn:hover{
+	background-color: #96C8E0;
+}
+
+
+/* 消息子菜单 */
+.message-subnav{
+    width: 190px;
+    position: absolute;
+    top: 56px; left: -30%;
+    display: none;
+    z-index: 998;
+}
+.message:hover .message-subnav{
+	display: block;
+}
+.message-subnav .message-list li{
+	background-color:#292f33;
+}
+.message-subnav .message-list li a{
+	display: inline-block;
+	margin: 0 15px;
+    height: 44px;
+	width: 160px;
+    color: #cccccc;
+	border-bottom: 1px solid #666;
+	line-height: 44px;
+}
+.message-subnav .message-list span{
+    float: right;
+}
+.message-subnav .message-list li:hover{
+	background-color:#2e353d 
+}
+/* 导航栏 */
+nav{
+	width: 1000px;
+	height: 45px;
+	margin: 0px auto;
+	border-bottom: 4px solid #EDEDED;
+	display: flex;
+}
+nav>ul{
+	display: flex;
+	align-items: center;
+}
+nav>ul>li{
+	width: 120px;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	margin-right: 16px;
+	/* 设置下边框 */
+	border-bottom: 4px solid #EDEDED;
+	position: relative;
+	top:2px;
+}
+nav>ul>li:hover{
+	border-bottom: 4px solid #25292E;
+}
+nav>ul>li>a{
+	color: #333;
+	font-size: 15px;
+}
+nav>ul>li:first-of-type{
+	text-align: left;
+	width: 82px;
+}
+
+/* 搜索框 */
+.search-content{
+	flex:1;
+	display: flex;
+	align-items: center;
+	border-bottom: 4px solid #25292E;
+	position: relative;
+	top: 4px;
+}
+.search-content input{
+	border: none;
+	height: 24px;
+	/* 去掉聚集的边框 */
+	outline: none;
+}
+.search-content span{
+	width: 43px;
+	height: 38px;
+	background:url(../img/icon.png) no-repeat -157px -147px;
+}
+
+/* 商品列表*/
+.shop-subnav{
+	width: 1000px;
+	height: 420px;
+	background-color: white;
+	position: absolute;
+	left: -98px;
+	top: 49px;
+	padding-top: 40px;
+	border-bottom: 1px solid #ccc;
+	/* 默认隐藏 */
+	display: none;
+	z-index: 998;
+}
+nav>ul>.shop:hover .shop-subnav{
+	display: block;
+}
+.shop-list{
+	width: 770px;
+	float: left;
+	display: flex;
+	flex-wrap: wrap;
+}
+.shop-list>li{
+	margin: 0px 60px 30px 0px;
+}
+
+.shop-list>li img{
+	width: 40px;
+}
+.shop-list>li p{
+	color: #333;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: bold;
+}
+/* 商店子菜单 */
+.shop-list .listChild{
+	width: 770px;
+	height: 100px;
+	background: #96C8E0;
+	margin: 0px 30px 0px 0px;
+	display: none;
+}
+/* 旁边杂志栏 */
+.nav-subnav-r{
+	width: 230px;
+	float: right;
+}
+.nav-subnav-r img{
+	width: 100%;
+}
+.nav-subnav-r p{
+	font-size: 14px;
+	color: #333;
+}
+
+
+/* 杂志列表 */
+.magazine-subnav{
+    width: 1000px;
+	height: 163px;
+	background-color: white;
+	position: absolute;
+	left: -234px;
+	top: 49px;
+	padding-top: 40px;
+	/* 默认隐藏 */
+	display: none;
+	z-index: 998;
+}
+nav>ul>.magazine:hover .magazine-subnav{
+	display: block;
+}
+.magazine-list{
+	width: 900px;
+	float: left;
+	display: flex;
+	flex-wrap: wrap;
+}
+.magazine-list>li{
+	margin: 0px 60px 15px 0px;
+}
+.magazine-list>li a{
+	color: #333;
+	font-size: 14px;
+	line-height: 18px;
+}
+/* 分享列表 */
+.share-subnav{
+    width: 1000px;
+	height: 115px;
+	background-color:white;
+	position: absolute;
+	left: -370px;
+	top: 49px;
+	padding-top: 20px;
+	/* 默认隐藏 */
+	display: none;
+	z-index: 998;
+}
+nav>ul>.share:hover .share-subnav{
+	display: block;
+}
+.share-list{
+	width: 900px;
+	float: left;
+	display: flex;
+	flex-wrap: wrap;
+}
+.share-list>li{
+	margin: 0px 60px 0px 0px;
+}
+.share-list>li a{
+	color: #333;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+
+
+
+
+/* footer */
+
+.service{
+	width: 100%;
+	padding: 51px 0 78px;
+	border-top: #ededed 1px solid;
+    background: #fbfdfe;
+    margin: 60px auto 0;
+	text-align: center;
+}
+
+
+.bottom-server{
+	width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 20px 0 ;
+}
+.bottom-server>a{
+	color: #666;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 22px;
+}
+@keyframes serverhand {
+	from{
+		left: 0px;
+	}
+	to{
+		left: -20px;
+	}
+}
+.bottom-server span{
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	color: #666;
+	position: relative;
+	top: 2px;
+	left: -20px;
+	animation: serverhand .5s linear infinite alternate;
+}
+
+/* 四个保证 */
+.service .slogen{
+	height: 60px;
+	width: 1000px;
+	margin: 0 auto;
+	text-align: left;
+	display: flex;
+	justify-content: space-between
+}
+[class^="fore"] p{
+	background-color: #fbfdfe;
+	padding-left: 5px;
+}
+.service .slogen .fore1{
+	padding-left: 56px;
+	line-height: 30px;
+	background: url(../img/icon.png) no-repeat 0 -355px;
+}
+.service .slogen .fore2{
+	padding-left: 46px;
+	line-height: 30px;
+	background: url(../img/icon.png) no-repeat -153px -219px;
+}
+.service .slogen .fore3{
+	padding-left: 56px;
+	line-height: 30px;
+	background: url(../img/icon.png) no-repeat -57px -355px;
+}
+.service .slogen .fore4{
+	padding-left: 56px;
+	line-height: 30px;
+	background: url(../img/icon.png) no-repeat -115px -355px;
+}
+
+
+
+
+
+.foot{
+	border-top: #25292e 1px solid;
+    margin: 0 auto;
+	padding-bottom: 20px;
+    width: 100%;
+    background: #25292e;
+    color: #5c5c5c;
+}
+.wrap {
+    width: 1000px;
+    margin: 0 auto;
+}
+/* .wrap-l{
+	padding: 40px 0 0 0;
+} */
+/* 下载图标链接 */
+.wrap-l:first-child{
+    display: inline-block;
+    width: auto; 
+	position: relative;
+}
+.wrap-l  .download-text {
+    padding: 40px 0 0 25px;
+    width: 171px;
+    height: 44px;
+	background: url(../img/phone_02.png)no-repeat 0 40px;
+    color: #5c5c5c;
+    font-size: 12px;
+}
+.wrap-l  .download-text p{
+	padding-left: 30px;
+	line-height: 22px;
+	background-color:#25292e ;
+}
+/* 二维码悬浮窗 */
+.download-code{
+	width: 300px;
+	height: 150px;
+	position: absolute;
+	top: -151px; left: -25px;
+	display: none;
+}
+.wrap-l a .code{
+	width: 300px;
+	height: 150px;
+	background-color: #fbfdfe;
+	align-items: center;
+	z-index: 991;
+	display: flex;
+}
+.wrap-l a .code .img1{
+	width: 100px;
+	height: 100px;
+	padding: 0 25px ;
+	border-right: #25292E solid 1px;
+}
+.wrap-l a .code .img2{
+	width: 100px;
+	height: 100px;
+	padding: 0 25px;
+}
+/* 底部文字 */
+.wrap-l a .code p{
+	color: #4d4d4d;
+	font-size: 12px;
+	margin-top: 10px;
+	text-align: center;
+}
+.wrap-l .all-download:hover .download-code{
+	display: block;
+}
+.wrap-l-bottom p{
+	color: #666666;
+    font-size: 12px;
+	line-height: 18px;
+}
+.wrap-l-bottom p:nth-of-type(n+2){
+	text-indent: 2em;
+}
+/* 中间小列表 */
+.bottom-list{
+	margin: 40px 0 10px 0;
+	display: flex;
+}
+.bottom-list a{
+    color: #666666;
+    font-size: 12px;
+}
+.bottom-list :nth-child(odd) a{
+	margin: 0 10px;
+}
+.bottom-list :nth-child(odd):hover a{
+	color: #ccc;
+}
+
+
+.wrap-r{
+	float: right;
+}
+.wrap-r .a-list{
+	display: flex;
+}
+
+.wrap-r .a-list li div{
+	padding: 45px 0 0;
+	margin-right: 30px;
+	width: 25px;
+	height: 21px;
+}
+/* 鼠标移入改变背景 */
+.wrap-r .a-list li .wechat{
+	background: url(../img/wechat1.png) no-repeat 0 45px;
+}
+.wrap-r .a-list li .weibo{
+	background: url(../img/weibo1.png) no-repeat 0 45px;
+}
+.wrap-r .a-list li .douban{
+	background: url(../img/douban1.png) no-repeat 0 45px;
+}
+
+.wrap-r .a-list li:hover .wechat{
+	background: url(../img/wechat2.png) no-repeat 0 45px;
+}
+.wrap-r .a-list li:hover .weibo{
+	background: url(../img/weibo2.png) no-repeat 0 45px;
+}
+.wrap-r .a-list li:hover .douban{
+	background: url(../img/douban2.png) no-repeat 0 45px;
+}
+/* 微信公众号悬浮窗 */
+.wrap-r .a-list .a-wechat{
+	position: relative;
+}
+.wrap-r .a-list .a-wechat .wechat-code{
+	position: absolute;
+	top:-191px; left: -60px;
+	width: 145px; height: 145px;
+	display: none;
+}
+.wrap-r .a-list .a-wechat:hover .wechat-code{
+	display: block;
+}

@@ -1,0 +1,23 @@
+{
+  "id": "4780269",
+  "name": "2412-lc",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3259013",
+      "name": "手指",
+      "font_class": "shouzhi",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "7116470",
+      "name": "爱心 _实心",
+      "font_class": "aixin_shixin",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    }
+  ]
+}
