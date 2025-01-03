@@ -8,9 +8,8 @@ let shopLi = shopUl.getElementsByClassName('cat');//所有导航分类
 //搜索部分
 let search = document.querySelector('.search-content')
 let searchInput = search.querySelector('input')
-let searchSpan = search.querySelector('span')
+let searchA = search.querySelector('a')
 console.log(searchInput);
-
 
 
 
@@ -40,7 +39,7 @@ let classifyData = {};//商品子导航
                 // 累加数据
                 str += `
                     <li class='cat'>
-                        <a href="">
+                        <a href="category.html?catId=${item.cat_id}&catName=${item.cat_name}" catId='${item.cat_id}'>
                             <img src="${item.cat_img}" alt="" />
                             <p>${item.cat_name}</p>
                         </a>
@@ -62,7 +61,7 @@ let classifyData = {};//商品子导航
             console.log(res);
             // 数据
             classifyData = res.data;
-            //插入小分类的li,每七行的小分类在一起，层叠且默认隐藏
+            //插入小分类的li
             let listChild = document.createElement('li');
             listChild.className = 'listChild';
             let children = shopUl.children;
@@ -72,40 +71,40 @@ let classifyData = {};//商品子导航
             shopUl.insertBefore(listChild.cloneNode(true), children[17]);
             //获取所有子导航合集
             let shopliChild = shopNav.querySelectorAll('ul .listChild');
-            
+
             // 思路：鼠标移入对应菜单栏的时候，对catID进行匹配，再将数据放进对应listChild里面
             //遍历所有导航分类
             for (let index = 0; index < shopLi.length; index++) {
                 //鼠标移入导航栏
-                shopLi[index].onmouseenter = function(){
+                shopLi[index].onmouseenter = function () {
                     //遍历子导航数据
-                    for (let i = 0; i < classifyData.length; i++) {  
+                    for (let i = 0; i < classifyData.length; i++) {
                         //匹配cat_id                  
                         if (catData[index].cat_id === classifyData[i].cat_id) {
-                           //生成插入数据
-                           let str = '';
-                           classifyData[i].data.forEach(item => {
+                            //生成插入数据
+                            let str = '';
+                            classifyData[i].data.forEach(item => {
                                 str += `<a href="">${item.product_content}</a>`
-                           })
-                           //进行插入,移入显示
-                           let location =parseInt(index/7)
+                            })
+                            //进行插入,移入显示
+                            let location = parseInt(index / 7)
                             shopliChild[location].innerHTML = str;
                             shopliChild[location].style.display = 'block'
                         }
                     }
                 };
                 //鼠标移出导航栏
-                shopLi[index].onmouseleave = function (){
-                    let location =parseInt(index/7)
+                shopLi[index].onmouseleave = function () {
+                    let location = parseInt(index / 7)
                     shopliChild[location].style.display = 'none'
                 };
             }
             // 保证移入子导航栏还能显示
             for (let i = 0; i < shopliChild.length; i++) {
-                shopliChild[i].onmouseenter = function(){
+                shopliChild[i].onmouseenter = function () {
                     shopliChild[i].style.display = 'block'
                 };
-                shopliChild[i].onmouseleave = function (){
+                shopliChild[i].onmouseleave = function () {
                     shopliChild[i].style.display = 'none'
                 };
             }
@@ -114,12 +113,22 @@ let classifyData = {};//商品子导航
 })();
 
 //搜索
-(function(){
-    searchSpan.addEventListener('click', function() {
+(function () {
+    searchA.addEventListener('click', function (event) {
         // 获取输入框的值
         let inputValue = searchInput.value;
-    
+
+        event.preventDefault();
+        // 添加查询参数
+        let hrefvalue = `search.html?keywords=${inputValue}`;
+        searchA.setAttribute('href', hrefvalue); 
+
+        window.location.href = hrefvalue;
     });
 })();
+
+
+
+
 
 

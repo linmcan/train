@@ -232,7 +232,7 @@ nav>ul>li{
 	height: 45px;
 	text-align: center;
 	line-height: 45px;
-	margin-right: 16px;
+	padding-right: 16px;
 	/* 设置下边框 */
 	border-bottom: 4px solid #EDEDED;
 	position: relative;
@@ -265,11 +265,13 @@ nav>ul>li:first-of-type{
 	/* 去掉聚集的边框 */
 	outline: none;
 }
-.search-content span{
+.search-content a{
+	display: inline-block;
 	width: 43px;
 	height: 38px;
 	background:url(../img/icon.png) no-repeat -157px -147px;
 }
+
 
 /* 商店列表*/
 .shop-subnav{
@@ -326,6 +328,9 @@ nav>ul>.shop:hover .shop-subnav{
 	font-size: 12px;
 	line-height: 18px;
 	margin: 15px;
+}
+.shop-list .listChild  a:hover{
+	color: #4e4e4e;
 }
 
 /* 旁边杂志栏 */
@@ -489,7 +494,6 @@ nav>ul>.share:hover .share-subnav{
 
 
 .foot{
-	border-top: #25292e 1px solid;
     margin: 0 auto;
 	padding-bottom: 20px;
     width: 100%;
@@ -527,7 +531,7 @@ nav>ul>.share:hover .share-subnav{
 	width: 300px;
 	height: 150px;
 	position: absolute;
-	top: -151px; left: -25px;
+	top: -150px; left: -25px;
 	display: none;
 }
 .wrap-l a .code{
@@ -623,7 +627,7 @@ nav>ul>.share:hover .share-subnav{
 }
 .wrap-r .a-list .a-wechat .wechat-code{
 	position: absolute;
-	top:-191px; left: -60px;
+	top:-190px; left: -60px;
 	width: 145px; height: 145px;
 	display: none;
 }

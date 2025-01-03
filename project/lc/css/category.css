@@ -11,16 +11,13 @@
 .position a{
     color:#666;
 }
-.goodsdetail{
-    display: flex
-}
-.goodsdetail .detail{
-    width:865px ;
-    margin-right: 0 35px 0 0;
+.position a:last-of-type{
+    color:skyblue;
 }
 /* 分类列表 */
 .osm-bar{
     display: flex;
+    position: relative;
 }
 .osm-bar .osm-ul{
     display: flex;
@@ -33,6 +30,7 @@
     padding: 6px 20px 5px 0;
     margin: 10px 0 -1px;
     border-bottom: #ededed solid 1px;
+    text-align: center;
 }
 .osm-bar .osm-ul li a{
     font-size: 13px;
@@ -47,16 +45,37 @@
 .osm-bar .osm-ul li:hover{
     border-bottom: #333 solid 1px;
 }
+/* 子导航 */
+.osm-bar .osm-ul .listChild{
+    width: 1000px;
+    height: 100px;
+    background-color: white;
+    padding: 5px;
+    position: absolute;
+    top: 0px;
+    display: none;
+    z-index: 998;
+}
+.osm-bar .osm-ul .listChild a{
+    display: inline-block;
+    line-height: 50px;
+    flex-wrap: wrap;
+    margin: 0 10px;
+    font-size: 13px;
+    color: #666;
+}
+
 /* 价格下拉框 */
 .osm-price {
-    width: 142px;
+    /* width: 142px; */
     height: 24px;
-    margin: 10px 0 0;
-    padding: 7px 18px 5px 0px;
+    margin: 10px 0 0 ;
+    padding: 7px 18px 4px 55px;
     text-align: right;
     border-bottom: 1px solid #ededed;
     position: relative;
     font-size: 13px;
+    z-index: 999;
 }
 .osm-price span{
     display: inline-block;
@@ -99,26 +118,26 @@
 }
 
 /* 商品列表 */
-.hot{
+.good{
     width: 1000px;
     margin: 30px auto 30px;
 }
-.hot .hot-list{
+.good .good-list{
     display: flex;
     justify-content: space-between ;
     flex-wrap: wrap;
 }
-.hot .hot-list li{
+.good .good-list li{
     width: 317px;
     height: 367px;
     margin: 0 0 24px 0;
     position: relative;
 }
-.hot .hot-list li img{
+.good .good-list li img{
     width: 316px;
     height: 316px;
 }
-.hot .hot-list li .bar{
+.good .good-list li .bar{
     width: 316px;
     height: 40px;
     margin: 10px 0 0 0;
@@ -126,18 +145,18 @@
     justify-content: space-between;
     align-items: center;
 }
-.hot .hot-list li .store{
+.good .good-list li .store{
     line-height: 27px;
 }
-.hot .hot-list li .store img{
+.good .good-list li .store img{
     width: 27px;
     height: 27px;
 }
-.hot-list li .like{
+.good-list li .like{
     font-size: 13px;
     line-height: 16px;
 }
-.hot-list li .like div{
+.good-list li .like div{
     float: right;
     margin-left: 8px;
     width: 18px;
@@ -146,7 +165,7 @@
 }
 
 /* 鼠标浮动的名字页 */
-.hot-list li .goods-name {
+.good-list li .goods-name {
     width: 296px;
     height: 296px;
     position: absolute;
@@ -156,21 +175,21 @@
     padding: 10px;
     display: none;
 }
-.hot-list li .goods-name p:nth-child(1){
+.good-list li .goods-name p:nth-child(1){
     color: #0c6aa5;
     font-weight: 600;
     font-size: 18px;
     font-style: italic;
     margin-bottom: 100px;
 }
-.hot-list li .goods-name p:nth-child(2){
+.good-list li .goods-name p:nth-child(2){
     line-height: 28px;
     font-size: 14px;
     font-weight: 600;
     color: white;
     text-align: center;
 }
-.hot-list li .goods-name p:nth-child(3){
+.good-list li .goods-name p:nth-child(3){
     font-size: 15px;
     color: white;
     text-align: center;
@@ -181,43 +200,32 @@
 	/* 文本溢出隐藏的形式 省略号 */
 	text-overflow: ellipsis;
 }
-.hot .hot-list li .goods:hover .goods-name{
+.good .good-list li .goods:hover .goods-name{
     display: block;
 }
+
+
 
 .pager{
     text-align: right;
     font-size: 12px;
 }
-.pager a{
+.pager *{
     display: inline-block;
-    padding: 0px 5px 0px 5px;
+    padding: 0px 5px;
+    margin: 0px 3px;
     vertical-align: middle;
     color: #878787;
     font-size: 12px;
 }
-.pager .checked{
-    background: #98B5D5;
+.pager span{
     color: #fff;
+    background-color: #0c6aa5;
+    border-radius: 3px;
 }
-.pager a:hover{
-    background: #999;
-    color: white
+.pager .jump-ipt{
+    width: 30px;
 }
-.pager .next {
-    width: 61px;
-    height: 19px;
-    vertical-align: middle;
-}
-.pager .goPage{
-    width: 26px;
-    height: 19px;
-}
-.pager .confirmBtn{
-    width: 41px;
-    height: 19px;
-    background: #8c8c8d;
-    color: white;
-    border: none;
-    vertical-align: middle;
+.pager .jump-ipt:focus {
+    outline: none; /* 去掉聚焦时的 outline */
 }

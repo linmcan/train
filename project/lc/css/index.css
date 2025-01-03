@@ -1,147 +1,154 @@
 /* 首页样式 */
 
 /* 轮播图样式 */
-.banner{
-	width: 1000px;
-	height: 475px;
-	margin: 0px auto;
-	margin-top: 26px;
-	position: relative;
+.banner {
+    width: 1000px;
+    height: 505px;
+    margin: 30px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 跳转按钮 */
+.banner>span {
+    position: absolute;
+    top: 217px;
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    border-radius: 50%;
+    opacity: 0.3;
+}
+.banner>span:hover{
+    opacity: 1;
+}
+
+.banner .prev {
+    left: 20px;
+}
+
+.banner .next {
+    right: 20px;
+}
+
+.banner .next:after,
+.banner .prev:after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    width: 15px;
+    height: 15px;
+    border-left: 3px solid white;
+    border-top: 3px solid white;
+}
+
+.banner .next:after {
+    transform: rotate(135deg);
+    right: 15px;
+}
+
+.banner .prev:after {
+    transform: rotate(-45deg);
+    left: 13px;
+}
+
+/* 轮播图主体 */
+.banner .mainBanner {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.banner .mainBanner li {
+    float: left;
+    position: relative;
+}
+
+.banner .mainBanner li p {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 20px;
+}
+
+/*下方指示条*/
+.banner .bannerSlide {
+    width: 1000px;
+    height: 10px;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.banner .bannerSlide span {
+    display: inline-block;
+    width: 30px;
+    height: 5px;
+    border-radius: 2.5px;
+    background-color: #999;
+    margin: 0 5px;
+}
+.banner .bannerSlide span:first-of-type {
+    background-color: #25292e;
 }
 
 /* 广告位2 */
-.banner2{
-	width: 1000px;
-	margin: 0px auto;
-	display: flex;
-	justify-content: space-between;
-	margin-top: 20px;
+.banner2 {
+    width: 1000px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
-.banner2>div{width: 320px;}
-.banner2 div:first-of-type,.banner2 div:last-of-type{
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between
+
+.banner2>div {
+    width: 320px;
+}
+
+.banner2 div:first-of-type,
+.banner2 div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
 
 /* 标题 */
-.hot-title{
-	width: 1000px;
-	margin: 50px auto 20px;
-	text-align: center;
-	line-height: 30px;
-	font-size: 12px;
-	color: #333;
-	border-bottom: 1px solid #ccc;
-	font-weight: 400;
-}
-
-/* 商品列表 */
-.hot{
+.hot-title {
     width: 1000px;
-    margin: 30px auto 30px;
-}
-.hot .hot-list{
-    display: flex;
-    justify-content: space-between ;
-    flex-wrap: wrap;
-}
-.hot .hot-list li{
-    width: 317px;
-    height: 367px;
-    margin: 0 0 24px 0;
-    position: relative;
-}
-.hot .hot-list li img{
-    width: 316px;
-    height: 316px;
-}
-.hot .hot-list li .bar{
-    width: 316px;
-    height: 40px;
-    margin: 10px 0 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.hot .hot-list li .store{
-    line-height: 27px;
-}
-.hot .hot-list li .store img{
-    width: 27px;
-    height: 27px;
-}
-.hot-list li .like{
-    font-size: 13px;
-    line-height: 16px;
-}
-.hot-list li .like div{
-    float: right;
-    margin-left: 8px;
-    width: 18px;
-    height: 16px;
-    background: url(../img/icon.png) no-repeat  0px -610px;
+    margin: 50px auto 20px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    font-weight: 400;
 }
 
-/* 鼠标浮动的名字页 */
-.hot-list li .goods-name {
-    width: 296px;
-    height: 296px;
-    position: absolute;
-    top: 0px;
-    left: 0;
-    background-color: rgba(0, 0, 0, .7);
-    padding: 10px;
-    display: none;
-}
-.hot-list li .goods-name p:nth-child(1){
-    color: #0c6aa5;
-    font-weight: 600;
-    font-size: 18px;
-    font-style: italic;
-    margin-bottom: 100px;
-}
-.hot-list li .goods-name p:nth-child(2){
-    line-height: 28px;
-    font-size: 14px;
-    font-weight: 600;
-    color: white;
-    text-align: center;
-}
-.hot-list li .goods-name p:nth-child(3){
-    font-size: 15px;
-    color: white;
-    text-align: center;
-    /* 设置文本不换行 */
-	text-wrap: nowrap;
-	/* 设置溢出隐藏*/
-	overflow: hidden; 
-	/* 文本溢出隐藏的形式 省略号 */
-	text-overflow: ellipsis;
-}
 
-.hot .hot-list li .goods:hover .goods-name{
-    display: block;
-}
 
 /* 更多按钮 */
-.more{
+.more {
     width: 110px;
     height: 40px;
     margin: 30px auto;
     border: #000 solid 3px;
     text-align: center;
 }
-.more a{
+
+.more a {
     color: #000;
     font-style: italic;
     line-height: 40px;
     font-weight: 600;
 }
 
-.more:hover{
+.more:hover {
     background-color: black;
 }
-.more:hover a{
+
+.more:hover a {
     color: white;
 }

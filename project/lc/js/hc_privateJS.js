@@ -63,5 +63,13 @@ let hc_ajax = {
             // 发送
             xhr.send(str);
         }
-    }
+    },
+
+    //获取地址参数的属性值
+	getUrlValue(pre){
+		let obj = Object.fromEntries(window.location.search.replace('?', '').split('&').map(item => {
+			return item.split('=')
+		}));
+		return obj[pre] ? decodeURIComponent(obj[pre] ): null;
+	},
 }
