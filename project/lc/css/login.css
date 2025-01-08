@@ -20,49 +20,39 @@ table {
 }
 
 .logo td {
-    text-align: center; /* 水平居中 */
-    vertical-align: middle; /* 垂直居中 */
-    height: 300px; /* 确保单元格高度为300px */
+    text-align: center;
+    vertical-align: middle; 
+    height: 300px;
 }
 
 input {
     font-size: 18px;
     line-height: 27px;
-    border:none
+    width: 264px;
+    border:none;
+    margin-bottom: 5px;
+}
+
+input:focus {
+    outline: none;
 }
 
 /* 手机号 */
 .phone td{
-    width: 270px;
+    width: 264px;
     padding-left: 36px;
     background: url(../img/login/phone-number.png) no-repeat;
     border-bottom: 1px solid black;
 }
 
-/* 验证码 */
-.input{
-    display: flex;
-}
-.verification-code input{
-    width: 150px;
+/* 密码 */
+.verification-code td{
+    width: 264px;
     padding-left: 36px;
-    background: url(../img/login/verification-code.png) no-repeat left center;
+    background: url(../img/login/verification-code.png) no-repeat 0 3px;
     border-bottom: 1px solid black;
 }
-.verification-code .obtain{
-    width: 110px;
-    height: 34px;
-    border: 1px solid black;
-    margin-left: 20px;
-    line-height: 34px;
-    text-align: center;
-    border-radius: 10%;
-}
 
-/* 自动登录 */
-.islogin td{
-    font-size: 14px;
-}
 
 /* 登录 */
 .login td{

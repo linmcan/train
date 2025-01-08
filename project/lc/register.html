@@ -14,45 +14,65 @@
                     <td colspan="3"><a href=""><img src="img/register/logo.png" alt=""></a></td>
                 </tr>
                 <tr class="phone">
-                    <th>手机号</th>
-                    <td><input type="text" placeholder="请输入手机号"></td>
+                    <th>用户名</th>
+                    <td>
+                        <input type="text" placeholder="请输入用户名" class="username">
+                        <span class="username-msg"></span>
+                    </td>
                     <td></td>
                 </tr>
                 <tr class="code">
                     <th>验证码</th>
-                    <td><input type="text" placeholder="输入验证码"> <img src="img/register/code.png" alt=""></td>
-                    <td><a href="">看不清，换一张</a></td>
+                    <td>
+                        <input type="text" placeholder="输入验证码,区分大小写" class="codeInput"> <div class="codeimg"></div>
+                        <span class="code-msg"></span>
+                    </td>
+                    <td><span class="change">看不清，换一张</span></td>
                 </tr>
                 <tr class="password">
                     <th>创建密码</th>
-                    <td><input type="text" placeholder="6－20位字符组成，区分大小写"></td>
-                    <td><div> <span>弱</span> <span>中</span>  <span>强</span></div></td>
+                    <td>
+                        <input type="password" placeholder="6-12位数字或大小写字母组成，区分大小写" class="passwordInput">
+                        <span class="password-msg"></span>
+                    </td>
+                    <td>
+                        <div class="pwd-strength">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <div class="strengthTitle"> <span>弱</span> <span>中</span>  <span>强</span></div>
+                        </div>
+                        
+                    </td>
                 </tr>
                 <tr class="re-password">
                     <th>确认密码</th>
-                    <td><input type="text" placeholder="确认密码"></td>
+                    <td>
+                        <input type="password" placeholder="确认密码" class="confirm">
+                        <span class="confirm-msg"></span>
+                    </td>
                     <td></td>
                 </tr>
                 <tr class="cheak">
                     <th></th>
-                    <td><input type="checkbox"> 同意  <a href="">粮仓注册条款</a></td>
+                    <td><input type="checkbox" placeholder="#" class="agree"> 同意  <a href="">粮仓注册条款</a></td>
                     <td></td>
                 </tr>
                 <tr class="regist">
                     <th></th>
-                    <td><a href="login.html">立即注册</a></td>
+                    <td><a href="#" class="registbtn">立即注册</a></td>
                     <td></td>
                 </tr>
                 <tr class="more-regist">
                     <th></th>
                     <td><div class="more">
                         <ul class="a-list">
-                            <li><a href=""><div class="qq"></div></a></li>
-                            <li><a href=""><div class="weibo"></div></a></li>
-                            <li><a href=""><div class="douban"></div></a></li>
-                            <li><a href=""><div class="qqwb"></div></a></li>
+                            <li><a href="#"><div class="qq"></div></a></li>
+                            <li><a href="#"><div class="weibo"></div></a></li>
+                            <li><a href="#"><div class="douban"></div></a></li>
+                            <li><a href="#"><div class="qqwb"></div></a></li>
                         </ul>
-                        <a href="">登录粮仓</a>
+                        <a href="login.html">登录粮仓</a>
                     </div></td>
                     <td></td>
                 </tr>
@@ -61,3 +81,5 @@
     </div>
 </body>
 </html>
+<script src="js/hc_privateJS.js"></script>
+<script src="js/register.js"></script>

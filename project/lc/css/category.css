@@ -227,5 +227,5 @@
     width: 30px;
 }
 .pager .jump-ipt:focus {
-    outline: none; /* 去掉聚焦时的 outline */
+    outline: none;
 }

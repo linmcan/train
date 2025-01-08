@@ -54,6 +54,9 @@ header{
     margin: 0px 8px 0px 0px;
 }
 /* 用户按钮 */
+.nav-r .user{
+	display: none;
+}
 .nav-r .user img{
 	width: 30px;
 	height: 30px;
@@ -119,8 +122,9 @@ header{
 /* 购物车子菜单 */
 .cart-subnav{
     width: 320px;
+	
     position: absolute;
-    top: 56px; left: 30%;
+    top: 56px; left:0;
     background-color:#292f33;
     display: none;
     z-index: 999;
@@ -138,6 +142,15 @@ header{
 	color: #ccc;
 }
 /* 有商品时购物车列表 */
+.cart-subnav .cart-list{
+	height: 250px;
+	overflow-y: scroll;
+	display: none;
+}
+/* 设置滚动条 */
+.cart-subnav .cart-list::-webkit-scrollbar{
+	width: 0px;
+}
 .cart-subnav .cart-list li{
 	padding: 14px;
 	display: flex;

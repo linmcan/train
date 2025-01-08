@@ -54,8 +54,8 @@ let goodsId = hc_ajax.getUrlValue('goodsId');
             let alltype = '';
             console.log(goodsData[0]);
             goodsData[0].banner.forEach((item, index) => {
-                
-                
+
+
                 mainbanner += `
                     <li>
                         <div><img src="${item}" alt=""></div>
@@ -78,7 +78,7 @@ let goodsId = hc_ajax.getUrlValue('goodsId');
             //图片移动方法
             move()
 
-            // 右边文字
+            // 右边介绍
             let info = `
                 <!-- 商品喜爱数 -->
                 <div class="goodsFavCount">${goodsData[0].star_number}</div>
@@ -104,23 +104,26 @@ let goodsId = hc_ajax.getUrlValue('goodsId');
                 <div class="amountCon">
                     数量: &nbsp;&nbsp;
                     <div class="mopt">
-                        <a href=""><img src="img/good/reduce.png" alt=""></a>
+                        <span class='subtract'><img src="img/good/reduce.png" alt=""></span>
                         <input type="text" class="inpt" value="1">
-                        <a href=""><img src="img/good/add.png" alt=""></a>
+                        <span class='add'><img src="img/good/add.png" alt=""></span>
                     </div>
                 </div>
                 <!-- 立即购买 -->
                 <div class="buynow">
-                    <a href="">立即购买</a>
+                    <a href="#">立即购买</a>
                     <!-- <p>已售罄，即将到货</p> -->
                 </div>
                 <!--加入购物车  分享-->
                 <div class="cart-share">
-                    <a href="" class="addcart"><span>加入购物车</span></a>
-                    <a href="" class="share"><span>分享</span></a>
+                    <a href="#" class="addcart"><span>加入购物车</span></a>
+                    <a href="#" class="share"><span>分享</span></a>
                 </div>
             `;
             goodsInfo.innerHTML = info;
+            addgoods();
+            
+
             //下面广告
             let bannerdtl = '';
             goodsData[0].product_banner.forEach(item => {
@@ -141,6 +144,27 @@ let goodsId = hc_ajax.getUrlValue('goodsId');
     })
 })();
 
+// 返回顶部
+(function () {
+    let oBackTop = document.querySelector('.back-top');
+
+    // 监听页面卷动事件
+    document.onscroll = function () {
+        //验证滚动出去的值
+        let scrollTop = document.documentElement.scrollTop;
+        let isShow = scrollTop >= 400 ? 'block' : 'none';
+        oBackTop.style.display = isShow;
+    };
+
+    // 点击事件
+    oBackTop.onclick = function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+})();
+
+
+
 
 //面包屑导航
 function bread(goodsType, goodsName) {
@@ -160,7 +184,7 @@ function bread(goodsType, goodsName) {
                     typeName = item.cat_name;
                 }
             })
-            
+
             //生成面包屑导航
             let pst = `
                 <a href="">良仓</a> &gt;
@@ -172,22 +196,101 @@ function bread(goodsType, goodsName) {
     })
 
 }
+//购买，加入购物车操作
+function addgoods() {
+    //获取添加的元素
+    //数量加减
+    let mopt = document.querySelector('.mopt');
+    let subtract = mopt.querySelector('.subtract');
+    let quantity = mopt.querySelector('input');
+    let add = mopt.querySelector('.add');
+    //立即购买
+    let buynow = document.querySelector('.buynow');
+    //加入购物车
+    let addcart = document.querySelector('.cart-share .addcart')
+    console.log(mopt);
+    
+    let num = 1;
+    quantity.value = num;
+
+    // 点击减
+    subtract.onclick = function () {
+        num = --num <= 1 ? 1 : num;
+        quantity.value = num;
+    };
+    // 点击加
+    add.onclick = function () {
+        num = ++num >= 10 ? 10 : num;
+        quantity.value = num;
+    };
+
+    // 点击立即购买
+    buynow.onclick = function () {
+        let USERNAME = localStorage.getItem('username');
+        let TOKEN = localStorage.getItem('token');
+        // 验证登录状态
+        if (!USERNAME || !TOKEN) {
+            alert('请先登录');
+            return;
+        };
+        console.log('购买');
+        
+        //先加入结算清单，跳转到地址页面
+
+    };
+
+    // 点击加入购物车
+    addcart.onclick = function () {
+        let USERNAME = localStorage.getItem('username');
+        let TOKEN = localStorage.getItem('token');
+        // 验证登录状态
+        if (!USERNAME || !TOKEN) {
+            alert('请先登录');
+            return;
+        };
+
+        // 加车
+        hc_ajax.ajax({
+            method: 'post',
+            url: BASE_URL + '/api_cart',
+            data: {
+                status: 'addcart',
+                goodsId,
+                userId: TOKEN,
+                goodsNumber: num
+            },
+            ContentType: 'url',
+            success(res) {
+                // console.log(res);
+                if (res.code != 0) {
+                    console.log(res);
+                    return;
+                };
+                // 交互 弹出好看的框
+                alert('加入购物车成功');
+                // 调用头部的购物车方法
+                getCartValue();
+            },
+        })
+
+    };
+}
 //猜你喜欢
 function recom(goodType) {
     //调取总页数
     hc_ajax.ajax({
         method: 'get',
         url: BASE_URL + `/api_goods`,
-        data: {page:1, pagesize: 3 ,catId:`${goodType}`},
+        data: { page: 1, pagesize: 3, catId: `${goodType}` },
         success(res) {
-            if(res.code != 0){
-				console.log(res);
-				return;
-			};
-			// 设置总页数
-            console.log('页数'+res.page);
-            
-			Radom(res.page) ;
+            if (res.code != 0) {
+                console.log(res);
+                return;
+            };
+            // 设置总页数
+            console.log('页数' + res.page);
+
+            Radom(res.page);
         }
     })
     //随机生成
@@ -195,16 +298,16 @@ function recom(goodType) {
         hc_ajax.ajax({
             method: 'get',
             url: BASE_URL + `/api_goods`,
-            data: {page:Math.floor(Math.random() * pageCount), pagesize: 3 ,catId:`${goodType}`},
+            data: { page: Math.floor(Math.random() * pageCount), pagesize: 3, catId: `${goodType}` },
             success(res) {
-                if(res.code != 0){
+                if (res.code != 0) {
                     console.log(res);
                     return;
                 };
                 console.log(res.data);
-                
+
                 let str = '<div class="recommendation-title">猜你喜欢</div>';
-                res.data.forEach(item =>{
+                res.data.forEach(item => {
                     str += `
                         <div class="recommendation-goods">
                             <a href="detail.html?goodsId=${item.goods_id}" class=""><img src="${item.goods_thumb}" alt=""></a>
@@ -219,8 +322,6 @@ function recom(goodType) {
         })
     }
 };
-
-
 //商品图片轮播和放大镜
 function move() {
     // 大图下标
@@ -242,7 +343,8 @@ function move() {
         //小图
         m++;
         m = m >= sli.length ? 0 : m;
-        console.log(n);
+        console.log(m);
+        
 
 
         //加过渡动画
@@ -260,6 +362,9 @@ function move() {
         if (m >= 2 && m <= sli.length - 3) {
             sul.style.transition = '.5s';
             sul.style.left = -84 * (m - 2) + 'px'
+        }else if (m == 4) {
+            sul.style.transition = '.5s';
+            sul.style.left = '-34px'
         }
     }
     //上一张
@@ -284,7 +389,6 @@ function move() {
             // 拉回设置  清除过渡动画
             sul.style.transition = 'none';
             sul.style.left = (m - 5) * -84 + 'px'; // 4
-            //要开始运动 4 - 3
             m--;
         };
 
@@ -304,6 +408,9 @@ function move() {
             if (m >= 2 && m <= sli.length - 2) {
                 sul.style.transition = '.5s';
                 sul.style.left = -84 * (m - 2) + 'px'
+            }else if (m == 4) {
+                sul.style.transition = '.5s';
+                sul.style.left = '-168px'
             }
         })
 
@@ -355,6 +462,9 @@ function move() {
 
 
             if (m >= 2 && m <= sli.length - 3) {
+                sul.style.transition = '.5s';
+                sul.style.left = -84 * (m - 2) + 'px'
+            }if (m == 4) {
                 sul.style.transition = '.5s';
                 sul.style.left = -84 * (m - 2) + 'px'
             }

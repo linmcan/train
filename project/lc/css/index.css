@@ -152,3 +152,20 @@
 .more:hover a {
     color: white;
 }
+
+.back-top{
+	width: 59px;
+	height: 60px;
+	background: url(../img/icon.png) no-repeat -22px -813px;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	z-index: 999;
+	transition: 0.5s;
+    opacity: 0.5;
+	/* 默认隐藏 */
+	display: none;
+}
+.back-top:hover{
+	opacity: 1;
+}

@@ -1,0 +1,246 @@
+.main{
+    width: 1000px;
+    margin: 0 auto;
+}
+/* 大图 */
+.main>img{
+    width: 1000px;
+    height: 315px;
+    margin-top: 20px;
+}
+/* 标题 */
+.shoppingStep{
+    width: 1000px;
+    padding:50px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.shoppingStep *{
+    width: 135px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+}
+.shoppingStep .item-blue{
+    color: #6393b4;
+}
+
+/* 地址 */
+.address .navTle,.result .navTle{
+    color: #333;
+    font-size: 16px;
+    line-height: 30px;
+    padding: 3px 0;
+    border-bottom: 1px solid #999;
+}
+/* 地址列表 */
+.address .myaddress{
+    width: 1000px;
+    height: 180px;
+    margin-top: 30px;
+    position: relative;
+}
+/* 左右指示 */
+.address .myaddress>span{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 75px;
+}
+.address .myaddress .prev{
+    left: -40px;
+}
+.address .myaddress .next{
+    right: -40px;
+}
+
+.address .myaddress .next:after,
+.address .myaddress .prev:after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    width: 15px;
+    height: 15px;
+    border-left: 3px solid #333;
+    border-top: 3px solid #333;
+}
+
+.address .myaddress .next:after {
+    transform: rotate(135deg);
+    right: 15px;
+}
+
+.address .myaddress .prev:after {
+    transform: rotate(-45deg);
+    left: 13px;
+}
+/* 地址列表*/
+.address .myaddress>p{
+    font-size: 20px;
+    text-align: center;
+    color: #6393b4;
+    vertical-align: middle;
+}
+.address .myaddress li{
+    float: left;
+    width: 202px;
+    height: 152px;
+    margin: 0 10px;
+    padding: 12px;
+    border: #999 2px solid;
+    -webkit-user-select: none;
+}
+.address .myaddress li:first-of-type{
+    border: #6393b4 2px solid;
+}
+.address .myaddress li:hover{
+    border: #6393b4 2px solid;
+}
+.address .myaddress li .tle{
+    height: 30px;
+    width: 202px;
+    border-bottom: 1px solid #999;
+    display: flex;
+    justify-content:space-between;
+    font-size: 13px;
+    color: #333;
+    line-height: 30px;
+}
+.address .myaddress li .con{
+    width: 202px;
+    height: 71px;
+    padding: 10px 0;
+}
+.address .myaddress li .con p{
+    font-size: 12px;
+    color: #999;
+    word-wrap: break-word;
+}
+.address .myaddress li .opt{
+    width: 202px;
+    height: 30px;
+    display: flex;
+    justify-content:space-between;
+    font-size: 13px;
+    line-height: 30px;
+    color: #999;
+}
+.address .myaddress li .opt .isdefault{
+    color: #6393b4;
+} 
+/* 新增地址 */
+.newAddrCon{
+    margin-top: 30px;
+}
+
+.newAddrCon .isadd{
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 20px;
+    -webkit-user-select: none;
+}
+.newAddrCon .addTable{
+    margin-bottom: 20px;
+    display: none;
+}
+.newAddrCon .addTable input{
+    height: 24px;
+    border: #dedede  2px solid;
+    padding: 0 5px;
+    margin-right: 5px;
+}
+.newAddrCon .addTable input:focus {
+    outline: none;
+    border: #6393b4 2px solid;
+}
+.newAddrCon .addTable tr td{
+    padding: 8px 0;
+}
+.newAddrCon .addTable tr td:first-of-type{
+    
+    margin-left: 5px;
+    font-size: 12px;
+    color: #666;
+}
+.newAddrCon .addTable tr:nth-of-type(3) input{
+    width: 410px;
+}
+.newAddrCon .addTable tr .color1{
+    color: red;
+}
+.newAddrCon .addTable tr:nth-of-type(5) span{
+    padding: 5px 8px;
+    background-color: #6393b4;
+    color: white;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+/* 结算商品 */
+.result .resultList{
+    border-bottom: 1px solid #999;
+}
+.result .resultList li{
+    display: flex;
+    margin: 10px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #c7c7c7;
+}
+.result .resultList .imgCon img{
+    width: 72px;
+    height: 72px;
+    padding:0 24px;
+    border: #6393b4;
+}
+.result .resultList .infoCon{
+    width: 750px;
+    display: flex;
+    justify-content: space-between;
+}
+.result .resultList .infoCon .l{
+    font-size: 13px;
+    color: #777;
+    line-height: 20px;
+}
+.result .resultList .infoCon .r span{
+    padding: 0 10px;
+    font-size: 15px;
+    color: #444;
+    line-height: 20px;
+}
+.resultPrice{
+    margin: 10px 0;
+    text-align: right;
+    font-size: 15px;
+}
+.resultPrice .allPrice{
+    font-size: 18px;
+    color: #6393b4;
+    font-weight: 600;
+}
+.pay{
+    margin: 10px 0; 
+    text-align: center;
+}
+.pay p:first-of-type{
+    font-size: 15px;
+    color: #666;
+}
+.pay p:nth-of-type(2){
+    font-size: 12px;
+    color: #6393b4;
+}
+.pay .payWay{
+    padding: 15px 0;
+    line-height: 30px;
+}
+.pay .buy{
+    width: 168px;
+    height: 30px;
+    background-color: #6393b4;
+    color: white;
+    border: none;
+    margin: 15px 0;
+}

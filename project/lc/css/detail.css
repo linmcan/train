@@ -123,7 +123,7 @@
     height: 65px;
     object-fit: cover;
 }
-.goodsdetail .detail .info .image .list-box .firstimg{
+.goodsdetail .detail .info .image .list-box ul li:first-child{
     border: 2px solid #5993f4;
 }
 
@@ -271,6 +271,9 @@
 .detail .bannerdetail{
     margin-top: 20px;
 }
+.detail .bannerdetail img{
+    width: 745px;
+}
 
 
 /* 品牌介绍和购物指南 */
@@ -303,10 +306,9 @@
 
 /* 售后 */
 .detail .after-sales{
-    position: relative;
     margin-top: 20px;
 }
-.detail .after-sales a{
+.detail .after-sales>a{
     display: inline-block;
     width: 98px;
     height: 26px;
@@ -314,34 +316,38 @@
     text-align: center;
     color: #000;
     line-height: 26px;
+    position: relative;
 }
 .detail .after-sales .sales{
     border: 4px #ededed solid;
     padding:0px 10px 10px 40px;
     position: absolute;
-    top: -430px; left: 0;
+    top: -412px; left: 0;
     background-color: white;
     display: none;
+    width: 810px;
+    line-height: 16px;
+    text-align: left;
 }
-.detail .after-sales .sales p{
+.detail .after-sales a .sales p{
     font-size: 12px;
     color: #878787;
 }
-.detail .after-sales .sales [class^=title]{
+.detail .after-sales a .sales [class^=title]{
     font-weight: 700;
     text-indent: -2em;
     margin-top: 10px;
 }
-.detail .after-sales .sales :nth-child(7){
+.detail .after-sales a .sales :nth-child(7){
     margin-top: 10px;
 }
-.detail .after-sales .sales :nth-child(n+4):nth-child(-n+7){
+.detail .after-sales a .sales :nth-child(n+4):nth-child(-n+7){
     text-indent: -2em;
 }
-.detail .after-sales .sales :nth-child(n+4):nth-child(-n+7)::first-line{
+.detail .after-sales a .sales :nth-child(n+4):nth-child(-n+7)::first-line{
     text-indent: 2em;
 }
-.detail .after-sales:hover .sales{
+.detail .after-sales a:hover .sales{
     display: block;
 }
 /* 猜你喜欢 */
@@ -374,4 +380,21 @@
     font-size: 14px;
     color: #5993f4;
     line-height: 25px;
+}
+
+.back-top{
+	width: 59px;
+	height: 60px;
+	background: url(../img/icon.png) no-repeat -22px -813px;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	z-index: 999;
+	transition: 0.5s;
+    opacity: 0.5;
+	/* 默认隐藏 */
+	display: none;
+}
+.back-top:hover{
+	opacity: 1;
 }

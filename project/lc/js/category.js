@@ -12,6 +12,7 @@ let goodUl = good.querySelector('ul')
 //获取当前传递过来的 cat_id
 let catId = hc_ajax.getUrlValue('catId');
 let catName = hc_ajax.getUrlValue('catName');
+console.log(catId);
 
 let page = 1;
 // 拿到上面的catId了之后，马上请求当前第一页  ID的商品
@@ -25,7 +26,7 @@ function getMaxPageCount(){
 	hc_ajax.ajax({
         method: 'get',
 		url: BASE_URL + '/api_goods',
-		data: {page, pagesize: 9 ,catId:`${catId}`},
+		data: {page, pagesize: 9 ,...(catId !== null ? { catId: `${catId}` } : {})},
 		success(res){
 			if(res.code != 0){
 				console.log(res);
@@ -41,7 +42,6 @@ function getMaxPageCount(){
 		
 	})
 };
-
 // 分页器
 function Pagination(){
 	// 调用分页器
@@ -65,8 +65,6 @@ function Pagination(){
 		},	
 	});	
 }
-
-
 //导航栏
 (function () {
     // 面包屑导航,在末尾添加
@@ -87,7 +85,9 @@ function Pagination(){
             let catData = res.data;
 
             //分类列表
-            let str = ``;
+            let str = `
+                <li class="new"><a href="category.html?catName=新品">新品</a></li>
+            `;
             catData.forEach(item => {
                 str += `
                     <li>
@@ -97,8 +97,11 @@ function Pagination(){
                     </li>
                 `;
             });
+            str += `
+                <li><a href="#">品牌</a></li>
+            `;
 
-            osmUl.innerHTML += str
+            osmUl.innerHTML = str
         }
     });
     //子导航栏
@@ -123,7 +126,7 @@ function Pagination(){
             for (let index = 0; index < osmLi.length; index++) {
                 //鼠标移入导航栏
                 osmLi[index].onmouseenter = function () {
-                    if (index > 1) {
+                    if (index > 0 && index<16) {
                         let a = osmLi[index].querySelector('a')
                         let catid = a.getAttribute('catId')
 
@@ -160,13 +163,14 @@ function Pagination(){
     });
 })();
 
+
 //数据渲染
 function goodsRender(){
     // 请求数据
     hc_ajax.ajax({
         method: 'get',
         url: BASE_URL + `/api_goods`,
-        data: {page, pagesize: 9 ,catId:`${catId}`},
+        data: {page, pagesize: 9 ,...(catId !== null ? { catId: `${catId}` } : {})},
         success(res) {
             
             console.log(res);
@@ -212,3 +216,8 @@ function goodsRender(){
     });
 
 };
+
+//价格筛选
+function priceSection() {
+    
+}

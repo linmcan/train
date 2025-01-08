@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/search.css">
-    <link rel="stylesheet" href="font/iconfont.css" />
+    <link rel="stylesheet" href="css/result.css">
 </head>
 
 <body>
@@ -24,14 +23,14 @@
                     <img src="img/user.jpg" alt="">
                     <span>用户123</span>
 
-                
+
                     <div class="user-subnav">
                         <ul class="user-list">
                             <li><a href="#">个人设置</a></li>
                             <li><a href="address.html">收货信息</a></li>
                             <li><a href="order.html">我的订单</a></li>
                         </ul>
-                        
+
                         <div class="user-btn"><a href="">退出登录</a></div>
                     </div>
                 </li>
@@ -46,44 +45,6 @@
                         <div class="cart-msg">你的购物车暂无商品...</div>
                         <!-- 中间购物车商品 -->
                         <ul class="cart-list">
-                            <li class="goods">
-                                <a href=""><img src="img/goods.jpg" alt="" /></a>
-                                <div>
-                                    <p>全棉插肩长袖T恤 | 百</p>
-                                    <p>服装尺码:S;颜色:米白/黑;</p>
-                                    <p>
-                                        <span>数量：3件</span>
-                                        <span>¥290.00</span>
-                                        <span>¥390.00</span>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="goods">
-                                <a href=""><img src="img/goods.jpg" alt="" /></a>
-                                <div>
-                                    <p>全棉插肩长袖T恤 | 百</p>
-                                    <p>服装尺码:S;颜色:米白/黑;</p>
-                                    <p>
-                                        <span>数量：3件</span>
-                                        <span>¥290.00</span>
-                                        <span>¥390.00</span>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="goods">
-                                <a href=""><img src="img/goods.jpg" alt="" /></a>
-                                <div>
-                                    <p>全棉插肩长袖T恤 | 百</p>
-                                    <p>服装尺码:S;颜色:米白/黑;</p>
-                                    <p>
-                                        <span>数量：3件</span>
-                                        <span>¥290.00</span>
-                                        <span>¥390.00</span>
-                                    </p>
-                                </div>
-                            </li>
                         </ul>
                         <!-- 按钮 -->
                         <div class="cart-btn">快去抢购物良仓商品吧！</div>
@@ -118,18 +79,18 @@
         <ul class="sub-l">
             <li><a href="index.html">首页</a></li>
             <li class="shop">
-                <a href="category.html?catName=新品" >商店</a>
-                    <!-- 子菜单 -->
-                    <div class="shop-subnav">
-                        <ul class="shop-list">
+                <a href="category.html?catName=新品">商店</a>
+                <!-- 子菜单 -->
+                <div class="shop-subnav">
+                    <ul class="shop-list">
 
-                        </ul>
-                        <div class="nav-subnav-r">
-                            <img src="img/nav_banner.jpg" alt="" />
-                            <p>新视线：  2024年12月刊</p>
-                        </div>
-                        
+                    </ul>
+                    <div class="nav-subnav-r">
+                        <img src="img/nav_banner.jpg" alt="" />
+                        <p>新视线： 2024年12月刊</p>
                     </div>
+
+                </div>
             </li>
             <li class="magazine">
                 <a href="#">杂志</a>
@@ -172,33 +133,89 @@
             <li><a href="">达人</a></li>
             <li><a href="">有偿资讯</a></li>
         </ul>
-        
+
         <!-- 搜索框 -->
         <div class="search-content">
             <input type="text" placeholder="search..." name="" id="">
             <a href=""></a>
         </div>
-     </nav>
+    </nav>
 
-    <!-- 主体 -->
     <div class="main">
-        <!-- 导航 -->
-        <div class="position"></div>
-        <!-- 搜索结果 -->
-        <div class="searchResult">
-            
+        <!-- 大图 -->
+        <img src="img/bg.jpg" alt="">
+        <!-- 结算页上面文字 -->
+        <div class="shoppingStep">
+            |<div><span>购物车</span></div>|
+            <div class="item-blue"><span>付款</span></div>|
         </div>
-
-        <!-- 搜索列表 -->
-        <div class="searchList">
-            <ul class="sec-list">
-            </ul>
+        <!-- 地址列表 -->
+        <div class="address">
+            <div class="navTle">收货地址</div>
+            <div class="myaddress">
+                <span class="prev"></span>
+                <span class="next"></span>
+                <ul>
+                </ul>
+            </div>
         </div>
-
-        <!-- 翻页 -->
-        <div class="pager">
+        <!-- 新增地址 -->
+        <div class="newAddrCon">
+            <div class="isadd"><input type="checkbox" placeholder="#"> 使用新增地址</div>
+            <div class="addTable">
+                <table class="add-address">
+                    <tr>
+                        <td>姓名：</td>
+                        <td><input type="text" placeholder="请输入姓名" class="username"><span class="color1">*</span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="address">所在地：</label></td>
+                        <td>
+                            <select id="address" class="province">
+                            </select>
+                            <select id="address" class="city">
+                            </select>
+                            <select id="address" class="area">
+                            </select>
+                            <span class="color1">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>地址：</td>
+                        <td><input type="text" placeholder="请输入地址" class="useraddress"><span class="color1">*</span></td>
+                    </tr>
+                    <tr>
+                        <td>手机号码：</td>
+                        <td><input type="text" placeholder="请输入手机号" class="userphone"><span class="color1">*</span></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><span>保存</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- 结算商品 -->
+        <div class="result">
+            <div class="navTle">订单详细 </div>
+            <div class="resultList">
+                <ul>
+                </ul>
+            </div>
+            <div class="resultPrice">付款总额 : <span class="allPrice">00.00</span></div>
+            <div class="pay">
+                <p>选择支付方式</p>
+                <div class="payWay">
+                    <input type="radio" placeholder="#" checked>
+                    <img src="img/zfb.png" alt="">
+                </div>
+                <p>若您遇到支付问题，请联系客服热线 400 897 6336（工作日 09:00-18:00）</p>
+                <button class="buy">结算</button>
+            </div>
         </div>
     </div>
+
+
 
     <footer>
         <div class="service">
@@ -300,9 +317,6 @@
 </body>
 
 </html>
-<script src="pagination/common/jquery.min.js"></script>
-<script src="pagination/jquery.pagination.js"></script>
-
 <script src="js/hc_privateJS.js"></script>
 <script src="js/base.js"></script>
-<script src="js/search.js"></script>
+<script src="js/result.js"></script>

@@ -12,7 +12,6 @@ let goodUl = good.querySelector('.good-list');
 //更多按钮
 let more = main.querySelector('.more')
 let moreclick = 0;
-// console.log(more);
 
 //广告位轮播图
 (function () {
@@ -162,7 +161,26 @@ more.onclick = function () {
             like();
         }
     })
-}
+};
+
+// 返回顶部
+(function(){
+	let oBackTop = document.querySelector('.back-top');
+	
+	// 监听页面卷动事件
+	document.onscroll = function(){
+		//验证滚动出去的值
+		let scrollTop = document.documentElement.scrollTop;
+		let isShow = scrollTop >= 400 ? 'block' : 'none';
+		oBackTop.style.display = isShow;
+	};
+	
+	// 点击事件
+	oBackTop.onclick = function(){
+		window.scrollTo({top: 0, behavior: 'smooth'});
+	};
+	
+})();
 
 
 //轮播图方法

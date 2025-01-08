@@ -1,21 +1,140 @@
 const BASE_URL = 'http://110.41.43.118:3008';
+// 登录状态
+const USERNAME = localStorage.getItem('username');
+const TOKEN = localStorage.getItem('token');
 
 //获取元素
+//登录注册
+let login = document.querySelector('.login');
+let register = document.querySelector('.register');
+//用户
+let user = document.querySelector('.user');
+let loginUser = user.querySelector('span');
+let loginout = user.querySelector('.user-subnav .user-btn');
+//购物车
+let cartSub = document.querySelector('.cart-subnav');
+let cartMsg = cartSub.querySelector('.cart-msg');
+let cartlist = cartSub.querySelector('.cart-list')
+
 //导航栏商店子菜单部分
 let shopNav = document.querySelector('.shop-subnav');
 let shopUl = shopNav.querySelector('ul');
 let shopLi = shopUl.getElementsByClassName('cat');//所有导航分类
 //搜索部分
-let search = document.querySelector('.search-content')
-let searchInput = search.querySelector('input')
-let searchA = search.querySelector('a')
-console.log(searchInput);
-
+let search = document.querySelector('.search-content');
+let searchInput = search.querySelector('input');
+let searchA = search.querySelector('a');
 
 
 //请求元素全局变量
 let catData = {};//商品导航
 let classifyData = {};//商品子导航
+
+
+// 验证登录状态
+(function(){
+	
+	// 封装交互状态
+	function loginStatusRender(isLogin, isLoginout, txt){
+		user.style.display = isLogin;
+		loginUser.innerHTML = `${txt}`;
+		
+		login.style.display = isLoginout;
+		register.style.display = isLoginout;
+	};
+	
+	if(USERNAME && TOKEN){
+		loginStatusRender('block', 'none', USERNAME);
+		
+		// 调用获取购物车数据方法
+		getCartValue();
+		
+	}else{
+		loginStatusRender('none', 'block', '');
+	};
+	
+	//点击退出按钮
+	loginout.onclick = function(){
+		// 清除本地存储
+		localStorage.removeItem('username');
+		localStorage.removeItem('token');
+		// 交互
+		loginStatusRender('none', 'block', '');
+		// // 显示暂无购物车
+		cartMsg.style.display = 'block';
+		cartlist.style.display = 'none';
+		// // 交互文本
+		// oCartBtn.innerHTML = '快去抢购物良仓商品吧！';
+		// oCartBtn.onclick = null;
+		
+	};
+	
+	
+	
+	//点击登录按钮
+	login.onclick = function(){
+		let goodsId = hc_ajax.getUrlValue('goodsId');
+		let catId = hc_ajax.getUrlValue('catId');
+        console.log(goodsId,catId);
+        
+		// 带参数的跳转
+        location.href = goodsId ? `login.html?goodsId=${goodsId}&catId=${catId}` : 'login.html';
+		
+	};
+	
+})();
+
+//购物车方法
+function getCartValue(){
+	
+	hc_ajax.ajax({
+		method: 'post',
+		url: BASE_URL + '/api_cart',
+		data: {userId: TOKEN, status: 'viewcart'},
+        ContentType: 'url',
+		success(res){
+			if(res.code != 0){
+				console.log(res);
+				return;
+			};
+			
+			//购物车验证
+			let cartCount = res.data.length;
+			if(cartCount == 0){
+				// 显示暂无购物车
+				cartMsg.style.display = 'block';
+				cartlist.style.display = 'none';
+				return;
+			};
+			
+			//购物车有商品
+			cartMsg.style.display = 'none';
+			cartlist.style.display = 'block';
+			
+			//DOM组装
+			let str = '';
+			res.data.forEach(item => {
+				str += `
+					<li class="goods">
+						<a href="detail.html?goodsId=${item.goods_id}&catId=${item.cat_id}"><img src="${item.goods_thumb}" alt="" /></a>
+						<div>
+							<p>${item.goods_name}</p>
+							<p>服装尺码:S;颜色:米白/黑;</p>
+							<p>
+								<span>数量：${item.goods_number}件</span>
+								<span>¥${parseInt(item.price * 0.9)}.00</span>
+								<span>¥${item.price}.00</span>
+							</p>
+						</div>
+					</li>
+				`;
+			});
+			
+			// 添加到页面
+			cartlist.innerHTML = str;
+		}
+	})
+};
 
 //请求商品分类导航的数据
 (function () {
@@ -124,6 +243,13 @@ let classifyData = {};//商品子导航
         searchA.setAttribute('href', hrefvalue); 
 
         window.location.href = hrefvalue;
+    });
+    // 键盘事件
+    searchInput.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            // 触发点击事件
+            searchA.click();
+        }
     });
 })();
 
