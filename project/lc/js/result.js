@@ -6,6 +6,9 @@ let userAddressUl = document.querySelector('.myaddress ul');
 let resultUl = document.querySelector('.resultList ul');
 let allPrice = document.querySelector('.allPrice');
 
+//结算按钮
+let buy = document.querySelector('.buy');
+
 let nowProvince = '';
 let nowCity = '';
 let nowTown = '';
@@ -55,25 +58,58 @@ let nowTown = '';
             }
             allPrice.innerHTML = sumNum + '.00';
 
+            //点击支付
+            buy.onclick = function () {
+                console.log('支付');
+                // 请求支付地址
+                hc_ajax.ajax({
+                    method: 'post',
+                    url: BASE_URL + '/api_payment',
+                    data: {
+                        userId: localStorage.getItem('token'),
+                        orderId: new Date().getTime(),
+                        returnUrl: 'http://127.0.0.1:5500/order.html',
+                        totalAmount: sumNum+'',
+                        subject: '标题',
+                        body: '订单详情'
+                    },
+                    ContentType: 'url',
+                    success(res){
+                        console.log(res);
+                        if(res.code != 0){
+                            console.log(res);
+                            return;
+                        };
+                        // 获取支付地址成功
+                        location.href = res.data;
+                    }
+                })
+            }
+            
         },
     })
 })();
 
 //默认初始化一次
 getAddressList();
+addModify();
 
 // 地址添加
-(function () {
+function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, mdfPho) {
     //新增
-    let isadd = document.querySelector('.isadd input');
+    let isadd = document.querySelector('.isadd');
+    let isaddIpt = document.querySelector('.isadd input');
     let addTable = document.querySelector('.addTable');
     //点击新增
-    isadd.onchange = function () {
-        console.log(isadd.checked);
-        addTable.style.display = isadd.checked ? 'block' : 'none';
+    isaddIpt.onchange = function () {
+        console.log(isaddIpt.checked);
+        addTable.style.display = isaddIpt.checked ? 'block' : 'none';
     }
 
-    //新增输入
+    //修改ID
+    let modify = modifyId;
+
+    //输入框
     let username = addTable.querySelector('.username');
     let province = addTable.querySelector('.province');
     let city = addTable.querySelector('.city');
@@ -88,6 +124,18 @@ getAddressList();
     let isprovince = false;
     let isuseraddress = false;
     let isuserphone = false;
+
+
+    if (modify != undefined) {
+        username.value = mdfName;
+        useraddress.value = mdfAddrss;
+        userphone.value = mdfPho;
+
+        isusername = true;
+        isprovince = true;
+        isuseraddress = true;
+        isuserphone = true;
+    }
 
     //用户名判断
     username.onblur = function () {
@@ -119,8 +167,13 @@ getAddressList();
                 // 添加到页面
                 province.innerHTML = str;
 
-
-
+                //验证是否是修改
+                if (modify != undefined) {
+                    nowProvince  = mdfProvince;
+                    province.value = mdfProvince;
+                    // 调用城市数据
+                    getCity(mdfProvince, city);
+                }
 
                 province.onchange = function () {
                     nowProvince = this.value;
@@ -144,6 +197,8 @@ getAddressList();
                 // console.log(res);
                 if (res.code != 0) {
                     console.log(res);
+                    city.value = '';
+                    area.value = '';
                     return;
                 };
                 city.style.display = 'inline';
@@ -156,6 +211,13 @@ getAddressList();
                 });
                 // 添加到页面
                 dom.innerHTML = str;
+
+                ////验证是否是修改
+                if (modify != undefined) {
+                    city.value = mdfCity + '';
+                    // 调用城市数据
+                    getTown(mdfProvince, mdfCity, area);
+                }
 
                 dom.onchange = function () {
                     nowCity = this.value;
@@ -176,6 +238,7 @@ getAddressList();
                 console.log(res);
                 if (res.code != 0) {
                     console.log(res);
+                    area.value = '';
                     area.style.display = 'none';
                     return;
                 };
@@ -189,10 +252,17 @@ getAddressList();
                 });
                 // 添加到页面
                 dom.innerHTML = str;
+
+                //验证是否是修改
+                if (modify != undefined) {
+                    area.value = mdfArea + '';
+                }
+
                 dom.onchange = function () {
                     this.style.outline = this.value == '' ? 'red 1px solid' : 'none';
                     nowTown = this.value;
                 }
+
             }
         });
     };
@@ -208,24 +278,157 @@ getAddressList();
         isuserphone = (userphone.value.length == 0 || !res.test(userphone.value)) ? false : true;
     }
 
-    //保存地址
+    //保存/编辑地址
     save.onclick = function () {
         if (isusername && isprovince && isuseraddress && isuserphone) {
             //保存
-            // console.log(username.value, province.value, city.value, area.value, useraddress.value, userphone.value);
+            if (modify == undefined) {
+                saveAddress()
+            } else {
+                //编辑（先删除后保存）
+                //删除指定modifyId地址
+                hc_ajax.ajax({
+                    method: 'post',
+                    url: BASE_URL + '/api_address',
+                    data: {
+                        status: 'deleteAddress',
+                        userId: localStorage.getItem('token'),
+                        addressId: modify,
+                    },
+                    ContentType: 'url',
+                    success(dltres) {
+                        console.log(dltres);
+                        if (dltres.code != 0) {
+                            console.log(dltres);
+                            return;
+                        };
+                    }
+                });
+                //保存为新地址
+                saveAddress();
+                //出现
+                isadd.style.display = 'block';
+                isaddIpt.checked = false;
+            }
+
+        }
+    }
+
+    //保存方法
+    function saveAddress() {
+        hc_ajax.ajax({
+            method: 'post',
+            url: BASE_URL + '/api_address',
+            data: {
+                status: 'addAddress',
+                userId: localStorage.getItem('token'),
+                province: province.value,
+                city: city.value,
+                district: area.value,
+                streetname: useraddress.value,
+                takename: username.value,
+                tel: userphone.value,
+            },
+            ContentType: 'url',
+            success(res) {
+                console.log(res);
+                if (res.code != 0) {
+                    console.log(res);
+                    return;
+                };
+
+                getAddressList();
+            }
+        });
+
+        addTable.style.display = 'none';
+        isadd.checked = false;
+        username.value = '';
+        province.value = '';
+        city.style.display = 'none';
+        area.style.display = 'none';
+        city.value = '';
+        area.value = '';
+        useraddress.value = '';
+        userphone.value = '';
+    }
+
+
+};
+
+//地址操作
+(function () {
+    //监听父组件操作
+    userAddressUl.addEventListener('click', function (event) {
+        //删除
+        if (event.target.classList.contains('dlt')) {
+            let row = event.target.closest('li');
+            console.log(row.getAttribute('address-id'));
+
+            //更新后台
             hc_ajax.ajax({
                 method: 'post',
                 url: BASE_URL + '/api_address',
                 data: {
-                    status: 'addAddress',
+                    status: 'deleteAddress',
                     userId: localStorage.getItem('token'),
-                    province: province.value,
-                    city: city.value,
-                    district: area.value,
-                    streetname: useraddress.value,
-                    takename: username.value,
-                    tel: userphone.value,
+                    addressId: row.getAttribute('address-id')
                 },
+                ContentType: 'url',
+                success(dltres) {
+                    console.log(dltres);
+                    if (dltres.code != 0) {
+                        console.log(dltres);
+                        return;
+                    };
+                    //移除dom节点
+                    row.remove()
+                    //重新渲染
+                    getAddressList()
+                }
+            })
+
+            //阻止了事件冒泡
+            event.stopPropagation();
+            return;
+        }
+        //编辑
+        if (event.target.classList.contains('redact')) {
+            let row = event.target.closest('li');
+            // console.log(row.getAttribute('address-id'));
+            // console.log(row.querySelector('.name').innerHTML);
+            // console.log(row.querySelector('.pho').innerHTML);
+            // console.log(row.querySelector('.location').innerHTML);
+            // console.log(row.querySelector('.locationDtl').innerHTML);
+
+            //1.下面输入框出现 2.新增地址勾选框隐藏，出现编辑地址提示字符 3.输入框获取当前li的值，判断是否为编辑
+            //4.为编辑时点击保存后删除点击的li，再新增li到原本的位置
+
+            let isadd = document.querySelector('.isadd');
+            let addTable = document.querySelector('.addTable');
+            addTable.style.display = 'block';
+            isadd.style.display = 'none';
+            //分割字符串
+            let locationArray = row.querySelector('.location').innerHTML.split(' ')
+
+            //调用编辑
+            addModify(row.getAttribute('address-id'), row.querySelector('.name').innerHTML, locationArray[0], locationArray[1], locationArray[2], row.querySelector('.locationDtl').innerHTML, row.querySelector('.pho').innerHTML)
+
+
+            //阻止了事件冒泡
+            event.stopPropagation();
+            return;
+        }
+
+        //设为默认（下面的字改变,提到最前面）
+        if (event.target.classList.contains('default')) {
+            let row = event.target.closest('li');
+            console.log('点击了设为默认');
+            //isActive为true
+            hc_ajax.ajax({
+                method: 'post',
+                url: BASE_URL + '/api_address',
+                data: { status: 'defaultAddress', userId: localStorage.getItem('token'), addressId: row.getAttribute('address-id') },
                 ContentType: 'url',
                 success(res) {
                     console.log(res);
@@ -233,25 +436,43 @@ getAddressList();
                         console.log(res);
                         return;
                     };
-                    getAddressList();
+                    //刷新列表
+                    getAddressList()
                 }
-            });
+            })
 
-            addTable.style.display = 'none';
-            isadd.checked = false;
-            username.value = '';
-            province.value = '';
-            city.style.display = 'none';
-            area.style.display = 'none';
-            city.value = '';
-            area.value = '';
-            useraddress.value = '';
-            userphone.value = '';
-        }
-    }
+            //阻止了事件冒泡
+            event.stopPropagation();
+            return;
+        };
 
+        // 设为当前
+        if (event.target.closest('li')) {
+            let row = event.target.closest('li');
+            console.log(row.getAttribute('address-id'));
+            //isActive为true
+            hc_ajax.ajax({
+                method: 'post',
+                url: BASE_URL + '/api_address',
+                data: { status: 'activeAddress', userId: localStorage.getItem('token'), addressId: row.getAttribute('address-id') },
+                ContentType: 'url',
+                success(res) {
+                    console.log(res);
+                    if (res.code != 0) {
+                        console.log(res);
+                        return;
+                    };
+                    //刷新列表
+                    getAddressList()
+                }
+            })
+
+        };
+
+    });
 
 })();
+
 
 //获取地址
 function getAddressList() {
@@ -267,57 +488,8 @@ function getAddressList() {
                 console.log(res);
                 return;
             };
-
-
-            if (res.data.length == 0) {
-                userAddress.innerHTML = `<p>暂无地址，快去添加收货地址吧</p>`;
-                return;
-            };
-
             //调用渲染方法
             renderAddressList(res.data);
-
-            //地址操作，监听父组件操作
-            userAddressUl.addEventListener('click', function (event) {
-                //删除
-                if (event.target.classList.contains('dlt')) {
-                    let row = event.target.closest('li');
-                    console.log(row.getAttribute('address-id'));
-
-                    //更新后台
-                    hc_ajax.ajax({
-                        method: 'post',
-                        url: BASE_URL + '/api_address',
-                        data: {
-                            status: 'deleteAddress',
-                            userId: localStorage.getItem('token'),
-                            addressId: row.getAttribute('address-id')
-                        },
-                        ContentType: 'url',
-                        success(dltres) {
-                            console.log(dltres);
-                            if (dltres.code != 0) {
-                                console.log(dltres);
-                                return;
-                            };
-                            //移除dom节点
-                            row.remove()
-                            //判断是否为空
-                            if (res.data.length == 0) {
-                                userAddress.innerHTML = `<p>暂无地址，快去添加收货地址吧</p>`;
-                                return;
-                            };
-
-                        }
-                    })
-                }
-            });
-            //删除
-
-
-            //编辑
-
-            //设为默认
         },
     })
 
@@ -327,20 +499,32 @@ function getAddressList() {
 }
 //地址列表渲染方法
 function renderAddressList(data) {
+
+    if (data.length == 0) {
+        userAddressUl.innerHTML = `<p class='noAddress'>暂无地址，快去添加收货地址吧</p>`;
+        return;
+    };
+
+    //排序，isDefault为true的值放前面
+    data.sort((a, b) => {
+        return (b.isDefault === true) - (a.isDefault === true);
+    });
+
+
     let str = '';
     data.forEach(item => {
         str += `
-            <li address-id="${item.address_id}" class="list ${item.isActive ? 'isActive' : ''}">
+            <li address-id="${item.address_id}" class="${item.isActive ? 'isActive' : ''}">
                 <div class="tle">
                     <span class="name">${item.takename}</span>
                     <span class="pho">${item.tel}</span>
                 </div>
                 <div class="con">
-                    <p class="location">${item.province} ${item.city} ${item.district}</p>
+                    <p class="location" >${item.province} ${item.city} ${item.district}</p>
                     <p class="locationDtl">${item.streetname}</p>
                 </div>
                 <div class="opt">
-                    <div class="isdefault">默认地址</div>
+                    <div class="default ${item.isDefault ? 'isDefault' : ''}">${item.isDefault ? '默认地址' : '设为默认'}</div>
                     <div>
                         <span class="redact">编辑</span>
                         <span class="dlt">删除</span>
@@ -350,31 +534,41 @@ function renderAddressList(data) {
         `
     })
     userAddressUl.style.width = data.length * 250 + 'px';
+    userAddressUl.style.left = '0px'
     userAddressUl.innerHTML = str;
+    console.log(data.length);
+
 
     //地址列表移动
+    move(data.length)
+}
+//地址列表移动
+function move(length) {
     let prev = document.querySelector('.prev');
     let next = document.querySelector('.next');
     //移动下标
     let num = 0;
-    //上一个
-    prev.onclick = function () {
-        num--;
-        num = num <= 0 ? 0 : num;
-        userAddressUl.style.transition = '.5s';
-        userAddressUl.style.left = (-250 * num) + 'px'
-    };
-    //下一个
-    next.onclick = function () {
-        num++;
-        num = num >= data.length - 4 ? data.length - 4 : num;
-        userAddressUl.style.transition = '.5s';
-        userAddressUl.style.left = (-250 * num) + 'px'
-    };
 
+    if (length <= 4) {
+        userAddressUl.style.left = '0px'
+        prev.onclick = null;
+        next.onclick = null;
+    } else {
+        console.log('触发了');
 
-
-
+        //上一个
+        prev.onclick = function () {
+            num--;
+            num = num <= 0 ? 0 : num;
+            userAddressUl.style.transition = '.5s';
+            userAddressUl.style.left = (-250 * num) + 'px'
+        };
+        //下一个
+        next.onclick = function () {
+            num++;
+            num = num >= length - 4 ? length - 4 : num;
+            userAddressUl.style.transition = '.5s';
+            userAddressUl.style.left = (-250 * num) + 'px'
+        };
+    }
 }
-
-

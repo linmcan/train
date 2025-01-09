@@ -344,8 +344,6 @@ function move() {
         m++;
         m = m >= sli.length ? 0 : m;
         console.log(m);
-        
-
 
         //加过渡动画
         bul.style.transition = '.5s';

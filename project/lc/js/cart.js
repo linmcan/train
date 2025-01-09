@@ -212,7 +212,7 @@ function cartOpera() {
                     };
                     
                     //跳转到地址页面
-                    location.href = 'address.html';
+                    location.href = 'result.html';
             }
         })
         

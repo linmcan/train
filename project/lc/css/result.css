@@ -81,7 +81,9 @@
     left: 13px;
 }
 /* 地址列表*/
-.address .myaddress>p{
+/* 无地址 */
+.address .myaddress ul .noAddress{
+    width: 1000px;
     font-size: 20px;
     text-align: center;
     color: #6393b4;
@@ -89,6 +91,8 @@
 }
 .address .myaddress ul{
     position: absolute;
+    transition:0.5s;
+    left: 0; top: 0;
 }
 .address .myaddress li{
     float: left;
@@ -99,8 +103,9 @@
     border: #999 2px solid;
     -webkit-user-select: none;
 }
-.address .myaddress li:first-of-type{
-    border: #6393b4 2px solid;
+/* 当前地址 */
+.address .myaddress .isActive{
+    border: #77b4dd 2px solid;
 }
 .address .myaddress li:hover{
     border: #6393b4 2px solid;
@@ -137,7 +142,7 @@
     line-height: 30px;
     color: #999;
 }
-.address .myaddress li .opt .isdefault{
+.address .myaddress li .opt .isDefault{
     color: #6393b4;
 } 
 /* 新增地址 */
