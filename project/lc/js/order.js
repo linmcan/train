@@ -114,17 +114,15 @@ let isStatus = true;
         //点击详细
         if (event.target.classList.contains('more')){
             let row = event.target.closest('tr');
-            let moreMsg =document.querySelectorAll('.moreMsg');
-            
-
+            let moreMsg =document.querySelectorAll('.moreMsg');        
             for (let index = 0; index < moreMsg.length; index++) {
                 if (moreMsg[index].getAttribute('trade_no') == row.getAttribute('trade_no')) {
-                    
                     moreMsg[index].style.display = ison?'table-row':'none';
                     ison=!ison;
                     console.log(ison);
                 }
-            } 
+            }
+            event.target.textContent = ison ? '详细':'收起';
         }
     })
 
@@ -195,13 +193,15 @@ let isStatus = true;
                                 price += parseInt(item1.price * 0.9) * item1.goods_number
                             })
 
-                            let orderMore =`
-                                    <div class="msg">
-                                        <p>姓名：${item.order_address.takename}</p>
-                                        <p>电话号码：${item.order_address.tel}</p>
-                                        <p>住址：${item.order_address.province} ${item.order_address.city} ${item.order_address.district} ${item.order_address.streetname}</p>
-                                    </div>
-                                `
+                            let orderMore = `
+                            <div class="msg">
+                                <p>姓名：${item.order_address ? item.order_address.takename : ''}</p>
+                                <p>电话号码：${item.order_address ? item.order_address.tel : ''}</p>
+                                <p>住址：${item.order_address ? 
+                                    `${item.order_address.province} ${item.order_address.city} ${item.order_address.district} ${item.order_address.streetname}` : ''}</p>
+                            </div>
+                        `;
+                        
 
 
                             str += `
