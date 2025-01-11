@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/base.css"/>
+    <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/address.css">
     <link rel="stylesheet" href="font/iconfont.css" />
 </head>
+
 <body>
     <!-- 头部标签 -->
     <header>
@@ -15,73 +17,35 @@
             <a class="logo" href="index.html"></a>
             <ul class="nav-r">
                 <!--未登录的 登录 注册 -->
-                <li class="login"><a href="login.html">登录</a></li>
-                <li class="register"><a href="register.html">注册</a></li>
+                <li class="login"><a href="#">登录</a></li>
+                <li class="register"><a href="#">注册</a></li>
                 <!-- 已登录的 用户 -->
                 <li class="user is-subnav">
                     <img src="img/user.jpg" alt="">
                     <span>用户123</span>
 
-                
+
                     <div class="user-subnav">
                         <ul class="user-list">
                             <li><a href="#">个人设置</a></li>
                             <li><a href="address.html">收货信息</a></li>
                             <li><a href="order.html">我的订单</a></li>
                         </ul>
-                        
-                        <div class="user-btn"><a href="">退出登录</a></div>
+
+                        <a href="" class="user-btn">退出登录</a>
                     </div>
                 </li>
 
                 <li class="line">|</li>
 
                 <li class="cart is-subnav">
-                    <a href="cart.html">购物车</a>
+                    <a href="#">购物车</a>
                     <!-- 子菜单 -->
                     <div class="cart-subnav">
                         <!-- 暂无商品, 没有商品，没有登录 -->
                         <div class="cart-msg">你的购物车暂无商品...</div>
                         <!-- 中间购物车商品 -->
                         <ul class="cart-list">
-                            <li class="goods">
-                                <a href=""><img src="img/goods.jpg" alt="" /></a>
-                                <div>
-                                    <p>全棉插肩长袖T恤 | 百</p>
-                                    <p>服装尺码:S;颜色:米白/黑;</p>
-                                    <p>
-                                        <span>数量：3件</span>
-                                        <span>¥290.00</span>
-                                        <span>¥390.00</span>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="goods">
-                                <a href=""><img src="img/goods.jpg" alt="" /></a>
-                                <div>
-                                    <p>全棉插肩长袖T恤 | 百</p>
-                                    <p>服装尺码:S;颜色:米白/黑;</p>
-                                    <p>
-                                        <span>数量：3件</span>
-                                        <span>¥290.00</span>
-                                        <span>¥390.00</span>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="goods">
-                                <a href=""><img src="img/goods.jpg" alt="" /></a>
-                                <div>
-                                    <p>全棉插肩长袖T恤 | 百</p>
-                                    <p>服装尺码:S;颜色:米白/黑;</p>
-                                    <p>
-                                        <span>数量：3件</span>
-                                        <span>¥290.00</span>
-                                        <span>¥390.00</span>
-                                    </p>
-                                </div>
-                            </li>
                         </ul>
                         <!-- 按钮 -->
                         <div class="cart-btn">快去抢购物良仓商品吧！</div>
@@ -116,18 +80,18 @@
         <ul class="sub-l">
             <li><a href="index.html">首页</a></li>
             <li class="shop">
-                <a href="category.html?catName=新品" >商店</a>
-                    <!-- 子菜单 -->
-                    <div class="shop-subnav">
-                        <ul class="shop-list">
+                <a href="category.html?catName=新品">商店</a>
+                <!-- 子菜单 -->
+                <div class="shop-subnav">
+                    <ul class="shop-list">
 
-                        </ul>
-                        <div class="nav-subnav-r">
-                            <img src="img/nav_banner.jpg" alt="" />
-                            <p>新视线：  2024年12月刊</p>
-                        </div>
-                        
+                    </ul>
+                    <div class="nav-subnav-r">
+                        <img src="img/nav_banner.jpg" alt="" />
+                        <p>新视线： 2024年12月刊</p>
                     </div>
+
+                </div>
             </li>
             <li class="magazine">
                 <a href="#">杂志</a>
@@ -170,196 +134,124 @@
             <li><a href="">达人</a></li>
             <li><a href="">有偿资讯</a></li>
         </ul>
-        
+
         <!-- 搜索框 -->
         <div class="search-content">
             <input type="text" placeholder="search..." name="" id="">
             <a href=""></a>
         </div>
-     </nav>
-    
-         <!-- 主体 -->
-          <div class="main">
-            <div class="setting">
-                <a href="">基本设置</a>
+
+        <!-- 搜索提示框 -->
+        <div class="seachPop">
+            <div class="popwindow">
+                <h2>提示</h2>
+                <p>搜索结果不能为空</p>
+                <span>X</span>
             </div>
-            <div class="secnav">
-                <ui class="secnav-list">
-                    <li><a href="">个人设置</a></li>
-                    <li class="line">|</li>
-                    <li><a href="">收货信息</a></li>
-                    <li class="line">|</li>
-                    <li><a href="">我的订单</a></li>
-                    <li class="line">|</li>
-                    <li><a href="">邀请好友</a></li>
-                </ui>
+        </div>
+    </nav>
+
+    <!-- 主体 -->
+    <div class="main">
+        <div class="setting">
+            <a href="">基本设置</a>
+        </div>
+        <div class="secnav">
+            <ui class="secnav-list">
+                <li><a href="">个人设置</a></li>
+                <li class="line">|</li>
+                <li><a href="address.html">收货信息</a></li>
+                <li class="line">|</li>
+                <li><a href="order.html">我的订单</a></li>
+                <li class="line">|</li>
+                <li><a href="">邀请好友</a></li>
+            </ui>
+        </div>
+        <!-- 表单 -->
+
+        <table class="add-address">
+            <tr>
+                <td colspan="2"><span>收货地址管理</span></td>
+            </tr>
+            <tr>
+                <td colspan="2"><span class="color1">新增常用收货地址</span><span class="color2">电话号码或手机，必须填写一项</span></td>
+            </tr>
+            <tr>
+                <td>真实姓名：</td>
+                <td><input type="text" placeholder="请输入姓名" class="username"><span class="color1">*</span></td>
+            </tr>
+            <tr>
+                <td><label for="addressChange">所在地：</label></td>
+                <td>
+                    <select id="addressChange" class="province">
+                    </select>
+
+                    <select id="addressChange" class="city">
+                    </select>
+
+                    <select id="addressChange" class="area">
+                    </select>
+                    <span class="color1">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td>街道地址：</td>
+                <td><input type="text" placeholder="请输入详细地址" class="useraddress"><span class="color1">*</span><span class="color2">不需要重复写省、市、区</span></td>
+            </tr>
+            <tr>
+                <td>手机号码：</td>
+                <td><input type="text" placeholder="请输入手机号码" class="userphone"><span class="color1">*</span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button class="save">保存</button></td>
+            </tr>
+        </table>
+
+        <!-- 地址表格 -->
+        <div class="address">
+            <span>已保存常用地址</span>
+            <table class="address-table">
+            </table>
+            <span>备注：最多保留20个常用有效地址</span>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="service">
+            <!-- 版心宽度 -->
+            <div class="bottom-server">
+                <span class="iconfont icon-shouzhi"></span>
+                <span>&gt;&gt;</span>
+                <a href="">良仓商品/OUR SHOP</a>
             </div>
-            <!-- 表单 -->
-            <form action="">
-                <table class="add-address">
-                   <tr>
-                        <td colspan="2"><span>收货地址管理</span></td>
-                   </tr>
-                   <tr>
-                        <td colspan="2"><span class="color1">新增常用收货地址</span><span class="color2">电话号码或手机，必须填写一项</span></td>
-                   </tr>
-                   <tr>
-                        <td>真实姓名：</td>
-                        <td><input type="text"><span class="color1">*</span></td>
-                   </tr>
-                   <tr>
-                        <td>所在地：</td>
-                        <td>
-                            <select id="">
-                                <option value="china">中国</option>
-                            </select>
-                            
-                            <select id="">
-                                <option value="">请选择省份</option>
-                                <option value="beijing">北京市</option>
-                                <option value="tianjin">天津市</option>
-                                <option value="shanghai">上海市</option>
-                                <option value="chongqing">重庆市</option>
-                                <option value="hebei">河北省</option>
-                                <option value="shanxi">山西省</option>
-                                <option value="neimenggu">内蒙古自治区</option>
-                                <option value="liaoning">辽宁省</option>
-                                <option value="jilin">吉林省</option>
-                                <option value="heilongjiang">黑龙江省</option>
-                                <option value="jiangsu">江苏省</option>
-                                <option value="zhejiang">浙江省</option>
-                                <option value="anhui">安徽省</option>
-                                <option value="fujian">福建省</option>
-                                <option value="jiangxi">江西省</option>
-                                <option value="shandong">山东省</option>
-                                <option value="henan">河南省</option>
-                                <option value="hubei">湖北省</option>
-                                <option value="hunan">湖南省</option>
-                                <option value="guangdong">广东省</option>
-                                <option value="guangxi">广西壮族自治区</option>
-                                <option value="hainan">海南省</option>
-                                <option value="sichuan">四川省</option>
-                                <option value="guizhou">贵州省</option>
-                                <option value="yunnan">云南省</option>
-                                <option value="xizang">西藏自治区</option>
-                                <option value="shanxi2">陕西省</option>
-                                <option value="gansu">甘肃省</option>
-                                <option value="qinghai">青海省</option>
-                                <option value="ningxia">宁夏回族自治区</option>
-                                <option value="xinjiang">新疆维吾尔自治区</option>
-                                <option value="taiwan">台湾省</option>
-                                <option value="hongkong">香港特别行政区</option>
-                                <option value="aomen">澳门特别行政区</option>
-                            </select>
-
-                            <select id="">
-                            <option value="">请选择城市</option>
-                            <option value="changsha">长沙</option>
-                            <option value="zhuzhou">株洲</option>
-                            <option value="xiangtan">湘潭</option>
-                            <option value="hengyang">衡阳</option>
-                            <option value="shaoyang">邵阳</option>
-                            <option value="yueyang">岳阳</option>
-                            <option value="changde">常德</option>
-                            <option value="zhangjiajie">张家界</option>
-                            <option value="yiyang">益阳</option>
-                            <option value="chenzhou">郴州</option>
-                            <option value="yongzhou">永州</option>
-                            <option value="huaihua">怀化</option>
-                            <option value="loudi">娄底</option>
-                            <option value="xiangxi">湘西</option>                            
-                            </select>
-                        <span class="color1">*</span></td>
-                   </tr>
-                   <tr>
-                        <td>街道地址：</td>
-                        <td><input type="text"><span class="color1">*</span><span class="color2">不需要重复写省、市、区</span></td>
-                   </tr>
-                   <tr>
-                        <td>邮政编码：</td>
-                        <td><input type="text"></td>
-                   </tr>
-                   <tr>
-                        <td>手机号码：</td>
-                        <td><input type="text"><span class="color1">*</span></td>
-                   </tr>
-                   <tr>
-                        <td>电话号码：</td>
-                        <td><input type="text">-<input type="text">-<input type="text"><span class="color2">区号-电话号码-分机号（如：010-88888888/123）</span></td>
-                   </tr>
-                   <tr>
-                        <td>设为默认：</td>
-                        <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><a href="">保存</a></td>
-                   </tr>
-                </table>
-            </form>
-
-            <!-- 地址表格 -->
-             <div class="address">
-                <span>已保存常用地址</span>
-                <table class="address-table">
-                    <tr>
-                        <td class="col1">收货人</td>
-                        <td class="col2">所在地区</td>
-                        <td class="col3">街道地址</td>
-                        <td class="col4">电话/手机</td>
-                        <td class="col5">状态</td>
-                        <td class="col6">操作</td>
-                    </tr>
-                    <tr>
-                        <td class="col1">翎末</td>
-                        <td class="col2">湖南 长沙</td>
-                        <td class="col3">天顶街道竹马巷</td>
-                        <td class="col4">18074336440</td>
-                        <td class="col5">默认地址</td>
-                        <td class="col6"><a href="">修改</a> <a href="">删除</a></td>
-                    </tr>
-                 </table>
-                 <span>备注：最多保留20个常用有效地址</span>
-             </div>
-
-          </div>
-    
-        <footer>
-            <div class="service">
-                <!-- 版心宽度 -->
-                <div class="bottom-server">
-                    <span class="iconfont icon-shouzhi"></span>
-                    <span>&gt;&gt;</span>
-                    <a href="">良仓商品/OUR SHOP</a>
+            <div class="slogen">
+                <div class="fore1">
+                    <p>全球精品</p>
+                    <p>Global Selection</p>
                 </div>
-                <div class="slogen">
-                    <div class="fore1">
-                        <p>全球精品</p>
-                        <p>Global Selection</p>
-                    </div>
-                    <div class="fore2">
-                        <p>正品保证</p>
-                        <p>Authenticity Guaranteed</p>
-                    </div>
-                    <div class="fore3">
-                        <p>全场包邮</p>
-                        <p>Free Delivery</p>
-                    </div>
-                    <div class="fore4">
-                        <p>客服邮箱</p>
-                        <p>kefu@iliangcang.com</p>
-                    </div>
+                <div class="fore2">
+                    <p>正品保证</p>
+                    <p>Authenticity Guaranteed</p>
+                </div>
+                <div class="fore3">
+                    <p>全场包邮</p>
+                    <p>Free Delivery</p>
+                </div>
+                <div class="fore4">
+                    <p>客服邮箱</p>
+                    <p>kefu@iliangcang.com</p>
                 </div>
             </div>
-            <div class="foot">
-                <div class="wrap">
-                    <div class="wrap-l">
-                        <div class="all-download">
-                            <a href="" class="download">
-                                <div class="download-text">
-                                    <p>iPhone Android</p>
-                                    <p>客户端下载</p>
-                                </div>
+        </div>
+        <div class="foot">
+            <div class="wrap">
+                <div class="wrap-l">
+                    <div class="all-download">
+                            <div class="download-text">
+                                <p>iPhone Android</p>
+                                <p>客户端下载</p>
                                 <div class="download-code">
                                     <a href="">
                                         <div class="code">
@@ -374,50 +266,70 @@
                                         </div>
                                     </a>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="wrap-l-bottom">
-                            <ui class="bottom-list">
-                                <li><a href="">关于良仓</a></li>
-                                <li class="line">|</li>
-                                <li><a href="">服务协议</a></li>
-                                <li class="line">|</li>
-                                <li><a href="">隐私保护政策</a></li>
-                                <li class="line">|</li>
-                                <li><a href="">使用指南</a></li>
-                                <li class="line">|</li>
-                                <li><a href="">联系我们</a></li>
-                                <li class="line">|</li>
-                                <li><a href="">加入我们</a></li>
-                                <li class="line">|</li>
-                                <li><a href="">友情链接</a></li>
-                                <li class="line">|</li>
-                                <li><a href="">私信良仓</a></li>
-                            </ui>
-                            <p>© 2013-2019 北京良仓文化传播有限公司版权所有 </p>
-                            <p> 公司名称：北京良仓文化传播有限公司  客服邮箱：kefu@iliangcang.com</p>
-                            <p> 公司地址：北京朝阳区百子湾路32号6号楼1层60号.</p>
-                            <p> 社会信用统一代码：91110105059231575L  食品许可证：JY11105160159557  </p>
-                            <p> 图书证名称：中华人民共和国出版物经营许可证  图书证编号：新出发京零 字第 朝 150051 号  </p>
-                            <p>京ICP备13010677号-1 京公网安备11010502025627</p>
-                        </div>
+                            </div>
                     </div>
-                    <div class="wrap-r">
-                        <ul class="a-list">
-                            <li><a href="" class="a-wechat">
+                    <div class="wrap-l-bottom">
+                        <ui class="bottom-list">
+                            <li><a href="">关于良仓</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">服务协议</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">隐私保护政策</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">使用指南</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">联系我们</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">加入我们</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">友情链接</a></li>
+                            <li class="line">|</li>
+                            <li><a href="">私信良仓</a></li>
+                        </ui>
+                        <p>© 2013-2019 北京良仓文化传播有限公司版权所有 </p>
+                        <p> 公司名称：北京良仓文化传播有限公司 客服邮箱：kefu@iliangcang.com</p>
+                        <p> 公司地址：北京朝阳区百子湾路32号6号楼1层60号.</p>
+                        <p> 社会信用统一代码：91110105059231575L 食品许可证：JY11105160159557 </p>
+                        <p> 图书证名称：中华人民共和国出版物经营许可证 图书证编号：新出发京零 字第 朝 150051 号 </p>
+                        <p>京ICP备13010677号-1 京公网安备11010502025627</p>
+                    </div>
+                </div>
+                <div class="wrap-r">
+                    <ul class="a-list">
+                        <li><a href="" class="a-wechat">
                                 <div class="wechat"></div>
                                 <div class="wechat-code">
                                     <img src="img/wechat-code.png" alt="">
                                 </div>
                             </a></li>
-                            <li><a href=""><div class="weibo"></div></a></li>
-                            <li><a href=""><div class="douban"></div></a></li>
-                        </ul>
-                    </div>
+                        <li><a href="">
+                                <div class="weibo"></div>
+                            </a></li>
+                        <li><a href="">
+                                <div class="douban"></div>
+                            </a></li>
+                    </ul>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
+
+    <!-- 验证登录 -->
+    <div class="modal">
+        <div class="popWindow">
+            <h2>提示</h2>
+            <p>请先登录</p>
+            <div class="btns">
+                <button class="log">去登录</button>
+                <button class="ret">返回首页</button>
+            </div>
+        </div>
+    </div>
+
+
 </body>
+
 </html>
 <script src="js/hc_privateJS.js"></script>
 <script src="js/base.js"></script>
+<script src="js/address.js"></script>

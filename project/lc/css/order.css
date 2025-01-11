@@ -35,7 +35,7 @@
     color: #666;
     font-size: 13px;
 }
-.secnav-list :nth-child(3) a{
+.secnav-list :nth-child(5) a{
     color:#7ca8cb ;
 }
 .secnav-list :nth-child(odd) a{
@@ -48,12 +48,13 @@
     color: #666;
     padding: 20px 0;
 }
-.order .order-status .status{
+.order .order-status span{
     font-size: 13px;
     color: #666;
     padding: 2px 7px;
     margin: 0 3px;
     border-radius: 5px;
+    -webkit-user-select: none;
 }
 .order .order-status .ison{
     background-color: #7ca8cb;
@@ -69,6 +70,9 @@
     border: none;
     padding: 2px 5px;
 }
+.order .conTle input[type="text"]{
+    outline: none;
+}
 .order .conTle :nth-child(1){
     font-size: 13px;
     color: #666;
@@ -77,6 +81,7 @@
     font-size: 13px;
     color: white;
     background-color: #7ca8cb;
+    border-radius: 3px;
 }
 
 /* 订单列表 */
@@ -120,6 +125,8 @@
 .order .order-table .orderItem{
     display: flex;
     text-align: left;
+    margin: 10px;
+    border-bottom:none
 }
 .order .order-table .orderItem *{
     border: none;
@@ -135,23 +142,92 @@
     font-size: 12px;
     color: #666;
 }
+.order .order-table .orderPrice,.order .order-table .orderNum{
+    height: 50px;
+    line-height: 50px;
+    margin: 10px;
+    border-bottom:none
+}
 /* 查看格 */
-.order .order-table :nth-child(n+2) :last-child{
+.order .order-table :nth-child(n+2) {
     vertical-align: middle;
 }
-.order .order-table .pay{
+.order .order-table .dlt,.order .order-table .more{
     background-color: #7ca8cb;
     color: white;
     padding: 2px 7px;
     font-size: 12px;
+    border: none;
+    margin: 3px 0;
+    border-radius: 3px;
+}
+
+/* 详细信息格 */
+.order .order-table .moreMsg{
+    display: none;
+}
+.order .order-table .moreMsg td{
+    border: none;
+    padding: 10px 40px;
+
+}
+.order .order-table .moreMsg td p{
+    text-align: left;
+    border: none;
 }
 /* 没有商品 */
 .order .order-table .nothing{
     border-right: none;
+    -webkit-user-select: none;
 }
+.order .order-table .nothing a{
+    color: #7ca8cb;
+    cursor: pointer;
+}
+/* 提示框 */
 
-.order .artistListConPage{
-    text-align: right;
-    font-size: 13px;
-    color: #666;
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal .popWindow{
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+.modal .popWindow h2,.moreMsg .Popmore h2{
+    text-align: center;
+    padding: 10px 0;
+    font-size: 18px;
+    background:#25292e;
+    color: white;
+}
+.modal .popWindow p{
+    text-align: center;
+    font-size: 16px;
+    padding: 25px 0 20px;
+}
+.modal .popWindow .btns{
+    width: 470px;
+    text-align: center;
+    padding: 25px;
+}
+.modal .popWindow .btns button{
+    background-color: #7ca8cb;
+    color: #fff;
+    border: none;
+    padding: 3px 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin: 0 10px;
 }

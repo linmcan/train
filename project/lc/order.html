@@ -17,8 +17,8 @@
             <a class="logo" href="index.html"></a>
             <ul class="nav-r">
                 <!--未登录的 登录 注册 -->
-                <li class="login"><a href="login.html">登录</a></li>
-                <li class="register"><a href="register.html">注册</a></li>
+                <li class="login"><a href="#">登录</a></li>
+                <li class="register"><a href="#">注册</a></li>
                 <!-- 已登录的 用户 -->
                 <li class="user is-subnav">
                     <img src="img/user.jpg" alt="">
@@ -32,14 +32,14 @@
                             <li><a href="order.html">我的订单</a></li>
                         </ul>
 
-                        <div class="user-btn"><a href="">退出登录</a></div>
+                        <a href="" class="user-btn">退出登录</a>
                     </div>
                 </li>
 
                 <li class="line">|</li>
 
                 <li class="cart is-subnav">
-                    <a href="cart.html">购物车</a>
+                    <a href="#">购物车</a>
                     <!-- 子菜单 -->
                     <div class="cart-subnav">
                         <!-- 暂无商品, 没有商品，没有登录 -->
@@ -140,6 +140,15 @@
             <input type="text" placeholder="search..." name="" id="">
             <a href=""></a>
         </div>
+
+        <!-- 搜索提示框 -->
+        <div class="seachPop">
+            <div class="popwindow">
+                <h2>提示</h2>
+                <p>搜索结果不能为空</p>
+                <span>X</span>
+            </div>
+        </div>
     </nav>
 
     <!-- 主体 -->
@@ -151,9 +160,9 @@
             <ui class="secnav-list">
                 <li><a href="">个人设置</a></li>
                 <li class="line">|</li>
-                <li><a href="">收货信息</a></li>
+                <li><a href="address.html">收货信息</a></li>
                 <li class="line">|</li>
-                <li><a href="">我的订单</a></li>
+                <li><a href="order.html">我的订单</a></li>
                 <li class="line">|</li>
                 <li><a href="">邀请好友</a></li>
             </ui>
@@ -161,55 +170,21 @@
 
         <div class="order">
             <!-- 订单状态选项 -->
-            <div class="order-status"><a href="" class="status">已完成订单</a>|<a href="" class="status ison">未完成订单</a>|
+            <div class="order-status"><span class="status ison">已完成订单</span>|<span class="noStatus">未完成订单</span>|
             </div>
             <!-- 查找订单 -->
             <div class="conTle">
                 <input type="button" value="私信客服">
-                <input type="text" placeholder="输入订单编号">
-                <input type="button" value="搜索">
+                <input type="text" placeholder="输入订单编号" class="seachIpt">
+                <input type="button" value="搜索" class="seach">
             </div>
 
             <!-- 订单列表 -->
             <table class="order-table">
-                <tr>
-                    <th>良品</th>
-                    <th>单价（元）</th>
-                    <th>数量</th>
-                    <th>订单编号</th>
-                    <th>订单金额</th>
-                    <th>交易状态</th>
-                    <th></th>
-                </tr>
-                <!-- 商品1 -->
-                <tr>
-                    <td>
-                        <div class="orderItem">
-                            <a href=""><img src="" alt=""></a>
-                            <div class="info">
-                                <p><a href="">品牌 ／ Midori</a></p>
-                                <p><a href="">黄铜材质复古圆珠笔</a></p>
-                                <p><a href="">茶色</a></p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>188.00</td>
-                    <td>1</td>
-                    <td>202412151139128247</td>
-                    <td>188.00</td>
-                    <td>未支付</td>
-                    <td><a href="" class="pay">查看并支付</a></td>
-                </tr>
-                <!-- 没有购买商品 -->
-                <tr>
-                    <td colspan="7" class="nothing">您还有购买任何商品哦，～_～！</td>
-                </tr>
+
             </table>
 
-            <!-- 翻页 -->
-            <div class="artistListConPage">
-                共<b>1</b>条记录 第<b>1</b>页/共<b>1</b>页 &lt;&lt; &lt; <b style="color:red">1</b> &gt; &gt;&gt;
-            </div>
+
         </div>
     </div>
 
@@ -244,11 +219,9 @@
             <div class="wrap">
                 <div class="wrap-l">
                     <div class="all-download">
-                        <a href="" class="download">
-                            <div class="download-text">
-                                <p>iPhone Android</p>
-                                <p>客户端下载</p>
-                            </div>
+                        <div class="download-text">
+                            <p>iPhone Android</p>
+                            <p>客户端下载</p>
                             <div class="download-code">
                                 <a href="">
                                     <div class="code">
@@ -263,7 +236,7 @@
                                     </div>
                                 </a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     <div class="wrap-l-bottom">
                         <ui class="bottom-list">
@@ -310,6 +283,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- 验证登录 -->
+    <div class="modal">
+        <div class="popWindow">
+            <h2>提示</h2>
+            <p>请先登录</p>
+            <div class="btns">
+                <button class="log">去登录</button>
+                <button class="ret">返回首页</button>
+            </div>
+        </div>
+    </div>
+    
 </body>
 
 </html>

@@ -1,13 +1,15 @@
 //元素获取
-let mian = document.querySelector('.main')
-let position = mian.querySelector('.position')
+let mian = document.querySelector('.main');
+let position = mian.querySelector('.position');
 
-let osmBar = mian.querySelector('.osm-bar')
-let osmUl = osmBar.querySelector('.osm-ul')
-let osmLi = osmUl.getElementsByTagName('li')
+let osmBar = mian.querySelector('.osm-bar');
+let osmUl = osmBar.querySelector('.osm-ul');
+let osmLi = osmUl.getElementsByTagName('li');
 
-let good = mian.querySelector('.good')
-let goodUl = good.querySelector('ul')
+let good = mian.querySelector('.good');
+let goodUl = good.querySelector('ul');
+
+let priceUl = document.querySelector('.price-list ul')
 
 //获取当前传递过来的 cat_id
 let catId = hc_ajax.getUrlValue('catId');
@@ -21,49 +23,49 @@ goodsRender();
 getMaxPageCount();
 
 // 获取总页数
-function getMaxPageCount(){
-	
-	hc_ajax.ajax({
+function getMaxPageCount() {
+
+    hc_ajax.ajax({
         method: 'get',
-		url: BASE_URL + '/api_goods',
-		data: {page, pagesize: 9 ,...(catId !== null ? { catId: `${catId}` } : {})},
-		success(res){
-			if(res.code != 0){
-				console.log(res);
-				return;
-			};
-			
-			// 设置总页数
-			pageCount = res.page;
-			
-			// 后面才能调用分页器
-			Pagination();
-		},
-		
-	})
+        url: BASE_URL + '/api_goods',
+        data: { page, pagesize: 9, ...(catId !== null ? { catId: `${catId}` } : {}) },
+        success(res) {
+            if (res.code != 0) {
+                console.log(res);
+                return;
+            };
+
+            // 设置总页数
+            pageCount = res.page;
+
+            // 后面才能调用分页器
+            Pagination();
+        },
+
+    })
 };
 // 分页器
-function Pagination(){
-	// 调用分页器
-	$('.pager').pagination({
-		// 总页数
-		pageCount : pageCount,
-		current: 1,
-		prevContent: '上一页',
-		nextContent: '下一页',
-		mode : 'fixed',
-		coping: true,
-		homePage: '首页',
-		endPage: '末页',
-		isHide: true,
-		jump: true,
-		callback(obj){
-			//当前页
-			page = obj.getCurrent();
-			//调用数据方法
-			goodsRender();
-		},	
-	});	
+function Pagination() {
+    // 调用分页器
+    $('.pager').pagination({
+        // 总页数
+        pageCount: pageCount,
+        current: 1,
+        prevContent: '上一页',
+        nextContent: '下一页',
+        mode: 'fixed',
+        coping: true,
+        homePage: '首页',
+        endPage: '末页',
+        isHide: true,
+        jump: true,
+        callback(obj) {
+            //当前页
+            page = obj.getCurrent();
+            //调用数据方法
+            goodsRender();
+        },
+    });
 }
 //导航栏
 (function () {
@@ -126,7 +128,7 @@ function Pagination(){
             for (let index = 0; index < osmLi.length; index++) {
                 //鼠标移入导航栏
                 osmLi[index].onmouseenter = function () {
-                    if (index > 0 && index<16) {
+                    if (index > 0 && index < 16) {
                         let a = osmLi[index].querySelector('a')
                         let catid = a.getAttribute('catId')
 
@@ -157,23 +159,23 @@ function Pagination(){
                 };
             }
 
-            listChild.onmouseenter = function(){listChild.style.display = 'block'};
-            listChild.onmouseleave = function(){listChild.style.display = 'none'}; 
+            listChild.onmouseenter = function () { listChild.style.display = 'block' };
+            listChild.onmouseleave = function () { listChild.style.display = 'none' };
         }
     });
 })();
 
 
 //数据渲染
-function goodsRender(){
+function goodsRender(minPrice, maxPrice) {
     // 请求数据
     hc_ajax.ajax({
         method: 'get',
         url: BASE_URL + `/api_goods`,
-        data: {page, pagesize: 9 ,...(catId !== null ? { catId: `${catId}` } : {})},
+        data: { page, pagesize: 9, ...(catId !== null ? { catId: `${catId}` } : {}) },
         success(res) {
-            
-            console.log(res);
+
+            console.log('数据',res);
             // 验证请求结果
             if (res.code != 0) {
                 console.log(res);
@@ -182,42 +184,54 @@ function goodsRender(){
 
             //想要的结果
             let goodsData = res.data;
+            console.log(parseInt(minPrice),maxPrice);
+            
 
             //添加商品
             let strLi = ''
             goodsData.forEach(item => {
-                //列表累加
-                strLi += `
-                    <li>
-                        <a href="detail.html?goodsId=${item.goods_id}">
-                            <div class="goods">
-                                <img src="${item.goods_thumb}" alt="">
-                                <div class="goods-name">
-                                    <p>￥${item.price}</p>
-                                    <p>${item.goods_name}</p>
-                                    <p>${item.goods_desc}</p>
+                if ((!maxPrice && item.price >= minPrice) || 
+                    (item.price >= minPrice && item.price <= maxPrice) || 
+                    (!minPrice)) {
+                    //列表累加
+                    strLi += `
+                        <li>
+                            <a href="detail.html?goodsId=${item.goods_id}">
+                                <div class="goods">
+                                    <img src="${item.goods_thumb}" alt="">
+                                    <div class="goods-name">
+                                        <p>￥${item.price}</p>
+                                        <p>${item.goods_name}</p>
+                                        <p>${item.goods_desc}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <div class="bar">
-                            <a class="store">
-                                <img src="${item.brand_thumb}" alt="">
-                                ${item.brand_name}
                             </a>
-                            <a class="like">${item.star_number} <div class='likeimg'></div></a>
-                        </div>
-                    </li>
-                `
+                            <div class="bar">
+                                <a class="store">
+                                    <img src="${item.brand_thumb}" alt="">
+                                    ${item.brand_name}
+                                </a>
+                                <a class="like">${item.star_number} <div class='likeimg'></div></a>
+                            </div>
+                        </li>
+                    `
+                }
+
             })
             goodUl.innerHTML = strLi
-
-            // like()
         }
     });
 
 };
 
 //价格筛选
-function priceSection() {
-    
-}
+(function () {
+    priceUl.addEventListener('click', function (event) {
+        if (event.target.closest('li')) {
+            let row = event.target.closest('li');
+            console.log(parseInt(row.getAttribute('minPrc')), row.getAttribute('maxPrc'));
+
+            goodsRender(row.getAttribute('minPrc'), row.getAttribute('maxPrc'))
+        }
+    })
+})();

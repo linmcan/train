@@ -1,146 +1,155 @@
-.main{
+.main {
     width: 1000px;
     margin: 0 auto;
 }
+
 /* 基本设置 */
 .setting {
     padding: 20px 0;
     position: relative;
 }
-.setting a{
+
+.setting a {
     color: white;
     font-size: 14px;
     background-color: #7ca8cb;
     padding: 5px 10px;
 }
-.setting ::after{
+
+.setting ::after {
     content: '';
-	width: 100%;
-	height: 1px;
-	background-color:#ccc;
-	position: absolute;
-	left: 0px;
-	bottom: -5px;
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    position: absolute;
+    left: 0px;
+    bottom: -5px;
 }
+
 /* 小列表 */
-.secnav{
+.secnav {
     padding: 20px 0;
 }
-.secnav-list{
+
+.secnav-list {
     display: flex;
     color: #666;
     font-size: 13px;
 }
-.secnav-list a{
+
+.secnav-list a {
     color: #666;
     font-size: 13px;
 }
-.secnav-list :nth-child(3) a{
-    color:#7ca8cb ;
+
+.secnav-list :nth-child(3) a {
+    color: #7ca8cb;
 }
-.secnav-list :nth-child(odd) a{
-	margin:0 7px;
+
+.secnav-list :nth-child(odd) a {
+    margin: 0 7px;
 }
 
 /* 表单 */
-.add-address{
+.add-address {
     margin-bottom: 20px;
 }
-.add-address td{
+
+.add-address td {
     padding: 10px 0;
 }
+
 /* 第一行 */
-.add-address :nth-child(1) span{
+.add-address :nth-child(1) span {
     padding: 5px 0;
     font-size: 16px;
     color: #333;
 }
+
 /* 所有灰色字体 */
-.add-address td .color2{
+.add-address td .color2 {
     padding: 5px 0;
     margin-left: 5px;
     font-size: 12px;
     color: #666;
 }
+
 /* 所有蓝色字体的span */
-.add-address td .color1{
+.add-address td .color1 {
     font-size: 12px;
     color: #7ca8cb;
     padding-right: 5px;
 }
+
 /* 三到九行的粗体灰色字 */
-.add-address :nth-child(n+3):nth-child(-n+9) td:nth-of-type(1){
+.add-address :nth-child(n+3):nth-child(-n+9) td:nth-of-type(1) {
     font-size: 13px;
     color: #666;
     font-weight: 600;
 }
+
 /* 所有输入框的颜色和外边距 */
-.add-address td input[type="text"]{
+.add-address td input[type="text"] {
     border: #cfcfcf solid 1px;
-    margin-right:5px;
+    margin-right: 5px;
     padding: 5px;
 }
+
 /* 姓名，邮政编码，手机号输入框 */
 .add-address :nth-child(3) input,
 .add-address :nth-child(6) input,
-.add-address :nth-child(7) input{
+.add-address :nth-child(7) input {
     height: 20px;
     width: 250px;
 }
+
 /* 街道地址 */
-.add-address :nth-child(5) td:nth-of-type(2) span{
+.add-address :nth-child(5) td:nth-of-type(2) span {
     vertical-align: bottom;
 }
-.add-address :nth-child(5) input{
+
+.add-address :nth-child(5) input {
     height: 35px;
     width: 330px;
 }
-/* 电话号码 */
-.add-address :nth-child(8) input{
-    height: 20px;
-}
-.add-address :nth-child(8) input:nth-of-type(1){
-    width: 42px;
-}
-.add-address :nth-child(8) input:nth-of-type(2){
-    width: 130px;
-    margin-left: 5px;
-}
-.add-address :nth-child(8) input:nth-of-type(3){
-    width: 58px;
-    margin-left: 5px;
-}
+
 /* 保存按钮 */
-.add-address :nth-child(10) a{
+.add-address .save {
     padding: 5px 25px;
     background-color: #5b6e92;
     color: white;
     font-size: 14px;
     font-weight: 600;
     border-radius: 5px;
+    border: none;
 }
 
 
 /* 已保存地址表格 */
-.address{
+.address {
     padding: 60px 0;
     border-top: #ccc solid 1px;
 }
+
 /* 上下两个span */
-.address span:first-of-type{
+.address span:first-of-type {
     color: #7ca8cb;
     font-size: 14px;
 }
-.address span:last-of-type{
+
+.address span:last-of-type {
     color: #666;
     font-size: 12px;
 }
+
 /* 表格 */
-.address .address-table{
+.address .address-table {
     margin: 5px 0;
     width: 1000px;
     border-collapse: collapse;
+    -webkit-user-select: none;
 }
+
 .address .address-table td {
     font-size: 14px;
     color: #666;
@@ -149,20 +158,86 @@
     text-align: center;
     padding: 5px;
 }
+
 /* 分别设置宽 */
-.address .address-table td:nth-child(1){width: 60px;}
-.address .address-table td:nth-child(2){ width: 180px; }
-.address .address-table td:nth-child(3){ width: 280px; }
-.address .address-table td:nth-child(4),.address .address-table td:nth-child(5){ width: 160px; }
-.address .address-table td:nth-child(6){ width: 100px; }
+.address .address-table td:nth-child(1) {
+    width: 60px;
+}
+
+.address .address-table td:nth-child(2) {
+    width: 180px;
+}
+
+.address .address-table td:nth-child(3) {
+    width: 280px;
+}
+
+.address .address-table td:nth-child(4),
+.address .address-table td:nth-child(5) {
+    width: 160px;
+}
+
+.address .address-table td:nth-child(6) {
+    width: 100px;
+}
+
 /* 地址居左 */
-.address>.address-table tr:nth-child(n+2) td:nth-child(3){
+.address>.address-table tr:nth-child(n+2) td:nth-child(3) {
     text-align: left;
 }
+
 /* 蓝色字体 */
-.address>.address-table tr:nth-child(n+2) td:nth-child(5){
+.address>.address-table tr:nth-child(n+2) .isDefault {
     color: #7ca8cb;
 }
-.address>.address-table tr:nth-child(n+2) td:nth-child(6) a{
+
+.address>.address-table tr:nth-child(n+2) td:nth-child(6) span {
     color: #7ca8cb;
+}
+
+/* 提示框 */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal .popWindow {
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.modal .popWindow h2{
+    text-align: center;
+    padding: 10px 0;
+    font-size: 18px;
+    background:#25292e;
+    color: white;
+}
+.modal .popWindow p{
+    text-align: center;
+    font-size: 16px;
+    padding: 25px 0 20px;
+}
+.modal .popWindow .btns{
+    width: 470px;
+    text-align: center;
+    padding: 25px;
+}
+.modal .popWindow .btns button{
+    background-color: #7ca8cb;
+    color: #fff;
+    border: none;
+    padding: 3px 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin: 0 10px;
 }

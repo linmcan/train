@@ -64,6 +64,9 @@
     font-size: 13px;
     color: #666;
 }
+.osm-bar .osm-ul .listChild a:hover{
+    color: #97d5fc;
+}
 
 /* 价格下拉框 */
 .osm-price {
@@ -75,9 +78,9 @@
     border-bottom: 1px solid #ededed;
     position: relative;
     font-size: 13px;
-    z-index: 999;
+    z-index: 998;
 }
-.osm-price span{
+.osm-price>span{
     display: inline-block;
     width: 14px;
     height: 14px;
@@ -89,7 +92,7 @@
 		rotate: 180deg;
 	}
 }
-.osm-price:hover span{
+.osm-price:hover>span{
     animation: spin .5s linear forwards;
 }
 /* 价格 */
@@ -105,14 +108,14 @@
 .osm-price:hover .price-list{
     display: block;
 }
-.osm-price .price-list a{
+.osm-price .price-list span{
     display: inline-block;
     width: 75px;
     padding: 10px;
     color: #333;
     border-bottom: 1px solid #ededed;
 }
-.osm-price .price-list li:hover a{
+.osm-price .price-list li:hover span{
     background: #333;
     color: white;
 }

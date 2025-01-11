@@ -46,7 +46,14 @@ let goodsId = hc_ajax.getUrlValue('goodsId');
 
             let goodsData = res.data;
 
-            //面包屑方法
+            //判断商品是否存在
+            if (goodsData.length == 0) {
+                let main = document.querySelector('.main')
+                main.innerHTML = '<p style="height: 200px; text-align: center; font-size: 30px;">商品已下架...</p>'
+                return
+            }
+
+            // //面包屑方法
             bread(goodsData[0].cat_id, goodsData[0].goods_name);
 
             //左边图片列表
@@ -122,7 +129,7 @@ let goodsId = hc_ajax.getUrlValue('goodsId');
             `;
             goodsInfo.innerHTML = info;
             addgoods();
-            
+
 
             //下面广告
             let bannerdtl = '';
@@ -209,7 +216,7 @@ function addgoods() {
     //加入购物车
     let addcart = document.querySelector('.cart-share .addcart')
     console.log(mopt);
-    
+
     let num = 1;
     quantity.value = num;
 
@@ -230,13 +237,44 @@ function addgoods() {
         let TOKEN = localStorage.getItem('token');
         // 验证登录状态
         if (!USERNAME || !TOKEN) {
-            alert('请先登录');
+            let modal = document.querySelector('.modal');
+            modal.style.display = localStorage.getItem('token') ? 'none' : 'block';
+            let log = document.querySelector('.log');
+            let ret = document.querySelector('.ret');
+            log.onclick = function(){
+                let goodsId = hc_ajax.getUrlValue('goodsId');  
+                // 带参数的跳转
+                location.href = goodsId ? `login.html?goodsId=${goodsId}` : 'login.html';
+            }
+            ret.onclick = function(){
+                location.href = `index.html`;
+            }
             return;
         };
-        console.log('购买');
-        
-        //先加入结算清单，跳转到地址页面
 
+        //先加入结算清单，跳转到地址页面
+        hc_ajax.ajax({
+            method: 'post',
+            url: BASE_URL + '/api_settlement',
+            data: {
+                status: 'addsettlement',
+                userId: localStorage.getItem('token'),
+                from: 'product',
+                goodsId: goodsId,
+                goodsNumber: num,
+            },
+            ContentType: 'url',
+            success(res) {
+                console.log(res);
+                if (res.code != 0) {
+                    console.log(res);
+                    return;
+                };
+
+                //跳转到地址页面
+                location.href = 'result.html';
+            }
+        })
     };
 
     // 点击加入购物车
@@ -245,7 +283,18 @@ function addgoods() {
         let TOKEN = localStorage.getItem('token');
         // 验证登录状态
         if (!USERNAME || !TOKEN) {
-            alert('请先登录');
+            let modal = document.querySelector('.modal');
+            modal.style.display = localStorage.getItem('token') ? 'none' : 'block';
+            let log = document.querySelector('.log');
+            let ret = document.querySelector('.ret');
+            log.onclick = function(){
+                let goodsId = hc_ajax.getUrlValue('goodsId');  
+                // 带参数的跳转
+                location.href = goodsId ? `login.html?goodsId=${goodsId}` : 'login.html';
+            }
+            ret.onclick = function(){
+                location.href = `index.html`;
+            }
             return;
         };
 
@@ -295,6 +344,7 @@ function recom(goodType) {
     })
     //随机生成
     function Radom(pageCount) {
+         let pgc = pageCount;
         hc_ajax.ajax({
             method: 'get',
             url: BASE_URL + `/api_goods`,
@@ -306,7 +356,7 @@ function recom(goodType) {
                 };
                 console.log(res.data);
 
-                let str = '<div class="recommendation-title">猜你喜欢</div>';
+                let str = '<div class="recommendation-title">猜你喜欢 <button class="changeBtn">换一换</button></div>';
                 res.data.forEach(item => {
                     str += `
                         <div class="recommendation-goods">
@@ -318,6 +368,13 @@ function recom(goodType) {
                     `
                 })
                 recommendation.innerHTML = str;
+
+                let btn = document.querySelector('.changeBtn')
+
+                btn.onclick = function(){
+                    //回调渲染
+                    Radom(pgc);
+                }
             }
         })
     }
@@ -360,7 +417,7 @@ function move() {
         if (m >= 2 && m <= sli.length - 3) {
             sul.style.transition = '.5s';
             sul.style.left = -84 * (m - 2) + 'px'
-        }else if (m == 4) {
+        } else if (m == 4) {
             sul.style.transition = '.5s';
             sul.style.left = '-34px'
         }
@@ -406,7 +463,7 @@ function move() {
             if (m >= 2 && m <= sli.length - 2) {
                 sul.style.transition = '.5s';
                 sul.style.left = -84 * (m - 2) + 'px'
-            }else if (m == 4) {
+            } else if (m == 4) {
                 sul.style.transition = '.5s';
                 sul.style.left = '-168px'
             }
@@ -462,7 +519,7 @@ function move() {
             if (m >= 2 && m <= sli.length - 3) {
                 sul.style.transition = '.5s';
                 sul.style.left = -84 * (m - 2) + 'px'
-            }if (m == 4) {
+            } if (m == 4) {
                 sul.style.transition = '.5s';
                 sul.style.left = -84 * (m - 2) + 'px'
             }

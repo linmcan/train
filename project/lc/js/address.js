@@ -1,13 +1,6 @@
 //用户地址列表
-let userAddress = document.querySelector('.myaddress');
-let userAddressUl = document.querySelector('.myaddress ul');
-
-//结算清单
-let resultUl = document.querySelector('.resultList ul');
-let allPrice = document.querySelector('.allPrice');
-
-//结算按钮
-let buy = document.querySelector('.buy');
+let userAddress = document.querySelector('.address');
+let userAddressTable = document.querySelector('.address-table');
 
 let nowProvince = '';
 let nowCity = '';
@@ -19,90 +12,14 @@ let nowTown = '';
     modal.style.display = localStorage.getItem('token') ? 'none' : 'block';
     let log = document.querySelector('.log');
     let ret = document.querySelector('.ret');
-    log.onclick = function () {
+    log.onclick = function(){
         location.href = `login.html`;
     }
-    ret.onclick = function () {
+    ret.onclick = function(){
         location.href = `index.html`;
     }
 })();
 
-//请求结算清单
-(function () {
-    hc_ajax.ajax({
-        method: 'post',
-        url: BASE_URL + '/api_settlement',
-        data: { status: 'getsettlement', userId: TOKEN },
-        ContentType: 'url',
-        success(res) {
-            console.log(res);
-            if (res.code != 0) {
-                console.log(res);
-                return;
-            };
-
-            let str = '';
-            //渲染结算清单
-            res.data.forEach(item => {
-                str += `
-                    <li class="resultGoods">
-                        <div class="imgCon">
-                            <a href="detail.html?goodsId=${item.goods_id}&catId=${item.cat_id}"><img src="${item.goods_thumb}" alt=""></a>
-                        </div>
-                        <div class="infoCon">
-                            <div class="l">
-                                <p class="name">${item.goods_name}</p>
-                                <p class="price">单价：${parseInt(item.price * 0.9)}</p>
-                            </div>
-                            <div class="r">
-                                <span class="number">数量：${item.goods_number}</span>
-                                <span class="sumPrice">¥${parseInt(item.price * 0.9) * item.goods_number}.00</span>
-                            </div>
-                        </div>
-                    </li>
-                `
-            });
-            resultUl.innerHTML = str;
-
-            //计算总价
-            let sumPrice = document.querySelectorAll('.sumPrice');
-            let sumNum = 0;
-            for (let i = 0; i < sumPrice.length; i++) {
-                sumNum += parseInt(sumPrice[i].innerHTML.replace(/¥/g, ''));
-            }
-            allPrice.innerHTML = sumNum + '.00';
-
-            //点击支付
-            buy.onclick = function () {
-                console.log('支付');
-                // 请求支付地址
-                hc_ajax.ajax({
-                    method: 'post',
-                    url: BASE_URL + '/api_payment',
-                    data: {
-                        userId: localStorage.getItem('token'),
-                        orderId: new Date().getTime(),
-                        returnUrl: 'http://127.0.0.1:5500/order.html',
-                        totalAmount: sumNum+'',
-                        subject: '标题',
-                        body: '订单详情'
-                    },
-                    ContentType: 'url',
-                    success(res){
-                        console.log(res);
-                        if(res.code != 0){
-                            console.log(res);
-                            return;
-                        };
-                        // 获取支付地址成功
-                        location.href = res.data;
-                    }
-                })
-            }
-            
-        },
-    })
-})();
 
 //默认初始化一次
 getAddressList();
@@ -111,14 +28,7 @@ addModify();
 // 地址添加
 function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, mdfPho) {
     //新增
-    let isadd = document.querySelector('.isadd');
-    let isaddIpt = document.querySelector('.isadd input');
-    let addTable = document.querySelector('.addTable');
-    //点击新增
-    isaddIpt.onchange = function () {
-        console.log(isaddIpt.checked);
-        addTable.style.display = isaddIpt.checked ? 'block' : 'none';
-    }
+    let addTable = document.querySelector('.add-address');
 
     //修改ID
     let modify = modifyId;
@@ -183,7 +93,7 @@ function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, 
 
                 //验证是否是修改
                 if (modify != undefined) {
-                    nowProvince  = mdfProvince;
+                    nowProvince = mdfProvince;
                     province.value = mdfProvince;
                     // 调用城市数据
                     getCity(mdfProvince, city);
@@ -320,9 +230,9 @@ function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, 
                 });
                 //保存为新地址
                 saveAddress();
-                //出现
-                isadd.style.display = 'block';
-                isaddIpt.checked = false;
+
+
+
             }
 
         }
@@ -355,8 +265,11 @@ function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, 
             }
         });
 
-        addTable.style.display = 'none';
-        isadd.checked = false;
+        isusername = false;
+        isprovince = false;
+        isuseraddress = false;
+        isuserphone = false;
+
         username.value = '';
         province.value = '';
         city.style.display = 'none';
@@ -373,10 +286,10 @@ function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, 
 //地址操作
 (function () {
     //监听父组件操作
-    userAddressUl.addEventListener('click', function (event) {
+    userAddressTable.addEventListener('click', function (event) {
         //删除
         if (event.target.classList.contains('dlt')) {
-            let row = event.target.closest('li');
+            let row = event.target.closest('tr');
             console.log(row.getAttribute('address-id'));
 
             //更新后台
@@ -408,22 +321,14 @@ function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, 
         }
         //编辑
         if (event.target.classList.contains('redact')) {
-            let row = event.target.closest('li');
-            // console.log(row.getAttribute('address-id'));
-            // console.log(row.querySelector('.name').innerHTML);
-            // console.log(row.querySelector('.pho').innerHTML);
-            // console.log(row.querySelector('.location').innerHTML);
-            // console.log(row.querySelector('.locationDtl').innerHTML);
+            let row = event.target.closest('tr');
 
             //1.下面输入框出现 2.新增地址勾选框隐藏，出现编辑地址提示字符 3.输入框获取当前li的值，判断是否为编辑
             //4.为编辑时点击保存后删除点击的li，再新增li到原本的位置
 
-            let isadd = document.querySelector('.isadd');
-            let addTable = document.querySelector('.addTable');
-            addTable.style.display = 'block';
-            isadd.style.display = 'none';
             //分割字符串
             let locationArray = row.querySelector('.location').innerHTML.split(' ')
+
 
             //调用编辑
             addModify(row.getAttribute('address-id'), row.querySelector('.name').innerHTML, locationArray[0], locationArray[1], locationArray[2], row.querySelector('.locationDtl').innerHTML, row.querySelector('.pho').innerHTML)
@@ -436,9 +341,9 @@ function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, 
 
         //设为默认（下面的字改变,提到最前面）
         if (event.target.classList.contains('default')) {
-            let row = event.target.closest('li');
+            let row = event.target.closest('tr');
             console.log('点击了设为默认');
-            //ie为true
+            //isActive为true
             hc_ajax.ajax({
                 method: 'post',
                 url: BASE_URL + '/api_address',
@@ -460,32 +365,10 @@ function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, 
             return;
         };
 
-        // 设为当前
-        if (event.target.closest('li')) {
-            let row = event.target.closest('li');
-            console.log(row.getAttribute('address-id'));
-            //isActive为true
-            hc_ajax.ajax({
-                method: 'post',
-                url: BASE_URL + '/api_address',
-                data: { status: 'activeAddress', userId: localStorage.getItem('token'), addressId: row.getAttribute('address-id') },
-                ContentType: 'url',
-                success(res) {
-                    console.log(res);
-                    if (res.code != 0) {
-                        console.log(res);
-                        return;
-                    };
-                    //刷新列表
-                    getAddressList()
-                }
-            })
-
-        };
-
     });
 
 })();
+
 
 
 //获取地址
@@ -515,7 +398,7 @@ function getAddressList() {
 function renderAddressList(data) {
 
     if (data.length == 0) {
-        userAddressUl.innerHTML = `<p class='noAddress'>暂无地址，快去添加收货地址吧</p>`;
+        userAddressTable.innerHTML = `<p class='noAddress'>暂无地址，快去添加收货地址吧</p>`;
         return;
     };
 
@@ -525,64 +408,30 @@ function renderAddressList(data) {
     });
 
 
-    let str = '';
+    let str = `
+        <tr>
+            <td class="col1">收货人</td>
+            <td class="col2">所在地区</td>
+            <td class="col3">街道地址</td>
+            <td class="col4">电话/手机</td>
+            <td class="col5">状态</td>
+            <td class="col6">操作</td>
+        </tr>
+    `;
     data.forEach(item => {
         str += `
-            <li address-id="${item.address_id}" class="${item.isActive ? 'isActive' : ''}">
-                <div class="tle">
-                    <span class="name">${item.takename}</span>
-                    <span class="pho">${item.tel}</span>
-                </div>
-                <div class="con">
-                    <p class="location" >${item.province} ${item.city} ${item.district}</p>
-                    <p class="locationDtl">${item.streetname}</p>
-                </div>
-                <div class="opt">
-                    <div class="default ${item.isDefault ? 'isDefault' : ''}">${item.isDefault ? '默认地址' : '设为默认'}</div>
-                    <div>
-                        <span class="redact">编辑</span>
-                        <span class="dlt">删除</span>
-                    </div>
-                </div>
-            </li>
+            <tr address-id="${item.address_id}">
+                <td class="col1 name">${item.takename}</td>
+                <td class="col2 location">${item.province} ${item.city} ${item.district}</td>
+                <td class="col3 locationDtl">${item.streetname}</td>
+                <td class="col4 pho">${item.tel}</td>
+                <td class="col5 default ${item.isDefault ? 'isDefault' : ''}">${item.isDefault ? '默认地址' : '设为默认'}</td>
+                <td class="col6">
+                    <span class="redact">编辑</span>
+                    <span class="dlt">删除</span>
+                </td>
+            </tr>
         `
     })
-    userAddressUl.style.width = data.length * 250 + 'px';
-    userAddressUl.style.left = '0px'
-    userAddressUl.innerHTML = str;
-    console.log(data.length);
-
-
-    //地址列表移动
-    move(data.length)
-}
-//地址列表移动
-function move(length) {
-    let prev = document.querySelector('.prev');
-    let next = document.querySelector('.next');
-    //移动下标
-    let num = 0;
-
-    if (length <= 4) {
-        userAddressUl.style.left = '0px'
-        prev.onclick = null;
-        next.onclick = null;
-    } else {
-        console.log('触发了');
-
-        //上一个
-        prev.onclick = function () {
-            num--;
-            num = num <= 0 ? 0 : num;
-            userAddressUl.style.transition = '.5s';
-            userAddressUl.style.left = (-250 * num) + 'px'
-        };
-        //下一个
-        next.onclick = function () {
-            num++;
-            num = num >= length - 4 ? length - 4 : num;
-            userAddressUl.style.transition = '.5s';
-            userAddressUl.style.left = (-250 * num) + 'px'
-        };
-    }
+    userAddressTable.innerHTML = str;
 }

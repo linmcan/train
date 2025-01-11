@@ -15,6 +15,7 @@ let loginout = user.querySelector('.user-subnav .user-btn');
 let cartSub = document.querySelector('.cart-subnav');
 let cartMsg = cartSub.querySelector('.cart-msg');
 let cartlist = cartSub.querySelector('.cart-list')
+let cartBtn = cartSub.querySelector('.cart-btn')
 
 //导航栏商店子菜单部分
 let shopNav = document.querySelector('.shop-subnav');
@@ -32,89 +33,112 @@ let classifyData = {};//商品子导航
 
 
 // 验证登录状态
-(function(){
-	
-	// 封装交互状态
-	function loginStatusRender(isLogin, isLoginout, txt){
-		user.style.display = isLogin;
-		loginUser.innerHTML = `${txt}`;
-		
-		login.style.display = isLoginout;
-		register.style.display = isLoginout;
-	};
-	
-	if(USERNAME && TOKEN){
-		loginStatusRender('block', 'none', USERNAME);
-		
-		// 调用获取购物车数据方法
-		getCartValue();
-		
-	}else{
-		loginStatusRender('none', 'block', '');
-	};
-	
-	//点击退出按钮
-	loginout.onclick = function(){
-		// 清除本地存储
-		localStorage.removeItem('username');
-		localStorage.removeItem('token');
-		// 交互
-		loginStatusRender('none', 'block', '');
-		// // 显示暂无购物车
-		cartMsg.style.display = 'block';
-		cartlist.style.display = 'none';
-		// // 交互文本
-		// oCartBtn.innerHTML = '快去抢购物良仓商品吧！';
-		// oCartBtn.onclick = null;
-		
-	};
-	
-	
-	
-	//点击登录按钮
-	login.onclick = function(){
-		let goodsId = hc_ajax.getUrlValue('goodsId');
-		let catId = hc_ajax.getUrlValue('catId');
-        console.log(goodsId,catId);
-        
-		// 带参数的跳转
-        location.href = goodsId ? `login.html?goodsId=${goodsId}&catId=${catId}` : 'login.html';
-		
-	};
-	
+(function () {
+
+    // 封装交互状态
+    function loginStatusRender(isLogin, isLoginout, txt) {
+        user.style.display = isLogin;
+        loginUser.innerHTML = `${txt}`;
+
+        login.style.display = isLoginout;
+        register.style.display = isLoginout;
+    };
+
+    if (USERNAME && TOKEN) {
+        loginStatusRender('block', 'none', USERNAME);
+
+        // 调用获取购物车数据方法
+        getCartValue();
+
+    } else {
+        loginStatusRender('none', 'block', '');
+    };
+
+    //点击退出按钮
+    loginout.onclick = function () {
+        // 清除本地存储
+        localStorage.removeItem('username');
+        localStorage.removeItem('token');
+        // 交互
+        loginStatusRender('none', 'block', '');
+        // // 显示暂无购物车
+        cartMsg.style.display = 'block';
+        cartlist.style.display = 'none';
+    };
+
+
+
+    //点击登录按钮
+    login.onclick = function () {
+        let goodsId = hc_ajax.getUrlValue('goodsId');
+        let catId = hc_ajax.getUrlValue('catId');
+        let catName = hc_ajax.getUrlValue('catName');
+        console.log('参数' + goodsId, catId);
+
+        // 带参数的跳转
+        if (catId) {
+            location.href = `login.html?catName=${catName}&catId=${catId}`
+        } else {
+            location.href = goodsId ? `login.html?goodsId=${goodsId}` : 'login.html';
+        }
+
+
+    };
+
+    //点击注册
+    register.onclick = function () {
+        let goodsId = hc_ajax.getUrlValue('goodsId');
+        let catId = hc_ajax.getUrlValue('catId');
+        let catName = hc_ajax.getUrlValue('catName');
+        if (catId) {
+            window.location.href = `register.html?catName=${catName}&catId=${catId}`;
+        } else {
+            window.location.href = goodsId ? `register.html?goodsId=${goodsId}` : 'register.html';
+        }
+    }
+
+
 })();
 
 //购物车方法
-function getCartValue(){
-	
-	hc_ajax.ajax({
-		method: 'post',
-		url: BASE_URL + '/api_cart',
-		data: {userId: TOKEN, status: 'viewcart'},
+function getCartValue() {
+
+    hc_ajax.ajax({
+        method: 'post',
+        url: BASE_URL + '/api_cart',
+        data: { userId: TOKEN, status: 'viewcart' },
         ContentType: 'url',
-		success(res){
-			if(res.code != 0){
-				console.log(res);
-				return;
-			};
-			
-			//购物车验证
-			let cartCount = res.data.length;
-			if(cartCount == 0){
-				// 显示暂无购物车
-				cartMsg.style.display = 'block';
-				cartlist.style.display = 'none';
-				return;
-			};
-			
-			//购物车有商品
-			cartMsg.style.display = 'none';
-			cartlist.style.display = 'block';
-			
-			//DOM组装
-			let str = '';
-			res.data.forEach(item => {
-				str += `
+        success(res) {
+            if (res.code != 0) {
+                console.log(res);
+                return;
+            };
+
+            //购物车验证
+            let cartCount = res.data.length;
+            if (cartCount == 0) {
+                // 显示暂无购物车
+                cartMsg.style.display = 'block';
+                cartlist.style.display = 'none';
+                cartBtn.innerHTML = '快去抢购物良仓商品吧！';
+                cartBtn.onclick = function () {
+                    location.href = `category.html?catName=新品`;
+                };
+                return;
+            };
+
+            //购物车有商品
+            cartMsg.style.display = 'none';
+            cartlist.style.display = 'block';
+            cartBtn.innerHTML = '点击购买';
+            cartBtn.onclick = function () {
+                location.href = `cart.html`;
+            };
+
+            //DOM组装
+            let str = '';
+            res.data.forEach(item => {
+                str += `
 					<li class="goods">
 						<a href="detail.html?goodsId=${item.goods_id}&catId=${item.cat_id}"><img src="${item.goods_thumb}" alt="" /></a>
 						<div>
@@ -128,12 +152,12 @@ function getCartValue(){
 						</div>
 					</li>
 				`;
-			});
-			
-			// 添加到页面
-			cartlist.innerHTML = str;
-		}
-	})
+            });
+
+            // 添加到页面
+            cartlist.innerHTML = str;
+        }
+    })
 };
 
 //请求商品分类导航的数据
@@ -236,11 +260,22 @@ function getCartValue(){
     searchA.addEventListener('click', function (event) {
         // 获取输入框的值
         let inputValue = searchInput.value;
-
+        //阻止a的默认事件
         event.preventDefault();
+        if (inputValue =='') {
+           let searchPop = document.querySelector('.seachPop')
+           searchPop.style.display = inputValue =='' ? 'block' :'none';
+
+           let popClick = document.querySelector('.seachPop span')
+           popClick.onclick = function () {
+                searchPop.style.display = 'none';
+           }
+           return
+        }
+        
         // 添加查询参数
         let hrefvalue = `search.html?keywords=${inputValue}`;
-        searchA.setAttribute('href', hrefvalue); 
+        searchA.setAttribute('href', hrefvalue);
 
         window.location.href = hrefvalue;
     });

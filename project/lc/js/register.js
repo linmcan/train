@@ -157,32 +157,32 @@ agree.onchange = function () {
 };
 
 //注册
-registBtn.onclick = function(){
-	if(!usernameStatus){
+registBtn.onclick = function () {
+	if (!usernameStatus) {
 		userName.focus();
 		msgRender(userName, userNameMsg, 'block', 'red', '用户名不可用', 'red');
 		return;
 	};
-	
-	if(!codeStatus){
+
+	if (!codeStatus) {
 		code.focus();
 		msgRender(code, codeMsg, 'block', 'red', '请输入正确的验证码', 'red');
 		return;
 	};
-	
-	if(!passwordStatus){
+
+	if (!passwordStatus) {
 		password.focus();
 		msgRender(password, passwordMsg, 'block', 'red', '请输入正确的密码', 'red');
 		return;
 	};
-	
-	if(!confirmStatus){
+
+	if (!confirmStatus) {
 		confirmpsd.focus();
 		msgRender(confirmpsd, confirmMsg, 'block', 'red', '密码不一致', 'red');
 		return;
 	};
-	
-	if(!agreeStatus){
+
+	if (!agreeStatus) {
 		alert('请勾选协议');
 		return;
 	};
@@ -190,22 +190,29 @@ registBtn.onclick = function(){
 	// 	return;
 	// }
 	hc_ajax.ajax({
-		method : 'post',
+		method: 'post',
 		url: BASE_URL + '/api_user',
-		data: {username: userName.value, password: password.value, status: 'register'},
+		data: { username: userName.value, password: password.value, status: 'register' },
 		ContentType: 'url',
-		success(res){
+		success(res) {
 			console.log(res);
-			if(res.code != 0){
+			if (res.code != 0) {
 				console.log(res);
 				return;
 			};
-			
-			// 跳转到登录页面
-			window.location.href = 'login.html';
+
+			// 带参数跳转
+			let goodsId = hc_ajax.getUrlValue('goodsId');
+			let catId = hc_ajax.getUrlValue('catId');
+			let catName = hc_ajax.getUrlValue('catName');
+			if (catId) {
+				window.location.href = `login.html?catName=${catName}&catId=${catId}`;
+			} else {
+				window.location.href = goodsId ? `login.html?goodsId=${goodsId}` : 'login.html';
+			}
 		}
 	})
-	
+
 };
 
 

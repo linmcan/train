@@ -106,13 +106,12 @@ header{
 	border-bottom: 1px solid #666;
 }
 .user-subnav .user-btn{
+	display: block;
+	color: #ccc;
 	background-color:#242930;
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
-}
-.user-subnav .user-btn a{
-	color: #ccc;
 }
 .user-subnav .user-list li:hover,.user-subnav .user-btn:hover{
 	background-color:#2e353d ;
@@ -205,7 +204,7 @@ header{
     position: absolute;
     top: 56px; left: -30%;
     display: none;
-    z-index: 998;
+    z-index: 999;
 }
 .message:hover .message-subnav{
 	display: block;
@@ -524,20 +523,21 @@ nav>ul>.share:hover .share-subnav{
 .wrap-l:first-child{
     display: inline-block;
     width: auto; 
-	position: relative;
+	
 }
 .wrap-l  .download-text {
     padding: 40px 0 0 25px;
     width: 171px;
     height: 44px;
 	background: url(../img/phone_02.png)no-repeat 0 40px;
-    color: #5c5c5c;
     font-size: 12px;
+	position: relative;
 }
-.wrap-l  .download-text p{
+.wrap-l  .download-text>p{
 	padding-left: 30px;
 	line-height: 22px;
 	background-color:#25292e ;
+	color: #5c5c5c;
 }
 /* 二维码悬浮窗 */
 .download-code{
@@ -546,6 +546,9 @@ nav>ul>.share:hover .share-subnav{
 	position: absolute;
 	top: -150px; left: -25px;
 	display: none;
+}
+.wrap-l .download-text:hover .download-code{
+	display: block;
 }
 .wrap-l a .code{
 	width: 300px;
@@ -573,9 +576,7 @@ nav>ul>.share:hover .share-subnav{
 	margin-top: 10px;
 	text-align: center;
 }
-.wrap-l .all-download:hover .download-code{
-	display: block;
-}
+
 .wrap-l-bottom p{
 	color: #666666;
     font-size: 12px;
@@ -646,4 +647,44 @@ nav>ul>.share:hover .share-subnav{
 }
 .wrap-r .a-list .a-wechat:hover .wechat-code{
 	display: block;
+}
+
+
+/* 搜索提示框 */
+.seachPop {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.seachPop .popwindow {
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+.seachPop .popwindow h2{
+    text-align: center;
+    padding: 5px 0;
+    background:#25292e;
+    color: white;
+}
+.seachPop .popwindow p{
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 0;
+}
+.seachPop .popwindow span{
+    position: absolute;
+    top: 5px;right: 8px;
+    color: white;
+    font-size: 24px;
+	-webkit-user-select: none;
 }

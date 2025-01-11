@@ -1,5 +1,18 @@
 let cartTable = document.getElementById('cart-table');
 let buy = document.querySelector('.buy');
+//监听是否登录
+(function () {
+    let modal = document.querySelector('.modal');
+    modal.style.display = localStorage.getItem('token') ? 'none' : 'block';
+    let log = document.querySelector('.log');
+    let ret = document.querySelector('.ret');
+    log.onclick = function(){
+        location.href = `login.html`;
+    }
+    ret.onclick = function(){
+        location.href = `index.html`;
+    }
+})();
 
 (function () {
     hc_ajax.ajax({

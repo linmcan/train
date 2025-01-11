@@ -359,6 +359,14 @@
     font-weight: 600;
     margin-bottom: 10px;
 }
+.recommendation .recommendation-title button{
+    border: none;
+    color: white;
+    background-color: #5993f4;
+    font-size: 12px;
+    padding: 1px 5px;
+    border-radius: 3px;
+}
 .recommendation .recommendation-goods{
     margin-bottom: 20px;
 }
@@ -397,4 +405,51 @@
 }
 .back-top:hover{
 	opacity: 1;
+}
+
+/* 提示框 */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal .popWindow {
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.modal .popWindow h2{
+    text-align: center;
+    padding: 10px 0;
+    font-size: 18px;
+    background:#25292e;
+    color: white;
+}
+.modal .popWindow p{
+    text-align: center;
+    font-size: 16px;
+    padding: 25px 0 20px;
+}
+.modal .popWindow .btns{
+    width: 470px;
+    text-align: center;
+    padding: 25px;
+}
+.modal .popWindow .btns button{
+    background-color: #7ca8cb;
+    color: #fff;
+    border: none;
+    padding: 3px 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin: 0 10px;
 }

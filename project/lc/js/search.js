@@ -22,6 +22,8 @@ function getMaxPageCount(){
 		url: BASE_URL + '/api_search',
 		data: {page, pagesize: 12 ,keywords},
 		success(res){
+            console.log(res);
+            
 			if(res.code != 0){
 				console.log(res);
 				return;
@@ -109,7 +111,7 @@ function getSearch() {
                     </li>
                 `
             });
-            searchUl.innerHTML=str;
+            searchUl.innerHTML= str==''?`<p class="nothing">没有搜索到任何商品，换个关键词吧</p>`:str;
 
 
         }

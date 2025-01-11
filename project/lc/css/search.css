@@ -46,6 +46,12 @@
     flex-wrap: wrap;
     justify-content: flex-start; 
 }
+.searchList .sec-list .nothing{
+    margin: 50px 0;
+    width: 1000px;
+    text-align: center;
+    color: #878787;
+}
 .searchList .sec-list li{
     width: 235px;
     height: 269px;
@@ -149,3 +155,5 @@
 .pager .jump-ipt:focus {
     outline: none; /* 去掉聚焦时的 outline */
 }
+
+

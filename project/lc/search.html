@@ -17,73 +17,35 @@
             <a class="logo" href="index.html"></a>
             <ul class="nav-r">
                 <!--未登录的 登录 注册 -->
-                <li class="login"><a href="login.html">登录</a></li>
-                <li class="register"><a href="register.html">注册</a></li>
+                <li class="login"><a href="#">登录</a></li>
+                <li class="register"><a href="#">注册</a></li>
                 <!-- 已登录的 用户 -->
                 <li class="user is-subnav">
                     <img src="img/user.jpg" alt="">
                     <span>用户123</span>
 
-                
+
                     <div class="user-subnav">
                         <ul class="user-list">
                             <li><a href="#">个人设置</a></li>
                             <li><a href="address.html">收货信息</a></li>
                             <li><a href="order.html">我的订单</a></li>
                         </ul>
-                        
-                        <div class="user-btn"><a href="">退出登录</a></div>
+
+                        <a href="" class="user-btn">退出登录</a>
                     </div>
                 </li>
 
                 <li class="line">|</li>
 
                 <li class="cart is-subnav">
-                    <a href="cart.html">购物车</a>
+                    <a href="#">购物车</a>
                     <!-- 子菜单 -->
                     <div class="cart-subnav">
                         <!-- 暂无商品, 没有商品，没有登录 -->
                         <div class="cart-msg">你的购物车暂无商品...</div>
                         <!-- 中间购物车商品 -->
                         <ul class="cart-list">
-                            <li class="goods">
-                                <a href=""><img src="img/goods.jpg" alt="" /></a>
-                                <div>
-                                    <p>全棉插肩长袖T恤 | 百</p>
-                                    <p>服装尺码:S;颜色:米白/黑;</p>
-                                    <p>
-                                        <span>数量：3件</span>
-                                        <span>¥290.00</span>
-                                        <span>¥390.00</span>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="goods">
-                                <a href=""><img src="img/goods.jpg" alt="" /></a>
-                                <div>
-                                    <p>全棉插肩长袖T恤 | 百</p>
-                                    <p>服装尺码:S;颜色:米白/黑;</p>
-                                    <p>
-                                        <span>数量：3件</span>
-                                        <span>¥290.00</span>
-                                        <span>¥390.00</span>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="goods">
-                                <a href=""><img src="img/goods.jpg" alt="" /></a>
-                                <div>
-                                    <p>全棉插肩长袖T恤 | 百</p>
-                                    <p>服装尺码:S;颜色:米白/黑;</p>
-                                    <p>
-                                        <span>数量：3件</span>
-                                        <span>¥290.00</span>
-                                        <span>¥390.00</span>
-                                    </p>
-                                </div>
-                            </li>
                         </ul>
                         <!-- 按钮 -->
                         <div class="cart-btn">快去抢购物良仓商品吧！</div>
@@ -118,18 +80,18 @@
         <ul class="sub-l">
             <li><a href="index.html">首页</a></li>
             <li class="shop">
-                <a href="category.html?catName=新品" >商店</a>
-                    <!-- 子菜单 -->
-                    <div class="shop-subnav">
-                        <ul class="shop-list">
+                <a href="category.html?catName=新品">商店</a>
+                <!-- 子菜单 -->
+                <div class="shop-subnav">
+                    <ul class="shop-list">
 
-                        </ul>
-                        <div class="nav-subnav-r">
-                            <img src="img/nav_banner.jpg" alt="" />
-                            <p>新视线：  2024年12月刊</p>
-                        </div>
-                        
+                    </ul>
+                    <div class="nav-subnav-r">
+                        <img src="img/nav_banner.jpg" alt="" />
+                        <p>新视线： 2024年12月刊</p>
                     </div>
+
+                </div>
             </li>
             <li class="magazine">
                 <a href="#">杂志</a>
@@ -172,13 +134,22 @@
             <li><a href="">达人</a></li>
             <li><a href="">有偿资讯</a></li>
         </ul>
-        
+
         <!-- 搜索框 -->
         <div class="search-content">
             <input type="text" placeholder="search..." name="" id="">
             <a href=""></a>
         </div>
-     </nav>
+
+        <!-- 搜索提示框 -->
+        <div class="seachPop">
+            <div class="popwindow">
+                <h2>提示</h2>
+                <p>搜索结果不能为空</p>
+                <span>X</span>
+            </div>
+        </div>
+    </nav>
 
     <!-- 主体 -->
     <div class="main">
@@ -186,7 +157,7 @@
         <div class="position"></div>
         <!-- 搜索结果 -->
         <div class="searchResult">
-            
+
         </div>
 
         <!-- 搜索列表 -->
@@ -231,11 +202,9 @@
             <div class="wrap">
                 <div class="wrap-l">
                     <div class="all-download">
-                        <a href="" class="download">
-                            <div class="download-text">
-                                <p>iPhone Android</p>
-                                <p>客户端下载</p>
-                            </div>
+                        <div class="download-text">
+                            <p>iPhone Android</p>
+                            <p>客户端下载</p>
                             <div class="download-code">
                                 <a href="">
                                     <div class="code">
@@ -250,7 +219,7 @@
                                     </div>
                                 </a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     <div class="wrap-l-bottom">
                         <ui class="bottom-list">
@@ -297,6 +266,9 @@
             </div>
         </div>
     </footer>
+
+
+
 </body>
 
 </html>

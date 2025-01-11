@@ -16,8 +16,8 @@
             <a class="logo" href="index.html"></a>
             <ul class="nav-r">
                 <!--未登录的 登录 注册 -->
-                <li class="login"><a href="login.html">登录</a></li>
-                <li class="register"><a href="register.html">注册</a></li>
+                <li class="login"><a href="#">登录</a></li>
+                <li class="register"><a href="#">注册</a></li>
                 <!-- 已登录的 用户 -->
                 <li class="user is-subnav">
                     <img src="img/user.jpg" alt="">
@@ -31,14 +31,14 @@
                             <li><a href="order.html">我的订单</a></li>
                         </ul>
 
-                        <div class="user-btn"><a href="">退出登录</a></div>
+                        <a href="" class="user-btn">退出登录</a>
                     </div>
                 </li>
 
                 <li class="line">|</li>
 
                 <li class="cart is-subnav">
-                    <a href="cart.html">购物车</a>
+                    <a href="#">购物车</a>
                     <!-- 子菜单 -->
                     <div class="cart-subnav">
                         <!-- 暂无商品, 没有商品，没有登录 -->
@@ -138,6 +138,15 @@
         <div class="search-content">
             <input type="text" placeholder="search..." name="" id="">
             <a href=""></a>
+        </div>
+
+        <!-- 搜索提示框 -->
+        <div class="seachPop">
+            <div class="popwindow">
+                <h2>提示</h2>
+                <p>搜索结果不能为空</p>
+                <span>X</span>
+            </div>
         </div>
     </nav>
 
@@ -249,26 +258,24 @@
             <div class="wrap">
                 <div class="wrap-l">
                     <div class="all-download">
-                        <a href="" class="download">
                             <div class="download-text">
                                 <p>iPhone Android</p>
                                 <p>客户端下载</p>
-                            </div>
-                            <div class="download-code">
-                                <a href="">
-                                    <div class="code">
-                                        <div>
-                                            <img src="img/icon_02.png" alt="" class="img1">
-                                            <p>下载iPhone版</p>
+                                <div class="download-code">
+                                    <a href="">
+                                        <div class="code">
+                                            <div>
+                                                <img src="img/icon_02.png" alt="" class="img1">
+                                                <p>下载iPhone版</p>
+                                            </div>
+                                            <div>
+                                                <img src="img/icon_03.png" alt="" class="img2">
+                                                <p>下载Android版</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <img src="img/icon_03.png" alt="" class="img2">
-                                            <p>下载Android版</p>
-                                        </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
                     </div>
                     <div class="wrap-l-bottom">
                         <ui class="bottom-list">
@@ -315,6 +322,18 @@
             </div>
         </div>
     </footer>
+
+        <!-- 验证登录 -->
+        <div class="modal">
+            <div class="popWindow">
+                <h2>提示</h2>
+                <p>请先登录</p>
+                <div class="btns">
+                    <button class="log">去登录</button>
+                    <button class="ret">返回首页</button>
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>

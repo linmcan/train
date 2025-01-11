@@ -39,7 +39,7 @@ let moreclick = 0;
                 // 累加数据
                 strimg += `
                     <li class='bannerli'>
-                        <a href="">
+                        <a href="detail.html?goodsId=${item.goods_id}">
                             <img src="${item.goods_thumb}" alt="" />
                             <p>${item.goods_name}</p>
                         </a>
