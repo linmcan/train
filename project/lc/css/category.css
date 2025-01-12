@@ -78,7 +78,7 @@
     border-bottom: 1px solid #ededed;
     position: relative;
     font-size: 13px;
-    z-index: 998;
+    z-index: 996;
 }
 .osm-price>span{
     display: inline-block;

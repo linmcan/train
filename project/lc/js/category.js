@@ -100,7 +100,7 @@ function Pagination() {
                 `;
             });
             str += `
-                <li><a href="#">品牌</a></li>
+                <li><a href="brand.html">品牌</a></li>
             `;
 
             osmUl.innerHTML = str
@@ -184,14 +184,12 @@ function goodsRender(minPrice, maxPrice) {
 
             //想要的结果
             let goodsData = res.data;
-            console.log(parseInt(minPrice),maxPrice);
-            
 
             //添加商品
             let strLi = ''
             goodsData.forEach(item => {
-                if ((!maxPrice && item.price >= minPrice) || 
-                    (item.price >= minPrice && item.price <= maxPrice) || 
+                if ((!maxPrice && item.price >= minPrice) ||
+                    (item.price >= minPrice && item.price <= maxPrice) ||
                     (!minPrice)) {
                     //列表累加
                     strLi += `
@@ -229,9 +227,8 @@ function goodsRender(minPrice, maxPrice) {
     priceUl.addEventListener('click', function (event) {
         if (event.target.closest('li')) {
             let row = event.target.closest('li');
-            console.log(parseInt(row.getAttribute('minPrc')), row.getAttribute('maxPrc'));
 
-            goodsRender(thisID,row.getAttribute('minPrc'), row.getAttribute('maxPrc'))
+            goodsRender(row.getAttribute('minPrc'), row.getAttribute('maxPrc'))
         }
     })
 })();
