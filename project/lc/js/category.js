@@ -231,7 +231,7 @@ function goodsRender(minPrice, maxPrice) {
             let row = event.target.closest('li');
             console.log(parseInt(row.getAttribute('minPrc')), row.getAttribute('maxPrc'));
 
-            goodsRender(row.getAttribute('minPrc'), row.getAttribute('maxPrc'))
+            goodsRender(thisID,row.getAttribute('minPrc'), row.getAttribute('maxPrc'))
         }
     })
 })();
