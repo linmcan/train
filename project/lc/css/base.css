@@ -145,7 +145,7 @@ header{
 }
 /* 有商品时购物车列表 */
 .cart-subnav .cart-list{
-	height: 250px;
+	max-height: 250px;
 	overflow-y: scroll;
 	display: none;
 }
@@ -661,7 +661,7 @@ nav>ul>.share:hover .share-subnav{
 .seachPop {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 999;
     left: 0;
     top: 0;
     width: 100%;

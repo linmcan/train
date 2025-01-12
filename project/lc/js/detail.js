@@ -315,8 +315,13 @@ function addgoods() {
                     console.log(res);
                     return;
                 };
-                // 交互 弹出好看的框
-                alert('加入购物车成功');
+                //提示框
+                let addsuess = document.querySelector('.addsuess');
+                addsuess.style.display = 'block';
+                let btn = addsuess.querySelector('span');
+                btn.onclick = function () {
+                    addsuess.style.display = 'none'; 
+                }
                 // 调用头部的购物车方法
                 getCartValue();
             },

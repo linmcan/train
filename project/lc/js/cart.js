@@ -196,7 +196,13 @@ function cartOpera() {
     buy.onclick = function () {
         let checkAll = document.querySelectorAll('[check="checked"]');
         if (checkAll.length == 0) {
-            alert('请选择商品');
+            //提示框
+            let nogoods = document.querySelector('.nogoods');
+            nogoods.style.display = 'block';
+            let btn = nogoods.querySelector('span');
+            btn.onclick = function () {
+                nogoods.style.display = 'none'; 
+            }
             return;
         };
 

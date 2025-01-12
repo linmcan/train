@@ -408,11 +408,10 @@
 }
 
 /* 提示框 */
-
-.modal {
+.modal{
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 999;
     left: 0;
     top: 0;
     width: 100%;
@@ -452,4 +451,33 @@
     font-size: 14px;
     border-radius: 5px;
     margin: 0 10px;
+}
+
+.addsuess {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.addsuess div{
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    -webkit-user-select: none;
+}
+.addsuess div span{
+    position: absolute;
+    top: 6px; right: 10px;
+}
+.addsuess div p{
+    text-align: center;
+    margin: 20px 0;
 }
