@@ -197,7 +197,7 @@
 
 /* 提示框 */
 
-.modal {
+.modal,.isDlt {
     display: none;
     position: fixed;
     z-index: 999;
@@ -207,32 +207,33 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 }
-.modal .popWindow {
+.modal .popWindow,.isDlt .popWindow{
     background-color: #fefefe;
     margin: 15% auto;
     border: 1px solid #888;
     width: 500px;
     border-radius: 8px;
     overflow: hidden;
+    position: relative;
 }
-.modal .popWindow h2{
+.modal .popWindow h2,.isDlt .popWindow h2{
     text-align: center;
     padding: 10px 0;
     font-size: 18px;
     background:#25292e;
     color: white;
 }
-.modal .popWindow p{
+.modal .popWindow p,.isDlt .popWindow p{
     text-align: center;
     font-size: 16px;
     padding: 25px 0 20px;
 }
-.modal .popWindow .btns{
+.modal .popWindow .btns,.isDlt .popWindow .btns{
     width: 470px;
     text-align: center;
     padding: 25px;
 }
-.modal .popWindow .btns button{
+.modal .popWindow .btns button,.isDlt .popWindow .btns button{
     background-color: #7ca8cb;
     color: #fff;
     border: none;

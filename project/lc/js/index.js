@@ -108,7 +108,10 @@ let moreclick = 0;
                                 <img src="${item.brand_thumb}" alt="">
                                 ${item.brand_name}
                             </a>
-                            <a class="like">${item.star_number} <div class='likeimg'></div></a>
+                            <div class="like">
+                                <span class='likeNum'>${item.star_number}</span>
+                                <span class='likeimg'> </span>
+                            </div>
                         </div>
                     </li>
                 `
@@ -293,7 +296,7 @@ function play(n, m) {
 
 function like() {
     //点击喜爱
-    let likeElement = goodUl.querySelectorAll('li .bar .like');
+    let likeElement = goodUl.querySelectorAll('.likeNum');
     let likeclick = goodUl.querySelectorAll('li .bar .like .likeimg');
     let islike = false;
     likeclick.forEach((item, index) => {
@@ -302,11 +305,13 @@ function like() {
             likeclick[index].style.backgroundPosition = islike ? '0px -610px' : '0px -583px';
             console.log(likeclick[index]);
             //获取喜爱数
-            let currentValue = likeElement[index].textContent.trim();
-            let currentNumber = parseInt(currentValue, 10);
+            // let currentValue = likeElement[index].textContent.trim();
+            let currentNumber = 0;
             
-            // currentNumber = islike ? currentNumber : currentNumber+1;
-            // console.log(currentNumber);
+            currentNumber = islike ? 0 : 1;
+            console.log(likeElement[index]);
+            likeElement[index].innerHTML = currentNumber;
+            console.log(currentNumber);
             //点击后取反
             islike = !islike;
 

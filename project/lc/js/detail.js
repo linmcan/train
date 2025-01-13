@@ -465,7 +465,7 @@ function move() {
             let smallSrc = sli[m].querySelector('div img').getAttribute('src');
             bigImg[0].src = smallSrc;
 
-            if (m >= 2 && m <= sli.length - 2) {
+            if (m >= 2 && m <= sli.length - 3) {
                 sul.style.transition = '.5s';
                 sul.style.left = -84 * (m - 2) + 'px'
             } else if (m == 4) {

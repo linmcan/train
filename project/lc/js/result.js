@@ -84,8 +84,8 @@ let nowTown = '';
                         orderId: new Date().getTime(),
                         returnUrl: 'http://127.0.0.1:5500/order.html',
                         totalAmount: sumNum+'',
-                        subject: '标题',
-                        body: '订单详情'
+                        subject: `${res.data[0].goods_name}`,
+                        body: `${res.data[0].goods_desc}`
                     },
                     ContentType: 'url',
                     success(res){
@@ -356,7 +356,7 @@ function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, 
         });
 
         addTable.style.display = 'none';
-        isadd.checked = false;
+        isaddIpt.checked = false;
         username.value = '';
         province.value = '';
         city.style.display = 'none';
@@ -379,28 +379,39 @@ function addModify(modifyId, mdfName, mdfProvince, mdfCity, mdfArea, mdfAddrss, 
             let row = event.target.closest('li');
             console.log(row.getAttribute('address-id'));
 
-            //更新后台
-            hc_ajax.ajax({
-                method: 'post',
-                url: BASE_URL + '/api_address',
-                data: {
-                    status: 'deleteAddress',
-                    userId: localStorage.getItem('token'),
-                    addressId: row.getAttribute('address-id')
-                },
-                ContentType: 'url',
-                success(dltres) {
-                    console.log(dltres);
-                    if (dltres.code != 0) {
+            let isDlt = document.querySelector('.isDlt');
+            isDlt.style.display ='block';
+            let isyes = isDlt.querySelector('.isyes');
+            let isno = isDlt.querySelector('.isno');
+            isyes.onclick = function () {
+                //更新后台
+                hc_ajax.ajax({
+                    method: 'post',
+                    url: BASE_URL + '/api_address',
+                    data: {
+                        status: 'deleteAddress',
+                        userId: localStorage.getItem('token'),
+                        addressId: row.getAttribute('address-id')
+                    },
+                    ContentType: 'url',
+                    success(dltres) {
                         console.log(dltres);
-                        return;
-                    };
-                    //移除dom节点
-                    row.remove()
-                    //重新渲染
-                    getAddressList()
-                }
-            })
+                        if (dltres.code != 0) {
+                            console.log(dltres);
+                            return;
+                        };
+                        //移除dom节点
+                        row.remove()
+                        //重新渲染
+                        getAddressList()
+                    }
+                })
+                isDlt.style.display ='none';
+            }
+            isno.onclick = function () {
+                isDlt.style.display ='none';
+            }
+
 
             //阻止了事件冒泡
             event.stopPropagation();

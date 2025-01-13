@@ -41,12 +41,18 @@
 }
 
 .good-list li .like {
-    font-size: 13px;
+    -webkit-user-select: none;
+
+    height: 16px;
+}
+.good-list li .like .likeNum{
+    /* font-size: 13px; */
     line-height: 16px;
 }
 
-.good-list li .like div {
-    float: right;
+.good-list li .like .likeimg {
+    display: inline-block;
+    /* float: right; */
     margin-left: 8px;
     width: 18px;
     height: 16px;

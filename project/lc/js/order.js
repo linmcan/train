@@ -14,8 +14,8 @@ let isStatus = true;
 (function () {
     let modal = document.querySelector('.modal');
     modal.style.display = localStorage.getItem('token') ? 'none' : 'block';
-    let log = document.querySelector('.log');
-    let ret = document.querySelector('.ret');
+    let log = modal.querySelector('.log');
+    let ret = modal.querySelector('.ret');
     log.onclick = function () {
         location.href = `login.html`;
     }
@@ -89,26 +89,40 @@ let isStatus = true;
             let row = event.target.closest('tr');
             console.log(row.getAttribute('trade_no'));
 
-            hc_ajax.ajax({
-                method: 'post',
-                url: BASE_URL + '/api_order',
-                data: {
-                    status: 'delorder',
-                    userId: localStorage.getItem('token'),
-                    tradeNo: row.getAttribute('trade_no')
-                },
-                ContentType: 'url',
-                success(res) {
-                    console.log(res);
-                    if (res.code != 0) {
+            let isDlt = document.querySelector('.isDlt');
+            isDlt.style.display ='block';
+            let isyes = isDlt.querySelector('.isyes');
+            let isno = isDlt.querySelector('.isno');
+            isyes.onclick = function () {
+                hc_ajax.ajax({
+                    method: 'post',
+                    url: BASE_URL + '/api_order',
+                    data: {
+                        status: 'delorder',
+                        userId: localStorage.getItem('token'),
+                        tradeNo: row.getAttribute('trade_no')
+                    },
+                    ContentType: 'url',
+                    success(res) {
                         console.log(res);
-                        return;
-                    };
-                    //更新uI
-                    row.remove()
-                    getOrder(isStatus)
-                }
-            })
+                        if (res.code != 0) {
+                            console.log(res);
+                            return;
+                        };
+                        //更新uI
+                        row.remove()
+                        getOrder(isStatus)
+                    }
+                })
+                isDlt.style.display ='none';
+            }
+            isno.onclick = function () {
+                isDlt.style.display ='none';
+            }
+
+
+
+            
         }
 
         //点击详细
@@ -181,7 +195,7 @@ let isStatus = true;
                             item.goods.forEach(item1 => {
                                 orderItem += `
                                     <div class="orderItem">
-                                        <a href=""><img src="${item1.goods_thumb}" alt=""></a>
+                                        <a href="detail.html?goodsId=${item1.goods_id}&catId=${item1.cat_id}"><img src="${item1.goods_thumb}" alt=""></a>
                                         <div class="info">
                                             <p><a href="">品牌 ／ ${item1.brand_name}</a></p>
                                             <p><a href="">${item1.goods_name}</a></p>
@@ -209,7 +223,7 @@ let isStatus = true;
                                     <td>${orderItem}</td>
                                     <td>${orderPrice}</td>
                                     <td>${orderNum}</td>
-                                    <td>${item.trade_no}</td>
+                                    <td>${item.trade_no != 'null'? item.trade_no : ''}</td>
                                     <td>${price}.00</td>
                                     <td>${item.status}</td>
                                     <td>
