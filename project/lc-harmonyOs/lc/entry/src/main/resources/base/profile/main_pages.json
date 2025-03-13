@@ -1,0 +1,22 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/OtherPages/SearchPage",
+    "pages/OtherPages/GoodsDetailsPage",
+    "pages/OtherPages/SearchResultPage",
+    "pages/OtherPages/ClassifyGoodsPage",
+    "pages/welcomePage",
+    "pages/loginPage",
+    "pages/OtherPages/orderPage",
+    "pages/OtherPages/addressPage",
+    "pages/OtherPages/settingPage",
+    "pages/OtherPages/payPage",
+    "pages/OtherPages/PaySucessPage",
+    "pages/OtherPages/PayPasswordPage",
+    "pages/OtherPages/OrderDetailsPage",
+    "pages/OtherPages/OrderSearchPage",
+    "pages/registPage",
+    "pages/StartPage",
+    "pages/OtherPages/testPage/MapPage"
+  ]
+}
